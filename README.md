@@ -1,4 +1,4 @@
-# PROG2111-Project
+# PROG2111 Project (20%)
 Design, implement, and programmatically interact with a relational database related to video game e-commerce.
 
 ## Project Phases:
@@ -31,20 +31,16 @@ Design, implement, and programmatically interact with a relational database rela
 ### Phase 4: DDL Statements (20 Marks)
 
 [ ] Based on the ERD, write SQL DDL statements to create the database schema.
-
-[ ] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
+<br>[ ] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
 
 **Deliverable**: SQL script with DDL statements to create tables.
 
 ### Phase 5: Programmatic Access & CRUD Operations (30 Marks)
 
 [ ] Develop C# programs that connect to the MySQL database using the ADO.NET
-
-[ ] Perform CRUD operations (Create, Read, Update, Delete) for the entities defined in your ERD.
-
-[ ] Ensure proper error handling and transaction control.
-
-[ ] Use the ADO.NET MySQL library to establish the connection and perform operations.
+<br>[ ] Perform CRUD operations (Create, Read, Update, Delete) for the entities defined in your ERD.
+<br>[ ] Ensure proper error handling and transaction control.
+<br>[ ] Use the ADO.NET MySQL library to establish the connection and perform operations.
 
 **Deliverables**: C# programs with CRUD functionality.
 
