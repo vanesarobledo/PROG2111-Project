@@ -11,8 +11,8 @@ Design, implement, and programmatically interact with a relational database rela
 <br>[x] Follow the date and timeline for submission on eConestoga
 
 ### Phase 2: Data Modeling & ER Diagram (20 Marks)
-> DUE: Dec 3 2025 @ 8:00pm
- 
+> DUE: Nov 30 2025 @ 8:00pm
+
 [x] Identify the key entities, attributes, and relationships in your use case.
 <br>[x] Develop an Entity-Relationship Diagram (ERD) using appropriate diagramming tools.
 <br>[x] The ERD must include all entities, their attributes, primary keys, and relationships between them.
@@ -20,7 +20,7 @@ Design, implement, and programmatically interact with a relational database rela
 **Deliverable**: ERD in PDF format.
 
 ### Phase 3: Normalization (15 Marks)
-> DUE: Dec 10 2025 @ 8:00**am**
+> DUE: Dec 3 2025 @ 8:00pm
 
 [x] Normalize your database to 3rd Normal Form (3NF).
 <br>[x] Submit documentation showing the process of normalizing the database from 1NF to 3NF.
@@ -29,6 +29,7 @@ Design, implement, and programmatically interact with a relational database rela
 **Deliverable**: Normalization report.
 
 ### Phase 4: DDL Statements (20 Marks)
+> DUE: Dec 3 2025 @ 8:00pm
 
 [x] Based on the ERD, write SQL DDL statements to create the database schema.
 <br>[x] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
@@ -36,6 +37,7 @@ Design, implement, and programmatically interact with a relational database rela
 **Deliverable**: SQL script with DDL statements to create tables.
 
 ### Phase 5: Programmatic Access & CRUD Operations (30 Marks)
+> DUE: Dec 10 2025 @ 8:00**am**
 
 [ ] Develop C# programs that connect to the MySQL database using the ADO.NET
 <br>[ ] Perform CRUD operations (Create, Read, Update, Delete) for the entities defined in your ERD.
@@ -45,6 +47,8 @@ Design, implement, and programmatically interact with a relational database rela
 **Deliverables**: C# programs with CRUD functionality.
 
 ### Phase 6: Final Presentation & Code Walkthrough (10 Marks)
+> DUE: Dec 10 2025
+
 Present your database project to the class. The presentation should:
 1. Explain the project use case.
 2. Walk through the ER diagram.
