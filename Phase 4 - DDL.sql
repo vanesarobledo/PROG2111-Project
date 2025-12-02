@@ -55,6 +55,7 @@ CREATE TABLE Product (
 	product_id INTEGER AUTO_INCREMENT,
     inventory_id INTEGER,
     cost FLOAT,
+    CHECK (cost > 0),
     PRIMARY KEY(product_id)
 );
 
@@ -123,4 +124,7 @@ ADD CONSTRAINT FOREIGN KEY (product_id) REFERENCES Product (product_id);
 ALTER TABLE PAYMENT
 ADD CONSTRAINT FOREIGN KEY (customer_id) REFERENCES Customer (customer_id);
 ALTER TABLE PAYMENT
+ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES Store (store_id);
+
+ALTER TABLE EMPLOYEE
 ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES Store (store_id);
