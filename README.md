@@ -7,31 +7,31 @@ Design, implement, and programmatically interact with a relational database rela
 
 [x] Choose a real-world scenario where a relational database is essential (e.g., a library management system, hospital management system, e-commerce site).
 <br>[x] Create a GitHub repository and add all members to it
-<br>[ ] Make sure all members have access before you submit Phase 1 document
-<br>[ ] Follow the date and timeline for submission on eConestoga
+<br>[x] Make sure all members have access before you submit Phase 1 document
+<br>[x] Follow the date and timeline for submission on eConestoga
 
 ### Phase 2: Data Modeling & ER Diagram (20 Marks)
 > DUE: Dec 3 2025 @ 8:00pm
  
-[ ] Identify the key entities, attributes, and relationships in your use case.
-<br>[ ] Develop an Entity-Relationship Diagram (ERD) using appropriate diagramming tools.
-<br>[ ] The ERD must include all entities, their attributes, primary keys, and relationships between them.
+[x] Identify the key entities, attributes, and relationships in your use case.
+<br>[x] Develop an Entity-Relationship Diagram (ERD) using appropriate diagramming tools.
+<br>[x] The ERD must include all entities, their attributes, primary keys, and relationships between them.
 
 **Deliverable**: ERD in PDF format.
 
 ### Phase 3: Normalization (15 Marks)
 > DUE: Dec 10 2025 @ 8:00**am**
 
-[ ] Normalize your database to 3rd Normal Form (3NF).
-<br>[ ] Submit documentation showing the process of normalizing the database from 1NF to 3NF.
+[x] Normalize your database to 3rd Normal Form (3NF).
+<br>[x] Submit documentation showing the process of normalizing the database from 1NF to 3NF.
 <br>[ ] Clearly explain how you handled redundant data and ensured that data dependencies are logically organized.
 
 **Deliverable**: Normalization report.
 
 ### Phase 4: DDL Statements (20 Marks)
 
-[ ] Based on the ERD, write SQL DDL statements to create the database schema.
-<br>[ ] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
+[x] Based on the ERD, write SQL DDL statements to create the database schema.
+<br>[x] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
 
 **Deliverable**: SQL script with DDL statements to create tables.
 
