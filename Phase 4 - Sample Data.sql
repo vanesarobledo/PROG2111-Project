@@ -45,15 +45,18 @@ VALUES (1, null, 10, 1);
 -- Product
 INSERT INTO Product (inventory_id, cost)
 VALUES (1, 19.99);
-SELECT * FROM Product;
 
 -- Customer
 INSERT INTO Customer (first_name, last_name, date_of_birth, email, username, password)
 VALUES ('Chiaki', 'Nanami', '1996-03-14', 'cnanami@yahoo.co.jo', 'cnanami', 'vYjIG40M%f');
 
 -- Payment
-INSERT INTO Payment (total_amount, date_of_purchase, product_id, customer_id, store_id)
-VALUES ('19.99', '2025-12-01', 1, 1, 1);
+INSERT INTO Payment (total_amount, date_of_purchase, customer_id, store_id)
+VALUES ('19.99', '2025-12-01', 1, 1);
+
+-- Payment_Line
+INSERT INTO Payment_Line (payment_id, product_id, quantity)
+VALUES (1, 1, 1);
 
 -- Employee
 INSERT INTO Employee (first_name, last_name, date_of_birth, email, username, password, store_id)

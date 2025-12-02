@@ -64,10 +64,15 @@ CREATE TABLE Payment (
 	payment_id INTEGER AUTO_INCREMENT,
     total_amount FLOAT NOT NULL,
     date_of_purchase DATE NOT NULL,
-    product_id INTEGER NOT NULL,
     customer_id INTEGER NOT NULL,
     store_id INTEGER NOT NULL,
     PRIMARY KEY(payment_id)
+);
+
+CREATE TABLE Payment_Line (
+	payment_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL
 );
 
 CREATE TABLE Store (
@@ -117,15 +122,18 @@ ADD CONSTRAINT FOREIGN KEY (console_id) REFERENCES Console (console_id);
 ALTER TABLE Inventory
 ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES Store (store_id);
 
-ALTER TABLE PRODUCT
+ALTER TABLE Product
 ADD CONSTRAINT FOREIGN KEY (inventory_id) REFERENCES Inventory (inventory_id);
 
-ALTER TABLE PAYMENT
-ADD CONSTRAINT FOREIGN KEY (product_id) REFERENCES Product (product_id);
-ALTER TABLE PAYMENT
+ALTER TABLE Payment
 ADD CONSTRAINT FOREIGN KEY (customer_id) REFERENCES Customer (customer_id);
-ALTER TABLE PAYMENT
+ALTER TABLE Payment
 ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES Store (store_id);
 
-ALTER TABLE EMPLOYEE
+ALTER TABLE Payment_Line
+ADD CONSTRAINT FOREIGN KEY (payment_id) REFERENCES Payment (payment_id);
+ALTER TABLE Payment_Line
+ADD CONSTRAINT FOREIGN KEY (product_id) REFERENCES Product (product_id);
+
+ALTER TABLE Employee
 ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES Store (store_id);
