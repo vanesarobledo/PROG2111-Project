@@ -1,3 +1,12 @@
+/*
+* FILE          : Phase 4 - DDL.sql
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Vanesa Robledo
+* FIRST VERSION : 2025-12-01
+* DESCRIPTION   : This contains the DDL statements to create the necessary tables for our database for video game e-commerce, and defines the
+* 				  necessary primary keys, foreign keys, and other constraints on data.
+*/
+
 -- Create and use database
 CREATE DATABASE games;
 USE games;
