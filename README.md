@@ -7,35 +7,37 @@ Design, implement, and programmatically interact with a relational database rela
 
 [x] Choose a real-world scenario where a relational database is essential (e.g., a library management system, hospital management system, e-commerce site).
 <br>[x] Create a GitHub repository and add all members to it
-<br>[ ] Make sure all members have access before you submit Phase 1 document
-<br>[ ] Follow the date and timeline for submission on eConestoga
+<br>[x] Make sure all members have access before you submit Phase 1 document
+<br>[x] Follow the date and timeline for submission on eConestoga
 
 ### Phase 2: Data Modeling & ER Diagram (20 Marks)
-> DUE: Dec 3 2025 @ 8:00pm
- 
-[ ] Identify the key entities, attributes, and relationships in your use case.
-<br>[ ] Develop an Entity-Relationship Diagram (ERD) using appropriate diagramming tools.
-<br>[ ] The ERD must include all entities, their attributes, primary keys, and relationships between them.
+> DUE: Nov 30 2025 @ 8:00pm
+
+[x] Identify the key entities, attributes, and relationships in your use case.
+<br>[x] Develop an Entity-Relationship Diagram (ERD) using appropriate diagramming tools.
+<br>[x] The ERD must include all entities, their attributes, primary keys, and relationships between them.
 
 **Deliverable**: ERD in PDF format.
 
 ### Phase 3: Normalization (15 Marks)
-> DUE: Dec 10 2025 @ 8:00**am**
+> DUE: Dec 3 2025 @ 8:00pm
 
-[ ] Normalize your database to 3rd Normal Form (3NF).
-<br>[ ] Submit documentation showing the process of normalizing the database from 1NF to 3NF.
+[x] Normalize your database to 3rd Normal Form (3NF).
+<br>[x] Submit documentation showing the process of normalizing the database from 1NF to 3NF.
 <br>[ ] Clearly explain how you handled redundant data and ensured that data dependencies are logically organized.
 
 **Deliverable**: Normalization report.
 
 ### Phase 4: DDL Statements (20 Marks)
+> DUE: Dec 3 2025 @ 8:00pm
 
-[ ] Based on the ERD, write SQL DDL statements to create the database schema.
-<br>[ ] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
+[x] Based on the ERD, write SQL DDL statements to create the database schema.
+<br>[x] Ensure that all necessary primary keys, foreign keys, and integrity constraints are included.
 
 **Deliverable**: SQL script with DDL statements to create tables.
 
 ### Phase 5: Programmatic Access & CRUD Operations (30 Marks)
+> DUE: Dec 10 2025 @ 8:00**am**
 
 [ ] Develop C# programs that connect to the MySQL database using the ADO.NET
 <br>[ ] Perform CRUD operations (Create, Read, Update, Delete) for the entities defined in your ERD.
@@ -45,6 +47,8 @@ Design, implement, and programmatically interact with a relational database rela
 **Deliverables**: C# programs with CRUD functionality.
 
 ### Phase 6: Final Presentation & Code Walkthrough (10 Marks)
+> DUE: Dec 10 2025
+
 Present your database project to the class. The presentation should:
 1. Explain the project use case.
 2. Walk through the ER diagram.
