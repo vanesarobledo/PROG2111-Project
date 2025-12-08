@@ -47,13 +47,20 @@ namespace GameStoreManagementSystem
             Connection = new DatabaseConnection();
 
             // Fill datasets
-            Games = Connection.LoadData("Game");
-            Console = Connection.LoadData("Console");
-            Inventory = Connection.LoadData("Inventory");
-            Product = Connection.LoadData("Product");
-            Customer = Connection.LoadData("Customer");
-            Store = Connection.LoadData("Store");
-            Employee = Connection.LoadData("Employee");
+            try
+            {
+                Games = Connection.LoadData("Game");
+                Console = Connection.LoadData("Console");
+                Inventory = Connection.LoadData("Inventory");
+                Product = Connection.LoadData("Product");
+                Customer = Connection.LoadData("Customer");
+                Store = Connection.LoadData("Store");
+                Employee = Connection.LoadData("Employee");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error loading data from database: " + e.ToString());
+            }
         }
     }
 }

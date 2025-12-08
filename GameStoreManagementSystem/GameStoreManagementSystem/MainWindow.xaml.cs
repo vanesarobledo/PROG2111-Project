@@ -29,13 +29,20 @@ namespace GameStoreManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Properties
+        internal DatabaseConnection databaseConnection;
+        internal GamesDatabase gamesDatabase;
+
         // Main Window
         public MainWindow()
         {
             InitializeComponent();
 
-            // Initialize games database
-            GamesDatabase gamesDatabase = new GamesDatabase();
+            // Initialize MySQL database connection
+            databaseConnection = new DatabaseConnection();
+
+            // Load data in games database
+            gamesDatabase = new GamesDatabase();
         }
 
         // Functions
