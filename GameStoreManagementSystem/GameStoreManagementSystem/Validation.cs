@@ -35,5 +35,38 @@ namespace GameStoreManagementSystem
             }
             return valid;
         }
+
+        /// <summary>
+        /// Converts a string containing a number to an integer
+        /// </summary>
+        /// <param name="num">Number to convert</param>
+        /// <returns>int; -1 if not an int</returns>
+        internal static int ConvertInt(string num)
+        {
+            int number;
+            if (!Int32.TryParse(num, out number))
+            {
+                number = -1;
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// Converts a string containing cost to a float
+        /// </summary>
+        /// <param name="cost">Cost to convert</param>
+        /// <returns>float containing price; 0 if price is invalid</returns>
+        internal static float ConvertCost(string cost)
+        {
+            float price = 0;
+            if (float.TryParse(cost, out price))
+            {
+                if (price <= 0)
+                {
+                    price = 0;
+                }
+            }
+            return price;
+        }
     }
 }
