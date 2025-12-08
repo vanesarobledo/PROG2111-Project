@@ -32,7 +32,7 @@ namespace GameStoreManagementSystem
         /// <summary>
         /// Datasets for each table in the games database
         /// </summary>
-        internal DataSet Games;
+        internal DataSet Game;
         internal DataSet Console;
         internal DataSet Inventory;
         internal DataSet Product;
@@ -49,7 +49,7 @@ namespace GameStoreManagementSystem
             // Fill datasets
             try
             {
-                Games = Connection.LoadData("Game");
+                Game = Connection.LoadData("Game");
                 Console = Connection.LoadData("Console");
                 Inventory = Connection.LoadData("Inventory");
                 Product = Connection.LoadData("Product");
@@ -59,8 +59,103 @@ namespace GameStoreManagementSystem
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error loading data from database: " + e.ToString());
+                MessageBox.Show("Error loading data from database: " + e);
             }
         }
+
+        // Functions
+
+        // Check if ID Exists (needed for foreign key constraints)
+
+        /// <summary>
+        /// Checks if Game ID exists in dataset
+        /// </summary>
+        /// <param name="id">ID to check</param>
+        /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
+        internal bool GameIDExists(string id)
+        {
+            bool exists = false;
+            foreach (DataRow row in Game.Tables["Game"].Rows)
+            {
+                if (row["game_id"] == id)
+                {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
+        /// <summary>
+        /// Checks if Console ID exists in dataset
+        /// </summary>
+        /// <param name="id">ID to check</param>
+        /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
+        internal bool ConsoleIDExists(string id)
+        {
+            bool exists = false;
+            foreach (DataRow row in Console.Tables["Console"].Rows)
+            {
+                if (row["console_id"] == id)
+                {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
+        /// <summary>
+        /// Checks if Inventory ID exists in dataset
+        /// </summary>
+        /// <param name="id">ID to check</param>
+        /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
+        internal bool InventoryIDExists(string id)
+        {
+            bool exists = false;
+            foreach (DataRow row in Inventory.Tables["Inventory"].Rows)
+            {
+                if (row["inventory_id"] == id)
+                {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
+        /// <summary>
+        /// Checks if Store ID exists in dataset
+        /// </summary>
+        /// <param name="id">ID to check</param>
+        /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
+        internal bool StoreIDExists(string id)
+        {
+            bool exists = false;
+            foreach (DataRow row in Store.Tables["Store"].Rows)
+            {
+                if (row["store_id"] == id)
+                {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
+        /// <summary>
+        /// Checks if Customer ID exists in dataset
+        /// </summary>
+        /// <param name="id">ID to check</param>
+        /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
+        internal bool CustomerIDExists(string id)
+        {
+            bool exists = false;
+            foreach (DataRow row in Customer.Tables["Customer"].Rows)
+            {
+                if (row["customer_id"] == id)
+                {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
     }
 }
