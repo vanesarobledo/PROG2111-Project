@@ -37,7 +37,6 @@ CREATE TABLE Inventory (
     console_id INTEGER,
     quantity INTEGER,
     store_id INTEGER,
-    CHECK (quantity >= 0),
     PRIMARY KEY(inventory_id)
 );
 
