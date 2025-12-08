@@ -25,12 +25,12 @@ namespace GameStoreManagementSystem
         /// <summary>
         /// Password for connecting to MySql database
         /// </summary>
-        private static string password = "";
+        private string password = "";
 
         /// <summary>
         /// Connection string to connect to database
         /// </summary>
-        private static string connectionString = "Server=localhost;Port=3306;Uid=root;Pwd=" + password + ";Database=games;";
+        private string connectionString = "";
 
         /// <summary>
         /// DataAdapter to connect to MySql database
@@ -45,6 +45,8 @@ namespace GameStoreManagementSystem
             {
                 password = ConfigurationManager.AppSettings["password"];
             }
+            connectionString = "Server=localhost;Port=3306;Uid=root;Pwd=" + password + ";Database=games;";
+
             // Start the adapter
             adapter = new MySqlDataAdapter("SELECT * FROM Game", connectionString);
         }
@@ -72,7 +74,7 @@ namespace GameStoreManagementSystem
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error connecting to database to load data: " + e.ToString());
+                throw e;
             }
             return ds;
         }
@@ -97,7 +99,7 @@ namespace GameStoreManagementSystem
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error connecting to database to update data: " + e.ToString());
+                throw e;
             }
         }
     }
