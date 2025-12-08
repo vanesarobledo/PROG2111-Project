@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+* FILE          : GamesDatabase.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia, Vanesa Robledo
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
+*                 This contains a repository of datasets with data from the databases
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Configuration;
@@ -13,82 +22,38 @@ namespace GameStoreManagementSystem
 {
     internal class GamesDatabase
     {
-        /// <summary>
-        /// Password for connecting to MySql database
-        /// </summary>
-        private static string password = "";
+        // Properties
 
         /// <summary>
-        /// Connection string to connect to database
+        /// Connection to the games database
         /// </summary>
-        private static string connectionString = "Server=localhost;Port=3306;Uid=root;Pwd=" + password + ";Database=games;";
+        internal DatabaseConnection Connection;
 
         /// <summary>
-        /// DataAdapter to connect to MySql database
+        /// Datasets for each table in the games database
         /// </summary>
-        private MySqlDataAdapter adapter;
+        internal DataSet Games;
+        internal DataSet Console;
+        internal DataSet Inventory;
+        internal DataSet Product;
+        internal DataSet Customer;
+        internal DataSet Store;
+        internal DataSet Employee;
 
         // Constructor
         public GamesDatabase()
         {
-            if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["password"]))
-            {
-                password = ConfigurationManager.AppSettings["password"];
-            }
-            adapter = new MySqlDataAdapter("SELECT * FROM Game", connectionString);
+            // Connect to the database
+            Connection = new DatabaseConnection();
+
+            // Fill datasets
+            Games = Connection.LoadData("Game");
+            Console = Connection.LoadData("Console");
+            Inventory = Connection.LoadData("Inventory");
+            Product = Connection.LoadData("Product");
+            Customer = Connection.LoadData("Customer");
+            Store = Connection.LoadData("Store");
+            Employee = Connection.LoadData("Employee");
         }
-
-        // Functions
-
-        /// <summary>
-        /// Loads the data of a table from the games database to a dataset
-        /// </summary>
-        /// <param name="table">Name of the table to load</param>
-        internal DataSet LoadData(string table)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = "SELECT * FROM " + table;
-                    adapter = new MySqlDataAdapter(query, conn);
-                    ds = new DataSet();
-                    adapter.Fill(ds, table);
-                    //dataGrid.ItemsSource = ds.Tables[table].DefaultView;
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error connecting to database: " + e.ToString());
-            }
-            return ds;
-        }
-
-        /// <summary>
-        /// Updates the data from a dataset to a table in the games database
-        /// </summary>
-        /// <param name="ds">Dataset with updated data</param>
-        /// <param name="table">Name of table to update</param>
-        internal void SaveData(DataSet ds, string table)
-        {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = "SELECT * FROM " + table;
-                    adapter = new MySqlDataAdapter(query, conn);
-                    MySqlCommandBuilder builder = new MySqlCommandBuilder(adapter);
-                    adapter.Update(ds, table);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error connecting to database to update data: " + e.ToString());
-            }
-        }
-
     }
 }

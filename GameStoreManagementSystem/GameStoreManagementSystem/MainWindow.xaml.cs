@@ -4,6 +4,7 @@
 * PROGRAMMER    : Eumee Garcia, Vanesa Robledo
 * FIRST VERSION : 2025-12-08
 * DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
+*                 This contains the main window when the application is first loaded to perform CRUD operations on datasets.
 */
 
 using System.Data;
