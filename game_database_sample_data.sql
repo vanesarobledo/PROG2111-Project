@@ -79,14 +79,16 @@ VALUES ('Joseph', 'Joestar', '1920-09-27', 'hermitpurple@mail.com', 'jjoestar', 
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
 VALUES (1, 1, 49.99, '2025-12-01', 1, 1);
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
-VALUES (3, 1, 49.99, '2025-12-02', 1, 2);
+VALUES (3, 1, 69.99, '2025-12-02', 1, 2);
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
 VALUES (4, 3, 49.99, '2025-12-02', 2, 1);
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
 VALUES (1, 4, 49.99, '2025-12-03', 1, 1);
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
-VALUES (7, 5, 49.99, '2025-12-03', 1, 2);
+VALUES (7, 5, 449.99, '2025-12-03', 1, 2);
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
-VALUES (5, 3, 49.99, '2025-12-04', 1, 2);
+VALUES (5, 3, 79.99, '2025-12-04', 1, 2);
 INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
-VALUES (2, 2, 49.99, '2025-12-05', 1, 1);
+VALUES (2, 2, 16.00, '2025-12-05', 1, 1);
+INSERT INTO Product (inventory_id, customer_id, cost, date_of_purchase, quantity, store_id)
+VALUES (8, 5, 519.99, '2025-12-05', 1, 1);
