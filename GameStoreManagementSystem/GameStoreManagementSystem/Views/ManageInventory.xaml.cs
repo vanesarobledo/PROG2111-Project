@@ -33,9 +33,9 @@ namespace GameStoreManagementSystem.Views.Inventory
 
         private void UpdateInventory_Click(object sender, RoutedEventArgs e)
         {
+
             Forms.ManageInventoryForm.UpdateInventoryForm form = new Forms.ManageInventoryForm.UpdateInventoryForm();
             form.ShowDialog();
-
         }
 
         private void DeleteInventory_Click(object sender, RoutedEventArgs e)

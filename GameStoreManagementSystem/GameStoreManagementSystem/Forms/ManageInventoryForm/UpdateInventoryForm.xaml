@@ -5,8 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageInventoryForm"
         mc:Ignorable="d"
-        Title="UpdateInventory" Height="450" Width="800">
-    <Grid>
-        
+        Title="Update Inventory" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded">
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ==================== TITLE ==================== -->
+        <TextBlock Grid.Row="0"
+                   Name="UpdateTitle"
+                   Text="Update Inventory Item"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 20"/>
+
+        <!-- ==================== ROW 1 ==================== -->
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock TextWrapping="Wrap"
+                         VerticalAlignment="Center"
+                         TextAlignment="Center"
+                         Margin="10">
+                  Select one of Game or Console:
+                </TextBlock>
+
+                <!-- Game -->
+                <StackPanel Grid.Column="1" Margin="10">
+                    <TextBlock>
+                      Game
+                    </TextBlock>
+                    <ComboBox x:Name="GameSelect"
+                              IsEditable="False"
+                              IsReadOnly="True"
+                              Height="30"
+                              Padding="5"
+                              SelectionChanged="GameSelect_SelectionChanged" />
+                </StackPanel>
+
+                <!-- Console -->
+                <StackPanel Grid.Column="2" Margin="10">
+                    <TextBlock>
+                  Console
+                    </TextBlock>
+                    <ComboBox x:Name="ConsoleSelect"
+                              IsEditable="False"
+                              IsReadOnly="True"
+                              Height="30"
+                              Padding="5"
+                              SelectionChanged="ConsoleSelect_SelectionChanged"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- ==================== ROW 2 ==================== -->
+        <StackPanel Grid.Row="2" Margin="10">
+            <TextBlock>
+              Quantity
+            </TextBlock>
+            <TextBox x:Name="InputQuantity"
+                   Height="30"
+                   Padding="5"
+                   PreviewTextInput="InputQuantity_PreviewTextInput" />
+        </StackPanel>
+
+        <!-- ==================== ROW 3 ==================== -->
+        <StackPanel Grid.Row="3" Margin="10 10 10 0">
+            <TextBlock>
+              Select Store
+            </TextBlock>
+            <ComboBox x:Name="StoreSelect"
+                    Height="30"
+                    Padding="5"/>
+        </StackPanel>
+
+        <!-- ==================== BUTTONS ==================== -->
+        <Grid Grid.Row="5" Margin="10 20 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Cancel"
+                    Width="100"
+                    Height="35"
+                    Margin="5"
+                    HorizontalAlignment="Left"
+                    Click="Cancel_Click"/>
+
+            <Button Content="Update Inventory Item"
+                  Width="120"
+                  Height="35"
+                  Margin="5"
+                  HorizontalAlignment="Right"
+                  Grid.Column="1"
+                  Click="Update_Click"/>
+        </Grid>
+
     </Grid>
 </Window>
