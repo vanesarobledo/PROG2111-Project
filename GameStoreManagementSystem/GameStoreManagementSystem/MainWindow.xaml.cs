@@ -45,7 +45,7 @@ namespace GameStoreManagementSystem
         /// <summary>
         /// Table currently being worked on
         /// </summary>
-        string activeTable = "";
+        internal string activeTable = "";
 
         // Main Window
         public MainWindow()
@@ -136,7 +136,6 @@ namespace GameStoreManagementSystem
         // ============================================================
         //   SAVE BUTTON
         // ============================================================
-
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             try
