@@ -1,7 +1,7 @@
 ﻿/*
 * FILE          : Validation.cs
 * PROJECT       : PROG2111 Project
-* PROGRAMMER    : Vanesa Robledo
+* PROGRAMMER    : Vanesa Robledo, Eumee Garcia
 * FIRST VERSION : 2025-12-08
 * DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
 *                 This contains helper validation functions
@@ -12,11 +12,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GameStoreManagementSystem
 {
     internal static class Validation
     {
+        /// <summary>
+        /// Checks if string is empty
+        /// </summary>
+        /// <param name="str">String to check</param>
+        /// <returns><see langword="true" /> if string is empty; otherwise, <see langword="false" /></returns>
+        internal static bool IsEmpty(string str)
+        {
+            return String.IsNullOrEmpty(str);
+        }
+
         /// <summary>
         /// Checks if string is a valid, positive integer
         /// </summary>
@@ -69,23 +80,11 @@ namespace GameStoreManagementSystem
             return price;
         }
 
-        //internal static bool IsValidID(string ID)
-        //{
-        //    int num;
-        //    return Int32.TryParse(ID, out num) && num >= 0;
-        //}
-
-        //internal static bool ConvertInt(string num, out int output)
-        //{
-        //    return Int32.TryParse(num, out output);
-        //}
-
-        //internal static bool IsValidCost(string cost)
-        //{
-        //    float value;
-        //    return float.TryParse(cost, out value) && value > 0;
-        //}
-
+        /// <summary>
+        /// Checks if given string is a valid Date
+        /// </summary>
+        /// <param name="dt">DateTime to check</param>
+        /// <returns><see langword="true" /> if string is valid Date; otherwise, <see langword="false" /></returns>
         internal static bool IsValidDate(DateTime? dt)
         {
             return dt != null;

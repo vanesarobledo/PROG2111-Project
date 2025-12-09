@@ -74,7 +74,7 @@ namespace GameStoreManagementSystem
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error loading data from database: " + e);
+                MessageBox.Show("Error loading data from database: " + e, "Error");
             }
         }
 
