@@ -100,7 +100,7 @@ namespace GameStoreManagementSystem
                         break;
                     case "Manage Employee":
                         activeTable = "Employee";
-                        LoadDataGrid(gamesDatabase.Product);
+                        LoadDataGrid(gamesDatabase.Employee);
                         break;
                     default:
                         break;
