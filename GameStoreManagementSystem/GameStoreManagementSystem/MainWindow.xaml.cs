@@ -93,27 +93,18 @@ namespace GameStoreManagementSystem
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Taken from GamesDatabase
-            DatabaseConnection Connection = new DatabaseConnection();
-            DataSet Game = Connection.LoadData("Game");
-
-            
-
             //Option Chosen
-            if (chooseAction.SelectedItem != null )
+            if (chooseAction.SelectedItem != null)
             {
-                testGrid.DataContext = Game;
-                switch (chooseAction.SelectedItem)
+                //testGrid.DataContext = gamesDatabase.Game;
+                switch (chooseAction.Text)
                 {
                     case "Manage Games":
-                        testGrid.DataContext = Game;
+                        testGrid.ItemsSource = gamesDatabase.GamesDataSet.Tables["Game"].DefaultView;
                         break;
                     default:
                         break;
                 }
-
-
-
             }
             else
             {

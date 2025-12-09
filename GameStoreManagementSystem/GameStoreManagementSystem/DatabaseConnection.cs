@@ -67,7 +67,6 @@ namespace GameStoreManagementSystem
                     conn.Open();
                     string query = "SELECT * FROM " + table;
                     adapter = new MySqlDataAdapter(query, conn);
-                    ds = new DataSet();
                     adapter.Fill(ds, table);
                 }
             }
