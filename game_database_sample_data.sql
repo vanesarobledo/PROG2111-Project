@@ -33,24 +33,38 @@ INSERT INTO Store (location) VALUES ("Kitchener");
 -- Inventory Data
 -- Games
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (1, null, 25, store_id);
+VALUES (1, null, 23, 1);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (2, null, 20, store_id);
+VALUES (2, null, 20, 1);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (3, null, 31, store_id);
+VALUES (3, null, 31, 1);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (4, null, 21, store_id);
+VALUES (1, null, 25, 2);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (5, null, 21, store_id);
+VALUES (2, null, 15, 2);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (3, null, 13, 2);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (4, null, 30, 1);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (5, null, 9, 1);
 -- Consoles
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (null, 1, 3, store_id);
+VALUES (null, 1, 3, 1);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (null, 2, 15, store_id);
+VALUES (null, 2, 15, 1);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (null, 3, 5, store_id);
+VALUES (null, 3, 5, 1);
 INSERT INTO Inventory (game_id, console_id, quantity, store_id)
-VALUES (null, 4, 9, store_id);
+VALUES (null, 4, 9, 1);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (null, 1, 12, 2);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (null, 2, 8, 2);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (null, 3, 7, 2);
+INSERT INTO Inventory (game_id, console_id, quantity, store_id)
+VALUES (null, 4, 6, 2);
 
 -- Employee Data
 INSERT INTO Employee (first_name, last_name, date_of_birth, email, username, password, store_id)
