@@ -17,9 +17,9 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
     /// <summary>
     /// Interaction logic for UpdateInventory.xaml
     /// </summary>
-    public partial class UpdateInventory : Window
+    public partial class UpdateInventoryForm : Window
     {
-        public UpdateInventory()
+        public UpdateInventoryForm()
         {
             InitializeComponent();
         }
