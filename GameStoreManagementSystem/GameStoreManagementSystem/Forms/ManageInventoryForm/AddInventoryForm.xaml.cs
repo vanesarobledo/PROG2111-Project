@@ -153,8 +153,24 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             {
                 MessageBox.Show("Only one of game or console must be selected", "Error");
             }
+            // Values are valid
             else if (Validation.ValidateInventoryValues(db, gameID, consoleID, quantity, storeID))
             {
+                // Add row to DataTable
+                DataRow newRow = db.Inventory.NewRow();
+                if (gameID != 0)
+                {
+                    newRow["game_id"] = gameID;
+                }
+                else if (consoleID != 0)
+                {
+                    newRow["console_id"] = consoleID;
+                }
+                newRow["quantity"] = quantity;
+                newRow["store_id"] = storeID;
+                db.Inventory.Rows.Add(newRow);
+
+                // Show success
                 MessageBox.Show("Inventory item successfully added.\nClick \"Save\" to save changes to database", "Inventory Added");
             }
         }
