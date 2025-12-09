@@ -30,15 +30,20 @@ namespace GameStoreManagementSystem
         internal DatabaseConnection Connection;
 
         /// <summary>
-        /// Datasets for each table in the games database
+        /// DataSet to store games database for display
         /// </summary>
-        internal DataSet Game;
-        internal DataSet Console;
-        internal DataSet Inventory;
-        internal DataSet Product;
-        internal DataSet Customer;
-        internal DataSet Store;
-        internal DataSet Employee;
+        internal DataSet GamesDataSet;
+
+        /// <summary>
+        /// DataTables to store tables from games database
+        /// </summary>
+        internal DataTable Game;
+        internal DataTable Console;
+        internal DataTable Inventory;
+        internal DataTable Product;
+        internal DataTable Customer;
+        internal DataTable Store;
+        internal DataTable Employee;
 
         // Constructor
         public GamesDatabase()
@@ -46,16 +51,26 @@ namespace GameStoreManagementSystem
             // Connect to the database
             Connection = new DatabaseConnection();
 
-            // Fill datasets
             try
             {
-                Game = Connection.LoadData("Game");
-                Console = Connection.LoadData("Console");
-                Inventory = Connection.LoadData("Inventory");
-                Product = Connection.LoadData("Product");
-                Customer = Connection.LoadData("Customer");
-                Store = Connection.LoadData("Store");
-                Employee = Connection.LoadData("Employee");
+                // Fill games dataset
+                GamesDataSet = new DataSet();
+                Connection.LoadData(GamesDataSet, "Game");
+                Connection.LoadData(GamesDataSet, "Console");
+                Connection.LoadData(GamesDataSet, "Inventory");
+                Connection.LoadData(GamesDataSet, "Product");
+                Connection.LoadData(GamesDataSet, "Customer");
+                Connection.LoadData(GamesDataSet, "Store");
+                Connection.LoadData(GamesDataSet, "Employee");
+
+                // Fill the DataTables
+                Game = GamesDataSet.Tables["Game"];
+                Console = GamesDataSet.Tables["Console"];
+                Inventory = GamesDataSet.Tables["Inventory"];
+                Product = GamesDataSet.Tables["Product"];
+                Customer = GamesDataSet.Tables["Customer"];
+                Store = GamesDataSet.Tables["Store"];
+                Employee = GamesDataSet.Tables["Employee"];
             }
             catch (Exception e)
             {
@@ -75,7 +90,7 @@ namespace GameStoreManagementSystem
         internal bool GameIDExists(string id)
         {
             bool exists = false;
-            foreach (DataRow row in Game.Tables["Game"].Rows)
+            foreach (DataRow row in GamesDataSet.Tables["Game"].Rows)
             {
                 if (row["game_id"] == id)
                 {
@@ -93,7 +108,7 @@ namespace GameStoreManagementSystem
         internal bool ConsoleIDExists(string id)
         {
             bool exists = false;
-            foreach (DataRow row in Console.Tables["Console"].Rows)
+            foreach (DataRow row in GamesDataSet.Tables["Console"].Rows)
             {
                 if (row["console_id"] == id)
                 {
@@ -111,7 +126,7 @@ namespace GameStoreManagementSystem
         internal bool InventoryIDExists(string id)
         {
             bool exists = false;
-            foreach (DataRow row in Inventory.Tables["Inventory"].Rows)
+            foreach (DataRow row in GamesDataSet.Tables["Inventory"].Rows)
             {
                 if (row["inventory_id"] == id)
                 {
@@ -129,7 +144,7 @@ namespace GameStoreManagementSystem
         internal bool StoreIDExists(string id)
         {
             bool exists = false;
-            foreach (DataRow row in Store.Tables["Store"].Rows)
+            foreach (DataRow row in GamesDataSet.Tables["Store"].Rows)
             {
                 if (row["store_id"] == id)
                 {
@@ -147,7 +162,7 @@ namespace GameStoreManagementSystem
         internal bool CustomerIDExists(string id)
         {
             bool exists = false;
-            foreach (DataRow row in Customer.Tables["Customer"].Rows)
+            foreach (DataRow row in GamesDataSet.Tables["Customer"].Rows)
             {
                 if (row["customer_id"] == id)
                 {
