@@ -21,11 +21,12 @@
             <ComboBoxItem Content="Manage Inventory"/>
             <ComboBoxItem Content="Manage Products"/>
         </ComboBox>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="465,62,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-
+        <Button Name="OpenButton" Content="Open" HorizontalAlignment="Left" Margin="465,62,0,0" VerticalAlignment="Top" Click="OpenButton_Click"/>
+        <Button Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="546,62,0,0" VerticalAlignment="Top" Click="SaveButton_Click"/>
         <DataGrid x:Name="testGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,121,0,0">
             
         </DataGrid>
+        
 
 
     </Grid>
