@@ -1,7 +1,20 @@
-# PROG2111 Project (20%)
+# PROG2111 Project
 Design, implement, and programmatically interact with a relational database related to video game e-commerce.
 
-## Project Phases:
+## Instructions to Run C# Application
+### Prerequisites:
+- MySQL installed with a root user with all permissions on port 3306
+- Visual Studio 2022
+
+### Instructions:
+1. Ensure the "games" database is installed. Run `game_database.sql` in MySQL Workbench. As an optional step, run `game_database_sample_data.sql` for sample inserted data to be preloaded in the database.
+2. Edit the password for the MySQl root user on your machine in `App.Config`, located in the **GameStoreManagementSystem** solution folder.
+3. Build the solution and either run it through Visual Studio 2022, or run `GameStoreManagementSystem.exe` under **GameStoreManagementSystem\bin\Debug\net8.0-windows**.
+    - If there is an error, make sure that the password is correct and the connection string in `DatabaseConnection.cs` is correct.
+4. Select a table to perform CRUD operations, and then select the operation desired. Data may either be edited in the DataGrid or in the form.
+5. To save changes to the database, click the "Save" button.
+
+## Project Phases (20%)
 ### Phase 1: Project Idea & Use Case (5 Marks)
 > DUE: Nov 30 2025 @ 8:00pm
 
@@ -39,10 +52,10 @@ Design, implement, and programmatically interact with a relational database rela
 ### Phase 5: Programmatic Access & CRUD Operations (30 Marks)
 > DUE: Dec 10 2025 @ 8:00**am**
 
-[ ] Develop C# programs that connect to the MySQL database using the ADO.NET
+[x] Develop C# programs that connect to the MySQL database using the ADO.NET
 <br>[ ] Perform CRUD operations (Create, Read, Update, Delete) for the entities defined in your ERD.
 <br>[ ] Ensure proper error handling and transaction control.
-<br>[ ] Use the ADO.NET MySQL library to establish the connection and perform operations.
+<br>[x] Use the ADO.NET MySQL library to establish the connection and perform operations.
 
 **Deliverables**: C# programs with CRUD functionality.
 
