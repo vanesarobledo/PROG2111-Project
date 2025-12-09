@@ -20,6 +20,8 @@
             <ComboBoxItem Content="Manage Stores"/>
             <ComboBoxItem Content="Manage Inventory"/>
             <ComboBoxItem Content="Manage Products"/>
+            <ComboBoxItem Content="Manage Console"/>
+            <ComboBoxItem Content="Manage Employee"/>
         </ComboBox>
         <Button Name="OpenButton" Content="Open" HorizontalAlignment="Left" Margin="465,62,0,0" VerticalAlignment="Top" Click="OpenButton_Click"/>
         <Button Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="546,62,0,0" VerticalAlignment="Top" Click="SaveButton_Click"/>

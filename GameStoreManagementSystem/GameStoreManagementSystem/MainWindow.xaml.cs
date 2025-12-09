@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using Google.Protobuf.WellKnownTypes;
+using System.Security.Cryptography.Xml;
 
 
 namespace GameStoreManagementSystem
@@ -31,23 +32,24 @@ namespace GameStoreManagementSystem
     public partial class MainWindow : Window
     {
         // Properties
-        internal DatabaseConnection databaseConnection;
+
+        /// <summary>
+        /// Class that holds the DataSet & DataTables for the games database
+        /// </summary>
         internal GamesDatabase gamesDatabase;
 
+        /// <summary>
+        /// Table currently being worked on
+        /// </summary>
+        string activeTable = "";
 
         // Main Window
         public MainWindow()
         {
             InitializeComponent();
 
-            // Initialize MySQL database connection
-            databaseConnection = new DatabaseConnection();
-
             // Load data in games database
             gamesDatabase = new GamesDatabase();
-
-            //To tell what table is being worked on.
-            string activeTable = "";
         }
 
         // Functions
@@ -70,23 +72,35 @@ namespace GameStoreManagementSystem
             //Option Chosen
             if (chooseAction.SelectedItem != null)
             {
-                //testGrid.DataContext = gamesDatabase.Game;
                 switch (chooseAction.Text)
                 {
                     case "Manage Games":
+                        activeTable = "Game";
                         LoadDataGrid(gamesDatabase.Game);
                         break;
                     case "Manage Customers":
+                        activeTable = "Customer";
                         LoadDataGrid(gamesDatabase.Customer);
                         break;
                     case "Manage Stores":
+                        activeTable = "Store";
                         LoadDataGrid(gamesDatabase.Store);
                         break;
                     case "Manage Inventory":
+                        activeTable = "Inventory";
                         LoadDataGrid(gamesDatabase.Inventory);
                         break;
                     case "Manage Products":
+                        activeTable = "Product";
                         LoadDataGrid(gamesDatabase.Product);
+                        break;
+                    case "Manage Console":
+                        activeTable = "Console";
+                        LoadDataGrid(gamesDatabase.Console);
+                        break;
+                    case "Manage Employee":
+                        activeTable = "Employee";
+                        LoadDataGrid(gamesDatabase.Employee);
                         break;
                     default:
                         break;
@@ -94,13 +108,28 @@ namespace GameStoreManagementSystem
             }
             else
             {
-                //NOTHING WAS CHOSEN
+                MessageBox.Show("Select a table to open", "Error");
             }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, activeTable);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not save to " + activeTable + ": " + ex, "Error");
+            }
         }
+
+        //private DataTable gridToTable(DataGrid inputGrid)
+        //{
+        //    DataTable table = new DataTable();
+        //    DataView data = (DataView)inputGrid.ItemsSource;
+        //    table = data.ToTable();
+        //    return table;
+        //}
     }
 }
