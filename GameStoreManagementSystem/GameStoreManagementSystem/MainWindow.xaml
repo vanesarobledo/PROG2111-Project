@@ -1,35 +1,100 @@
-﻿<Window
+﻿<Window x:Class="GameStoreManagementSystem.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GameStoreManagementSystem"
-        xmlns:MySqlClient="clr-namespace:MySql.Data.MySqlClient;assembly=MySql.Data" x:Class="GameStoreManagementSystem.MainWindow"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="20">
+        Title="Game Management Store System"
+        Width="1100" Height="700">
 
-        <TextBlock Text="Game Store Management System"
-                   FontSize="24"
-                   HorizontalAlignment="Center"
-                   Margin="0,10,0,30"/>
+    <DockPanel>
 
-        <ComboBox Name="chooseAction" HorizontalAlignment="Left" Margin="203,62,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Manage Games"/>
-            <ComboBoxItem Content="Manage Customers"/>
-            <ComboBoxItem Content="Manage Stores"/>
-            <ComboBoxItem Content="Manage Inventory"/>
-            <ComboBoxItem Content="Manage Products"/>
-            <ComboBoxItem Content="Manage Console"/>
-            <ComboBoxItem Content="Manage Employee"/>
-        </ComboBox>
-        <Button Name="OpenButton" Content="Open" HorizontalAlignment="Left" Margin="465,62,0,0" VerticalAlignment="Top" Click="OpenButton_Click"/>
-        <Button Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="546,62,0,0" VerticalAlignment="Top" Click="SaveButton_Click"/>
-        <DataGrid x:Name="testGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,121,0,0">
-            
-        </DataGrid>
-        
+        <!-- TOP MENU BAR -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File" Click="MenuFile_Click">
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help" Click="MenuHelp_Click">
+                <MenuItem Header="About" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
 
+        <!-- BOTTOM SAVE BUTTON BAR -->
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="10">
+            <Button Content="Save"
+                    Width="120"
+                    Height="35"
+                    Click="Save_Click"
+                    FontWeight="Black"/>
+        </StackPanel>
 
-    </Grid>
+        <!-- MAIN CONTENT AREA -->
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <!-- DataGrid -->
+                <ColumnDefinition Width="15"/>
+                <!-- Divider -->
+                <ColumnDefinition Width="1.5*"/>
+                <!-- Buttons -->
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT DATAGRID -->
+            <DataGrid x:Name="MainGrid"
+                      Grid.Column="0"
+                      Margin="5"
+                      AutoGenerateColumns="True"
+                      CanUserAddRows="True"
+                      CanUserDeleteRows="True"
+                      IsReadOnly="False"/>
+
+            <!-- RIGHT PANEL: Buttons OR UserControl -->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- DEFAULT BUTTON PANEL -->
+                <StackPanel x:Name="RightButtonPanel"
+                Grid.Row="0"
+                VerticalAlignment="Top"
+                Margin="10">
+
+                    <Button Content="Manage Game"
+                Height="50" Margin="15"
+                Click="ManageGame_Click"/>
+
+                    <Button Content="Manage Customer"
+                Height="50" Margin="15"
+                Click="ManageCustomer_Click"/>
+
+                    <Button Content="Manage Console"
+                Height="50" Margin="15"
+                Click="ManageConsole_Click"/>
+
+                    <Button Content="Manage Product"
+                Height="50" Margin="15"
+                Click="ManageProduct_Click"/>
+
+                    <Button Content="Manage Inventory"
+                Height="50" Margin="15"
+                Click="ManageInventory_Click"/>
+
+                    <Button Content="Manage Employee"
+                Height="50" Margin="15"
+                Click="ManageEmployee_Click"/>
+
+                    <Button Content="Manage Store"
+                Height="50" Margin="15"
+                Click="ManageStore_Click"/>
+
+                </StackPanel>
+
+                <!-- USERCONTROL HOST -->
+                <ContentControl x:Name="RightContentArea"
+                    Grid.Row="1" Margin="10"/>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+
+		<!-- FIX: Stop Visual Studio from generating temporary editorconfig files -->
+		<GenerateMSBuildEditorConfigFile>false</GenerateMSBuildEditorConfigFile>
+		<DiscoverEditorConfigFiles>false</DiscoverEditorConfigFiles>
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.5.0" />

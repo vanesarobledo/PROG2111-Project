@@ -1,16 +1,11 @@
-﻿/*
-* FILE          : MainWindow.xaml.cs
-* PROJECT       : PROG2111 Project
-* PROGRAMMER    : Eumee Garcia, Vanesa Robledo, Connar Thompson
-* FIRST VERSION : 2025-12-08
-* DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
-*                 This contains the main window when the application is first loaded to perform CRUD operations on datasets.
-*/
-
-using System.Data;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
+using GameStoreManagementSystem.Views.Console;
+using GameStoreManagementSystem.Views.Customers;
+using GameStoreManagementSystem.Views.Employees;
+using GameStoreManagementSystem.Views.Games;
+using GameStoreManagementSystem.Views.Inventory;
+using GameStoreManagementSystem.Views.Products;
+using GameStoreManagementSystem.Views.Stores;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -26,9 +21,6 @@ using System.Security.Cryptography.Xml;
 
 namespace GameStoreManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         // Properties
@@ -47,13 +39,11 @@ namespace GameStoreManagementSystem
         public MainWindow()
         {
             InitializeComponent();
-
+            
             // Load data in games database
             gamesDatabase = new GamesDatabase();
         }
-
-        // Functions
-
+        
         /// <summary>
         /// Loads a dataset into the DataGrid
         /// </summary>
@@ -62,56 +52,75 @@ namespace GameStoreManagementSystem
         {
             if (dt != null)
             {
-                testGrid.ItemsSource = dt.DefaultView;
+                MainGrid.ItemsSource = dt.DefaultView;
             }
         }
 
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        // ============================================================
+        //   BUTTON EVENTS 
+        // ============================================================
+
+        private void ManageGame_Click(object sender, RoutedEventArgs e)
         {
-            //Option Chosen
-            if (chooseAction.SelectedItem != null)
-            {
-                switch (chooseAction.Text)
-                {
-                    case "Manage Games":
-                        activeTable = "Game";
-                        LoadDataGrid(gamesDatabase.Game);
-                        break;
-                    case "Manage Customers":
-                        activeTable = "Customer";
-                        LoadDataGrid(gamesDatabase.Customer);
-                        break;
-                    case "Manage Stores":
-                        activeTable = "Store";
-                        LoadDataGrid(gamesDatabase.Store);
-                        break;
-                    case "Manage Inventory":
-                        activeTable = "Inventory";
-                        LoadDataGrid(gamesDatabase.Inventory);
-                        break;
-                    case "Manage Products":
-                        activeTable = "Product";
-                        LoadDataGrid(gamesDatabase.Product);
-                        break;
-                    case "Manage Console":
-                        activeTable = "Console";
-                        LoadDataGrid(gamesDatabase.Console);
-                        break;
-                    case "Manage Employee":
-                        activeTable = "Employee";
-                        LoadDataGrid(gamesDatabase.Employee);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Select a table to open", "Error");
-            }
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Games.ManageGames();
+            activeTable = "Game";
+            LoadDataGrid(gamesDatabase.Game);
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void ManageCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Customers.ManageCustomers();
+            activeTable = "Customer";
+            LoadDataGrid(gamesDatabase.Customer);
+        }
+
+        private void ManageConsole_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Console.ManageConsole();
+            activeTable = "Console";
+            LoadDataGrid(gamesDatabase.Console);
+        }
+
+        private void ManageProduct_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Products.ManageProducts();
+            activeTable = "Product";
+            LoadDataGrid(gamesDatabase.Product);
+        }
+
+        private void ManageInventory_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Inventory.ManageInventory();
+            activeTable = "Inventory";
+            LoadDataGrid(gamesDatabase.Inventory);
+        }
+
+        private void ManageEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Employees.ManageEmployees();
+            activeTable = "Employee";
+            LoadDataGrid(gamesDatabase.Employee);
+        }
+
+        private void ManageStore_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Stores.ManageStores();
+            activeTable = "Store";
+            LoadDataGrid(gamesDatabase.Store);
+        }
+
+        // ============================================================
+        //   SAVE BUTTON
+        // ============================================================
+
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -122,5 +131,30 @@ namespace GameStoreManagementSystem
                 MessageBox.Show("Could not save to " + activeTable + ": " + ex, "Error");
             }
         }
+
+        // ============================================================
+        //   MENU HANDLERS
+        // ============================================================
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MenuFile_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MenuHelp_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            //tbd
+        }
     }
 }
+
