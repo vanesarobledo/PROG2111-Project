@@ -1,7 +1,7 @@
 ﻿/*
 * FILE          : MainWindow.xaml.cs
 * PROJECT       : PROG2111 Project
-* PROGRAMMER    : Eumee Garcia, Vanesa Robledo
+* PROGRAMMER    : Eumee Garcia, Vanesa Robledo, Connar Thompson
 * FIRST VERSION : 2025-12-08
 * DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
 *                 This contains the main window when the application is first loaded to perform CRUD operations on datasets.
@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using Google.Protobuf.WellKnownTypes;
 
 
 namespace GameStoreManagementSystem
@@ -32,6 +33,7 @@ namespace GameStoreManagementSystem
         // Properties
         internal DatabaseConnection databaseConnection;
         internal GamesDatabase gamesDatabase;
+
 
         // Main Window
         public MainWindow()
@@ -87,6 +89,36 @@ namespace GameStoreManagementSystem
         {
             // TODO: teammate implements ProductView + ProductRepository
             MessageBox.Show("Product management coming soon!");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Taken from GamesDatabase
+            DatabaseConnection Connection = new DatabaseConnection();
+            DataSet Game = Connection.LoadData("Game");
+
+            
+
+            //Option Chosen
+            if (chooseAction.SelectedItem != null )
+            {
+                testGrid.DataContext = Game;
+                switch (chooseAction.SelectedItem)
+                {
+                    case "Manage Games":
+                        testGrid.DataContext = Game;
+                        break;
+                    default:
+                        break;
+                }
+
+
+
+            }
+            else
+            {
+                //NOTHING WAS CHOSEN
+            }
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿<Window x:Class="GameStoreManagementSystem.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem"
+        xmlns:MySqlClient="clr-namespace:MySql.Data.MySqlClient;assembly=MySql.Data" x:Class="GameStoreManagementSystem.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="20">
@@ -13,27 +14,19 @@
                    HorizontalAlignment="Center"
                    Margin="0,10,0,30"/>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
+        <ComboBox Name="chooseAction" HorizontalAlignment="Left" Margin="203,62,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Manage Games"/>
+            <ComboBoxItem Content="Manage Customers"/>
+            <ComboBoxItem Content="Manage Stores"/>
+            <ComboBoxItem Content="Manage Inventory"/>
+            <ComboBoxItem Content="Manage Products"/>
+        </ComboBox>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="465,62,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
-            <Button Content="Manage Games"
-                    Height="40" Margin="0,10"
-                    Click="OpenGames_Click"/>
+        <DataGrid x:Name="testGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,121,0,0">
+            
+        </DataGrid>
 
-            <Button Content="Manage Customers"
-                    Height="40" Margin="0,10"
-                    Click="OpenCustomers_Click"/>
 
-            <Button Content="Manage Stores"
-                    Height="40" Margin="0,10"
-                    Click="OpenStores_Click"/>
-
-            <Button Content="Manage Inventory"
-                    Height="40" Margin="0,10"
-                    Click="OpenInventory_Click"/>
-
-            <Button Content="Manage Products"
-                    Height="40" Margin="0,10"
-                    Click="OpenProducts_Click"/>
-        </StackPanel>
     </Grid>
 </Window>
