@@ -68,5 +68,28 @@ namespace GameStoreManagementSystem
             }
             return price;
         }
+
+        //internal static bool IsValidID(string ID)
+        //{
+        //    int num;
+        //    return Int32.TryParse(ID, out num) && num >= 0;
+        //}
+
+        //internal static bool ConvertInt(string num, out int output)
+        //{
+        //    return Int32.TryParse(num, out output);
+        //}
+
+        //internal static bool IsValidCost(string cost)
+        //{
+        //    float value;
+        //    return float.TryParse(cost, out value) && value > 0;
+        //}
+
+        internal static bool IsValidDate(DateTime? dt)
+        {
+            return dt != null;
+        }
     }
 }
+

@@ -1,106 +1,101 @@
-﻿/*
-* FILE          : MainWindow.xaml.cs
-* PROJECT       : PROG2111 Project
-* PROGRAMMER    : Eumee Garcia, Vanesa Robledo, Connar Thompson
-* FIRST VERSION : 2025-12-08
-* DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
-*                 This contains the main window when the application is first loaded to perform CRUD operations on datasets.
-*/
-
-using System.Data;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using Google.Protobuf.WellKnownTypes;
-
+using GameStoreManagementSystem.Views.Console;
+using GameStoreManagementSystem.Views.Customers;
+using GameStoreManagementSystem.Views.Employees;
+using GameStoreManagementSystem.Views.Games;
+using GameStoreManagementSystem.Views.Inventory;
+using GameStoreManagementSystem.Views.Products;
+using GameStoreManagementSystem.Views.Stores;
 
 namespace GameStoreManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        // Properties
-        internal DatabaseConnection databaseConnection;
-        internal GamesDatabase gamesDatabase;
-
-
-        // Main Window
         public MainWindow()
         {
             InitializeComponent();
-
-            // Initialize MySQL database connection
-            databaseConnection = new DatabaseConnection();
-
-            // Load data in games database
-            gamesDatabase = new GamesDatabase();
-
-            //To tell what table is being worked on.
-            string activeTable = "";
         }
 
-        // Functions
+        // ============================================================
+        //   BUTTON EVENTS 
+        // ============================================================
 
-        /// <summary>
-        /// Loads a dataset into the DataGrid
-        /// </summary>
-        /// <param name="ds">Dataset to load</param>
-        internal void LoadDataGrid(DataTable dt)
+        private void ManageGame_Click(object sender, RoutedEventArgs e)
         {
-            if (dt != null)
-            {
-                testGrid.ItemsSource = dt.DefaultView;
-            }
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Games.ManageGames();
         }
 
-
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        private void ManageCustomer_Click(object sender, RoutedEventArgs e)
         {
-            //Option Chosen
-            if (chooseAction.SelectedItem != null)
-            {
-                //testGrid.DataContext = gamesDatabase.Game;
-                switch (chooseAction.Text)
-                {
-                    case "Manage Games":
-                        LoadDataGrid(gamesDatabase.Game);
-                        break;
-                    case "Manage Customers":
-                        LoadDataGrid(gamesDatabase.Customer);
-                        break;
-                    case "Manage Stores":
-                        LoadDataGrid(gamesDatabase.Store);
-                        break;
-                    case "Manage Inventory":
-                        LoadDataGrid(gamesDatabase.Inventory);
-                        break;
-                    case "Manage Products":
-                        LoadDataGrid(gamesDatabase.Product);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                //NOTHING WAS CHOSEN
-            }
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Customers.ManageCustomers();
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void ManageConsole_Click(object sender, RoutedEventArgs e)
         {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Console.ManageConsole();
+        }
 
+        private void ManageProduct_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Products.ManageProducts();
+        }
+
+        private void ManageInventory_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Inventory.ManageInventory();
+        }
+
+        private void ManageEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Employees.ManageEmployees();
+        }
+
+        private void ManageStore_Click(object sender, RoutedEventArgs e)
+        {
+            RightButtonPanel.Visibility = Visibility.Collapsed;
+            RightContentArea.Content = new Views.Stores.ManageStores();
+        }
+
+        // ============================================================
+        //   SAVE BUTTON
+        // ============================================================
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Save functionality will be connected to your database later.",
+                            "Save", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        // ============================================================
+        //   MENU HANDLERS
+        // ============================================================
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MenuFile_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MenuHelp_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            //tbd
         }
     }
 }
+
