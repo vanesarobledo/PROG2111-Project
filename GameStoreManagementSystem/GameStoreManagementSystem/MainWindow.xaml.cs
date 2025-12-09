@@ -66,7 +66,6 @@ namespace GameStoreManagementSystem
             }
         }
 
-
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             //Option Chosen
@@ -123,13 +122,5 @@ namespace GameStoreManagementSystem
                 MessageBox.Show("Could not save to " + activeTable + ": " + ex, "Error");
             }
         }
-
-        //private DataTable gridToTable(DataGrid inputGrid)
-        //{
-        //    DataTable table = new DataTable();
-        //    DataView data = (DataView)inputGrid.ItemsSource;
-        //    table = data.ToTable();
-        //    return table;
-        //}
     }
 }
