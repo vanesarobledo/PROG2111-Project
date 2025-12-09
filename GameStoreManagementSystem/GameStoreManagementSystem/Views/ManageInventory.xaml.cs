@@ -27,11 +27,14 @@ namespace GameStoreManagementSystem.Views.Inventory
 
         private void AddInventory_Click(object sender, RoutedEventArgs e)
         {
-
+            Forms.ManageInventoryForm.AddInventoryForm form = new Forms.ManageInventoryForm.AddInventoryForm();
+            form.ShowDialog();
         }
 
         private void UpdateInventory_Click(object sender, RoutedEventArgs e)
         {
+            Forms.ManageInventoryForm.UpdateInventoryForm form = new Forms.ManageInventoryForm.UpdateInventoryForm();
+            form.ShowDialog();
 
         }
 
