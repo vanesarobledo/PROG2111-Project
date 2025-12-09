@@ -65,6 +65,16 @@ namespace GameStoreManagementSystem
         }
 
         /// <summary>
+        /// Checks if given string is a valid Date
+        /// </summary>
+        /// <param name="dt">DateTime to check</param>
+        /// <returns><see langword="true" /> if string is valid Date; otherwise, <see langword="false" /></returns>
+        internal static bool IsValidDate(DateTime? dt)
+        {
+            return dt != null;
+        }
+
+        /// <summary>
         /// Converts a string containing a number to an integer
         /// </summary>
         /// <param name="num">Number to convert</param>
@@ -98,13 +108,54 @@ namespace GameStoreManagementSystem
         }
 
         /// <summary>
-        /// Checks if given string is a valid Date
+        /// Validates values in a row for the Inventory table
         /// </summary>
-        /// <param name="dt">DateTime to check</param>
-        /// <returns><see langword="true" /> if string is valid Date; otherwise, <see langword="false" /></returns>
-        internal static bool IsValidDate(DateTime? dt)
+        /// <param name="db"></param>
+        /// <param name="gameID"></param>
+        /// <param name="consoleID"></param>
+        /// <param name="quantity"></param>
+        /// <param name="storeID"></param>
+        /// <returns><see langword="true" /> if Inventory data is valid; otherwise, <see langword="false" /></returns>
+        internal static bool ValidateInventoryValues(GamesDatabase db, int gameID, int consoleID, string quantity, int storeID)
         {
-            return dt != null;
+            bool valid = true;
+            string errorMessage = "Error: ";
+            // Check game OR console
+            if (gameID != 0)
+            {
+                if (!db.GameIDExists(gameID))
+                {
+                    errorMessage += "Game not found.\n";
+                    valid = false;
+                }
+            }
+            if (consoleID != 0)
+            {
+                if (!db.ConsoleIDExists(consoleID))
+                {
+                    errorMessage += "Console not found.\n";
+                    valid = false;
+                }
+            }
+            // Check quantity
+            if (IsEmpty(quantity) && ConvertInt(quantity) == -1)
+            {
+                errorMessage += "Invalid quantity: must be a valid integer.\n";
+                valid = false;
+
+            }
+            // Check store ID
+            if (!db.StoreIDExists(storeID))
+            {
+                errorMessage += "Store not found.\n";
+                valid = false;
+            }
+            // Show error if invalid
+            if (!valid)
+            {
+                MessageBox.Show(errorMessage, "Error Adding Inventory");
+            }
+            return valid;
         }
     }
 }

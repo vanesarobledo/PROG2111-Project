@@ -20,6 +20,12 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
     /// </summary>
     public partial class AddInventoryForm : Window
     {
+
+        /// <summary>
+        /// Select games database from Main window
+        /// </summary>
+        internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
+
         public AddInventoryForm()
         {
             InitializeComponent();
@@ -41,9 +47,6 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
         /// </summary>
         internal void LoadForeignKeys()
         {
-            // Select games database
-            GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
-
             // Auto-populate GameSelect with games
             GameSelect.SelectedValuePath = "Key";
             GameSelect.DisplayMemberPath = "Value";
@@ -64,7 +67,7 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
                 ConsoleSelect.Items.Add(new KeyValuePair<int, string>(consoleID, consoleDisplay));
             }
 
-            // Auto-populate Store Select with stores
+            // Auto-populate StoreSelect with stores
             StoreSelect.SelectedValuePath = "Key";
             StoreSelect.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
@@ -93,14 +96,77 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             e.Handled = !Validation.IsNum(e.Text);
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
+        // Mutually exclusive comboboxes - deselect console if game is selected, and vice versa
 
+        /// <summary>
+        /// Deselects console when game is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ConsoleSelect.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Delects game when console is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConsoleSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GameSelect.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Adds inventory item after validation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            // Get values from form
+            int gameID = 0;
+            int consoleID = 0;
+            int storeID = 0;
+
+            if (ConsoleSelect.SelectedValue != null)
+            {
+                consoleID = (int)ConsoleSelect.SelectedValue;
+            }
+            if (GameSelect.SelectedValue != null)
+            {
+                gameID = (int)GameSelect.SelectedValue;
+            }
+            if (StoreSelect.SelectedValue != null)
+            {
+                storeID = (int)StoreSelect.SelectedValue;
+            }
+            string quantity = InputQuantity.Text;
+
+            // Validate values
+            if (gameID == 0 && consoleID == 0)
+            {
+                MessageBox.Show("Game or console must be selected", "Error");
+            }
+            else if (gameID != 0 && consoleID !=0)
+            {
+                MessageBox.Show("Only one of game or console must be selected", "Error");
+            }
+            else if (Validation.ValidateInventoryValues(db, gameID, consoleID, quantity, storeID))
+            {
+                MessageBox.Show("Inventory item successfully added.\nClick \"Save\" to save changes to database", "Inventory Added");
+            }
+        }
+
+        /// <summary>
+        /// Closes the Add Inventory form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
