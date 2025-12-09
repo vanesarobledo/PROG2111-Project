@@ -48,7 +48,7 @@ namespace GameStoreManagementSystem
             connectionString = "Server=localhost;Port=3306;Uid=root;Pwd=" + password + ";Database=games;";
 
             // Start the adapter
-            adapter = new MySqlDataAdapter("SELECT * FROM Game", connectionString);
+            adapter = new MySqlDataAdapter();
         }
 
         // Functions
@@ -56,10 +56,10 @@ namespace GameStoreManagementSystem
         /// <summary>
         /// Loads the data of a table from the games database to a dataset
         /// </summary>
+        /// <param name="ds">Dataset to load data into</param>
         /// <param name="table">Name of the table to load</param>
-        internal DataSet LoadData(string table)
+        internal void LoadData(DataSet ds, string table)
         {
-            DataSet ds = new DataSet();
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -69,14 +69,12 @@ namespace GameStoreManagementSystem
                     adapter = new MySqlDataAdapter(query, conn);
                     ds = new DataSet();
                     adapter.Fill(ds, table);
-                    //dataGrid.ItemsSource = ds.Tables[table].DefaultView;
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
-            return ds;
         }
 
         /// <summary>
