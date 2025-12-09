@@ -1,11 +1,16 @@
+/*
+* FILE          : MainWindow.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia, Vanesa Robledo, Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
+*                 This contains the main window when the application is first loaded to perform CRUD operations on datasets.
+*/
+
+using System.Data;
+using System.Text;
 using System.Windows;
-using GameStoreManagementSystem.Views.Console;
-using GameStoreManagementSystem.Views.Customers;
-using GameStoreManagementSystem.Views.Employees;
-using GameStoreManagementSystem.Views.Games;
-using GameStoreManagementSystem.Views.Inventory;
-using GameStoreManagementSystem.Views.Products;
-using GameStoreManagementSystem.Views.Stores;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -17,6 +22,13 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using Google.Protobuf.WellKnownTypes;
 using System.Security.Cryptography.Xml;
+using GameStoreManagementSystem.Views.Console;
+using GameStoreManagementSystem.Views.Customers;
+using GameStoreManagementSystem.Views.Employees;
+using GameStoreManagementSystem.Views.Games;
+using GameStoreManagementSystem.Views.Inventory;
+using GameStoreManagementSystem.Views.Products;
+using GameStoreManagementSystem.Views.Stores;
 
 
 namespace GameStoreManagementSystem
@@ -43,7 +55,12 @@ namespace GameStoreManagementSystem
             // Load data in games database
             gamesDatabase = new GamesDatabase();
         }
-        
+
+
+        // ============================================================
+        //   DATA FUNCTIONS
+        // ============================================================
+
         /// <summary>
         /// Loads a dataset into the DataGrid
         /// </summary>

@@ -61,33 +61,33 @@
                 VerticalAlignment="Top"
                 Margin="10">
 
-                    <Button Content="Manage Game"
+                    <Button Content="Manage Games"
                 Height="50" Margin="15"
                 Click="ManageGame_Click"/>
 
-                    <Button Content="Manage Customer"
-                Height="50" Margin="15"
-                Click="ManageCustomer_Click"/>
-
-                    <Button Content="Manage Console"
+                    <Button Content="Manage Consoles"
                 Height="50" Margin="15"
                 Click="ManageConsole_Click"/>
 
-                    <Button Content="Manage Product"
+                    <Button Content="Manage Customers"
                 Height="50" Margin="15"
-                Click="ManageProduct_Click"/>
+                Click="ManageCustomer_Click"/>
 
                     <Button Content="Manage Inventory"
                 Height="50" Margin="15"
                 Click="ManageInventory_Click"/>
 
-                    <Button Content="Manage Employee"
+                    <Button Content="Manage Products"
                 Height="50" Margin="15"
-                Click="ManageEmployee_Click"/>
+                Click="ManageProduct_Click"/>
 
-                    <Button Content="Manage Store"
+                    <Button Content="Manage Stores"
                 Height="50" Margin="15"
                 Click="ManageStore_Click"/>
+
+                    <Button Content="Manage Employees"
+                Height="50" Margin="15"
+                Click="ManageEmployee_Click"/>
 
                 </StackPanel>
 
