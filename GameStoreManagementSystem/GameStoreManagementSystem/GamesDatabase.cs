@@ -26,23 +26,23 @@ namespace GameStoreManagementSystem
         /// <summary>
         /// Connection to the games database
         /// </summary>
-        internal DatabaseConnection Connection;
+        internal DatabaseConnection? Connection;
 
         /// <summary>
         /// DataSet to store games database for display
         /// </summary>
-        internal DataSet GamesDataSet;
+        internal DataSet? GamesDataSet;
 
         /// <summary>
         /// DataTables to store tables from games database
         /// </summary>
-        internal DataTable Game;
-        internal DataTable Console;
-        internal DataTable Inventory;
-        internal DataTable Product;
-        internal DataTable Customer;
-        internal DataTable Store;
-        internal DataTable Employee;
+        internal DataTable? Game;
+        internal DataTable? Console;
+        internal DataTable? Inventory;
+        internal DataTable? Product;
+        internal DataTable? Customer;
+        internal DataTable? Store;
+        internal DataTable? Employee;
 
         // Constructor
         public GamesDatabase()
@@ -86,14 +86,18 @@ namespace GameStoreManagementSystem
         /// </summary>
         /// <param name="id">ID to check</param>
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
-        internal bool GameIDExists(string id)
+        internal bool GameIDExists(int id)
         {
             bool exists = false;
-            foreach (DataRow row in GamesDataSet.Tables["Game"].Rows)
+            if (Game != null)
             {
-                if (row["game_id"] == id)
+                foreach (DataRow row in Game.Rows)
                 {
-                    exists = true;
+                    if ((int)row["game_id"] == id)
+                    {
+                        exists = true;
+                        break;
+                    }
                 }
             }
             return exists;
@@ -104,14 +108,18 @@ namespace GameStoreManagementSystem
         /// </summary>
         /// <param name="id">ID to check</param>
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
-        internal bool ConsoleIDExists(string id)
+        internal bool ConsoleIDExists(int id)
         {
             bool exists = false;
-            foreach (DataRow row in GamesDataSet.Tables["Console"].Rows)
+            if (Console != null)
             {
-                if (row["console_id"] == id)
+                foreach (DataRow row in Console.Rows)
                 {
-                    exists = true;
+                    if ((int)row["console_id"] == id)
+                    {
+                        exists = true;
+                        break;
+                    }
                 }
             }
             return exists;
@@ -122,14 +130,18 @@ namespace GameStoreManagementSystem
         /// </summary>
         /// <param name="id">ID to check</param>
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
-        internal bool InventoryIDExists(string id)
+        internal bool InventoryIDExists(int id)
         {
             bool exists = false;
-            foreach (DataRow row in GamesDataSet.Tables["Inventory"].Rows)
+            if (Inventory != null)
             {
-                if (row["inventory_id"] == id)
+                foreach (DataRow row in Inventory.Rows)
                 {
-                    exists = true;
+                    if ((int)row["inventory_id"] == id)
+                    {
+                        exists = true;
+                        break;
+                    }
                 }
             }
             return exists;
@@ -140,14 +152,18 @@ namespace GameStoreManagementSystem
         /// </summary>
         /// <param name="id">ID to check</param>
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
-        internal bool StoreIDExists(string id)
+        internal bool StoreIDExists(int id)
         {
             bool exists = false;
-            foreach (DataRow row in GamesDataSet.Tables["Store"].Rows)
+            if (Store != null)
             {
-                if (row["store_id"] == id)
+                foreach (DataRow row in Store.Rows)
                 {
-                    exists = true;
+                    if ((int)row["store_id"] == id)
+                    {
+                        exists = true;
+                        break;
+                    }
                 }
             }
             return exists;
@@ -158,14 +174,18 @@ namespace GameStoreManagementSystem
         /// </summary>
         /// <param name="id">ID to check</param>
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
-        internal bool CustomerIDExists(string id)
+        internal bool CustomerIDExists(int id)
         {
             bool exists = false;
-            foreach (DataRow row in GamesDataSet.Tables["Customer"].Rows)
+            if (Customer != null)
             {
-                if (row["customer_id"] == id)
+                foreach (DataRow row in Customer.Rows)
                 {
-                    exists = true;
+                    if ((int)row["customer_id"] == id)
+                    {
+                        exists = true;
+                        break;
+                    }
                 }
             }
             return exists;
