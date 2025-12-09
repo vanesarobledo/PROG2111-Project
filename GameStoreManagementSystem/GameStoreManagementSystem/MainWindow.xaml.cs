@@ -32,9 +32,15 @@ namespace GameStoreManagementSystem
     public partial class MainWindow : Window
     {
         // Properties
-        internal DatabaseConnection databaseConnection;
+
+        /// <summary>
+        /// Class that holds the DataSet & DataTables for the games database
+        /// </summary>
         internal GamesDatabase gamesDatabase;
-        //To tell what table is being worked on.
+
+        /// <summary>
+        /// Table currently being worked on
+        /// </summary>
         string activeTable = "";
 
         // Main Window
@@ -42,13 +48,8 @@ namespace GameStoreManagementSystem
         {
             InitializeComponent();
 
-            // Initialize MySQL database connection
-            databaseConnection = new DatabaseConnection();
-
             // Load data in games database
             gamesDatabase = new GamesDatabase();
-
-            
         }
 
         // Functions
@@ -71,7 +72,6 @@ namespace GameStoreManagementSystem
             //Option Chosen
             if (chooseAction.SelectedItem != null)
             {
-                //testGrid.DataContext = gamesDatabase.Game;
                 switch (chooseAction.Text)
                 {
                     case "Manage Games":
@@ -108,31 +108,28 @@ namespace GameStoreManagementSystem
             }
             else
             {
-                //NOTHING WAS CHOSEN
+                MessageBox.Show("Select a table to open", "Error");
             }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (activeTable != "")
+            try
             {
-                DataSet bufferSet = new DataSet();
-
-                bufferSet.Tables.Add(gridToTable(testGrid));
-                gamesDatabase.Connection.SaveData(bufferSet, activeTable);
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, activeTable);
             }
-            else
+            catch (Exception ex)
             {
-                //NO TABLE WAS OPENED
+                MessageBox.Show("Could not save to " + activeTable + ": " + ex, "Error");
             }
         }
 
-        private DataTable gridToTable(DataGrid inputGrid)
-        {
-            DataTable table = new DataTable();
-            DataView data = (DataView)inputGrid.ItemsSource;
-            table = data.ToTable();
-            return table;
-        }
+        //private DataTable gridToTable(DataGrid inputGrid)
+        //{
+        //    DataTable table = new DataTable();
+        //    DataView data = (DataView)inputGrid.ItemsSource;
+        //    table = data.ToTable();
+        //    return table;
+        //}
     }
 }
