@@ -29,6 +29,23 @@ namespace GameStoreManagementSystem
         }
 
         /// <summary>
+        /// Validates if a given input is a valid integer
+        /// </summary>
+        /// <param name="input">String to validate</param>
+        /// <returns><see langword="true" /> if string is a number; otherwise, <see langword="false" /></returns>
+        internal static bool IsNum(string input)
+        {
+            bool result = false;
+            int num;
+
+            if (Int32.TryParse(input, out num))
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Checks if string is a valid, positive integer
         /// </summary>
         /// <param name="ID">ID string to check</param>
