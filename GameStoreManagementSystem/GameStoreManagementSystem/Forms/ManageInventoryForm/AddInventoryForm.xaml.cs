@@ -28,20 +28,50 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             LoadForeignKeys();
         }
 
+        /*
+        * With help from:
+        * TITLE : “WPF combobox value and display text”
+        * AUTHOR : Alexander Abakumov
+        * DATE : 2016-01-08
+        * AVAILABIILTY : https://stackoverflow.com/a/34679195
+        */
+
+        /// <summary>
+        /// Auto-populates the comboboxes with foreign key data
+        /// </summary>
         internal void LoadForeignKeys()
         {
             // Select games database
             GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
 
-            // Auto-populate games
+            // Auto-populate GameSelect with games
             GameSelect.SelectedValuePath = "Key";
             GameSelect.DisplayMemberPath = "Value";
-
             foreach (DataRow game in db.Game.Rows)
             {
                 int gameID = (int)game["game_id"];
                 string gameDisplay = game["game_id"].ToString() + ": " + game["title"];
                 GameSelect.Items.Add(new KeyValuePair<int, string>(gameID, gameDisplay));
+            }
+
+            // Auto-populate ConsoleSelect with consoles
+            ConsoleSelect.SelectedValuePath = "Key";
+            ConsoleSelect.DisplayMemberPath = "Value";
+            foreach (DataRow console in db.Console.Rows)
+            {
+                int consoleID = (int)console["console_id"];
+                string consoleDisplay = console["console_id"].ToString() + ": " + console["console_name"];
+                ConsoleSelect.Items.Add(new KeyValuePair<int, string>(consoleID, consoleDisplay));
+            }
+
+            // Auto-populate Store Select with stores
+            StoreSelect.SelectedValuePath = "Key";
+            StoreSelect.DisplayMemberPath = "Value";
+            foreach (DataRow store in db.Store.Rows)
+            {
+                int storeID = (int)store["store_id"];
+                string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
+                StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
             }
         }
 
