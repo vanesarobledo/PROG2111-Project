@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using Google.Protobuf.WellKnownTypes;
+using System.Security.Cryptography.Xml;
 
 
 namespace GameStoreManagementSystem
@@ -33,7 +34,8 @@ namespace GameStoreManagementSystem
         // Properties
         internal DatabaseConnection databaseConnection;
         internal GamesDatabase gamesDatabase;
-
+        //To tell what table is being worked on.
+        string activeTable = "";
 
         // Main Window
         public MainWindow()
@@ -46,8 +48,7 @@ namespace GameStoreManagementSystem
             // Load data in games database
             gamesDatabase = new GamesDatabase();
 
-            //To tell what table is being worked on.
-            string activeTable = "";
+            
         }
 
         // Functions
@@ -74,18 +75,31 @@ namespace GameStoreManagementSystem
                 switch (chooseAction.Text)
                 {
                     case "Manage Games":
+                        activeTable = "Game";
                         LoadDataGrid(gamesDatabase.Game);
                         break;
                     case "Manage Customers":
+                        activeTable = "Customer";
                         LoadDataGrid(gamesDatabase.Customer);
                         break;
                     case "Manage Stores":
+                        activeTable = "Store";
                         LoadDataGrid(gamesDatabase.Store);
                         break;
                     case "Manage Inventory":
+                        activeTable = "Inventory";
                         LoadDataGrid(gamesDatabase.Inventory);
                         break;
                     case "Manage Products":
+                        activeTable = "Product";
+                        LoadDataGrid(gamesDatabase.Product);
+                        break;
+                    case "Manage Console":
+                        activeTable = "Console";
+                        LoadDataGrid(gamesDatabase.Console);
+                        break;
+                    case "Manage Employee":
+                        activeTable = "Employee";
                         LoadDataGrid(gamesDatabase.Product);
                         break;
                     default:
@@ -100,7 +114,25 @@ namespace GameStoreManagementSystem
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (activeTable != "")
+            {
+                DataSet bufferSet = new DataSet();
 
+                bufferSet.Tables.Add(gridToTable(testGrid));
+                gamesDatabase.Connection.SaveData(bufferSet, activeTable);
+            }
+            else
+            {
+                //NO TABLE WAS OPENED
+            }
+        }
+
+        private DataTable gridToTable(DataGrid inputGrid)
+        {
+            DataTable table = new DataTable();
+            DataView data = (DataView)inputGrid.ItemsSource;
+            table = data.ToTable();
+            return table;
         }
     }
 }
