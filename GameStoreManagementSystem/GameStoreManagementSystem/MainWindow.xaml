@@ -19,7 +19,7 @@
         <!-- BOTTOM SAVE BUTTON BAR -->
         <StackPanel DockPanel.Dock="Bottom"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Left"
                     Margin="10">
             <Button Content="Save"
                     Width="120"

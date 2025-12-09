@@ -21,17 +21,12 @@
         <StackPanel Orientation="Vertical" Width="300"
         HorizontalAlignment="Center">
 
-        <Button Content="Add Inventory"
+                <Button Content="Add Inventory"
         Margin="10"
         Height="45"
         Click="AddInventory_Click"/>
 
-        <Button Content="Filter Inventory"
-        Margin="10"
-        Height="45"
-        Click="FilterInventory_Click"/>
-
-        <Button Content="Update Inventory"
+                <Button Content="Update Inventory"
         Margin="10"
         Height="45"
         Click="UpdateInventory_Click"/>

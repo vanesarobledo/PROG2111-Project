@@ -26,10 +26,6 @@
             Height="45"
             Click="AddStore_Click"/>
 
-                <Button Content="Filter Store"
-            Margin="10"
-            Height="45"
-            Click="FilterStore_Click"/>
 
                 <Button Content="Update Store"
             Margin="10"

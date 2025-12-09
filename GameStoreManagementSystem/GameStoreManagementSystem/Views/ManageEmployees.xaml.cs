@@ -29,11 +29,6 @@ namespace GameStoreManagementSystem.Views.Employees
 
         }
 
-        private void FilterEmployee_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UpdateEmployee_Click(object sender, RoutedEventArgs e)
         {
 

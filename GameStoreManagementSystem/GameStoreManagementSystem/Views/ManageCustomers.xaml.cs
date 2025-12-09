@@ -31,11 +31,6 @@ namespace GameStoreManagementSystem.Views.Customers
 
         }
 
-        private void FilterCustomer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UpdateCustomer_Click(object sender, RoutedEventArgs e)
         {
 

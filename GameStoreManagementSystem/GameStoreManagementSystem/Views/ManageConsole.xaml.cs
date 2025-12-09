@@ -31,12 +31,6 @@ namespace GameStoreManagementSystem.Views.Console
             //addForm.ShowDialog();
         }
 
-        private void FilterConsole_Click(object sender, RoutedEventArgs e)
-        {
-            //FilterConsoleForm filterForm = new FilterConsoleForm();
-            //filterForm.ShowDialog();
-        }
-
         private void UpdateConsole_Click(object sender, RoutedEventArgs e)
         {
             //UpdateConsoleForm updateForm = new UpdateConsoleForm();

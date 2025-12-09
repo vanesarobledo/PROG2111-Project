@@ -32,17 +32,6 @@ namespace GameStoreManagementSystem.Views.Games
             form.ShowDialog();
         }
 
-        private void FilterGame_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = Window.GetWindow(this) as MainWindow;
-
-            if (main != null)
-            {
-                FilterGamesForm form = new FilterGamesForm();
-                form.ShowDialog();
-            }
-        }
-
         private void UpdateGame_Click(object sender, RoutedEventArgs e)
         {
             UpdateGamesForm form = new UpdateGamesForm();

@@ -21,17 +21,12 @@
             <StackPanel Orientation="Vertical" Width="300"
            HorizontalAlignment="Center">
 
-           <Button Content="Add Game"
+                <Button Content="Add Game"
            Margin="10"
            Height="45"
            Click="AddGame_Click"/>
 
-           <Button Content="Filter Games"
-           Margin="10"
-           Height="45"
-           Click="FilterGame_Click"/>
-
-           <Button Content="Update Game"
+                <Button Content="Update Game"
            Margin="10"
            Height="45"
            Click="UpdateGame_Click"/>

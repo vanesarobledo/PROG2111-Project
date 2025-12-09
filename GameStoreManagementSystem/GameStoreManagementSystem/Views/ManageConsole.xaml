@@ -26,11 +26,6 @@
                         Height="45"
                         Click="AddConsole_Click"/>
 
-                <Button Content="Filter Console"
-                        Margin="10"
-                        Height="45"
-                        Click="FilterConsole_Click"/>
-
                 <Button Content="Update Console"
                         Margin="10"
                         Height="45"

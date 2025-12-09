@@ -30,11 +30,6 @@ namespace GameStoreManagementSystem.Views.Inventory
 
         }
 
-        private void FilterInventory_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UpdateInventory_Click(object sender, RoutedEventArgs e)
         {
 

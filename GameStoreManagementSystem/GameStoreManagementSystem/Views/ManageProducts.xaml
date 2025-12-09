@@ -26,11 +26,6 @@
           Height="45"
           Click="AddProduct_Click"/>
 
-                <Button Content="Filter Products"
-         Margin="10"
-         Height="45"
-         Click="FilterProduct_Click"/>
-
                 <Button Content="Update Product"
          Margin="10"
          Height="45"

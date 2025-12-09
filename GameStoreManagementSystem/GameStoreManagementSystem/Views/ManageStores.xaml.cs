@@ -30,11 +30,6 @@ namespace GameStoreManagementSystem.Views.Stores
 
         }
 
-        private void FilterStore_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UpdateStore_Click(object sender, RoutedEventArgs e)
         {
 
