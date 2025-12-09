@@ -1,7 +1,7 @@
 ﻿/*
 * FILE          : MainWindow.xaml.cs
 * PROJECT       : PROG2111 Project
-* PROGRAMMER    : Eumee Garcia, Vanesa Robledo
+* PROGRAMMER    : Eumee Garcia, Vanesa Robledo, Connar Thompson
 * FIRST VERSION : 2025-12-08
 * DESCRIPTION   : This is an application to manage the database for managing the data required for a game store.
 *                 This contains the main window when the application is first loaded to perform CRUD operations on datasets.
@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using Google.Protobuf.WellKnownTypes;
 
 
 namespace GameStoreManagementSystem
@@ -33,6 +34,7 @@ namespace GameStoreManagementSystem
         internal DatabaseConnection databaseConnection;
         internal GamesDatabase gamesDatabase;
 
+
         // Main Window
         public MainWindow()
         {
@@ -43,6 +45,9 @@ namespace GameStoreManagementSystem
 
             // Load data in games database
             gamesDatabase = new GamesDatabase();
+
+            //To tell what table is being worked on.
+            string activeTable = "";
         }
 
         // Functions
@@ -51,42 +56,51 @@ namespace GameStoreManagementSystem
         /// Loads a dataset into the DataGrid
         /// </summary>
         /// <param name="ds">Dataset to load</param>
-        internal void LoadDataGrid(DataSet ds)
+        internal void LoadDataGrid(DataTable dt)
         {
-            if (ds != null)
+            if (dt != null)
             {
-                //TODO: Load dataset into the DataGrid
+                testGrid.ItemsSource = dt.DefaultView;
             }
         }
 
-        private void OpenGames_Click(object sender, RoutedEventArgs e)
+
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
-            //GameView window = new GameView();
-            //window.ShowDialog();
+            //Option Chosen
+            if (chooseAction.SelectedItem != null)
+            {
+                //testGrid.DataContext = gamesDatabase.Game;
+                switch (chooseAction.Text)
+                {
+                    case "Manage Games":
+                        LoadDataGrid(gamesDatabase.Game);
+                        break;
+                    case "Manage Customers":
+                        LoadDataGrid(gamesDatabase.Customer);
+                        break;
+                    case "Manage Stores":
+                        LoadDataGrid(gamesDatabase.Store);
+                        break;
+                    case "Manage Inventory":
+                        LoadDataGrid(gamesDatabase.Inventory);
+                        break;
+                    case "Manage Products":
+                        LoadDataGrid(gamesDatabase.Product);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                //NOTHING WAS CHOSEN
+            }
         }
 
-        private void OpenCustomers_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: teammate implements CustomerView + CustomerRepository
-            MessageBox.Show("Customer management coming soon!");
-        }
 
-        private void OpenStores_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: teammate implements StoreView + StoreRepository
-            MessageBox.Show("Store management coming soon!");
-        }
-
-        private void OpenInventory_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: teammate implements InventoryView + InventoryRepository
-            MessageBox.Show("Inventory management coming soon!");
-        }
-
-        private void OpenProducts_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: teammate implements ProductView + ProductRepository
-            MessageBox.Show("Product management coming soon!");
         }
     }
 }

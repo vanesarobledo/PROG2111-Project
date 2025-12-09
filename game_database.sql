@@ -8,6 +8,9 @@
 * CHANGELOG		: 2025-12-07: Reduced the number of entities
 */
 
+INSERT INTO GAME VALUES (1,"GAMER Nation", "2025-01-12","Car Game","JUST THE WORST",1);
+
+
 -- Create and use database
 CREATE DATABASE games;
 USE games;
@@ -37,6 +40,7 @@ CREATE TABLE Inventory (
     console_id INTEGER,
     quantity INTEGER,
     store_id INTEGER,
+    CHECK (quantity >= 0),
     PRIMARY KEY(inventory_id)
 );
 
