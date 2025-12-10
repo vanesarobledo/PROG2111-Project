@@ -99,27 +99,32 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             InventorySelect.DisplayMemberPath = "Value";
             foreach (DataRow inventory in db.Inventory.Rows)
             {
-                int inventoryID = (int)inventory["inventory_id"];
-                string inventoryDisplay = inventory["inventory_id"].ToString() + ": ";
-                
-                // Look up game title or console name to display in inventory
-                if (inventory["game_id"] != DBNull.Value)
+                if (inventory["inventory_id"] != DBNull.Value)
                 {
-                    if (gamesList.ContainsKey((int)inventory["game_id"]))
-                    {
-                        inventoryDisplay += gamesList[(int)inventory["game_id"]].ToString();
-                    }
-                }
-                else if (inventory["console_id"] != DBNull.Value)
-                {
-                    if (consolesList.ContainsKey((int)inventory["console_id"]))
-                    {
-                        inventoryDisplay += consolesList[(int)inventory["console_id"]].ToString();
-                    }
-                }
-                inventoryDisplay += " (" + storesList[(int)inventory["store_id"]].ToString() + ")";
+                    int inventoryID = (int)inventory["inventory_id"];
+                    string inventoryDisplay = inventory["inventory_id"].ToString() + ": ";
 
-                InventorySelect.Items.Add(new KeyValuePair<int, string>(inventoryID, inventoryDisplay));
+                    // Look up game title or console name to display in inventory
+                    if (inventory["game_id"] != DBNull.Value)
+                    {
+                        if (gamesList.ContainsKey((int)inventory["game_id"]))
+                        {
+                            inventoryDisplay += gamesList[(int)inventory["game_id"]].ToString();
+                        }
+                    }
+                    else if (inventory["console_id"] != DBNull.Value)
+                    {
+                        if (consolesList.ContainsKey((int)inventory["console_id"]))
+                        {
+                            inventoryDisplay += consolesList[(int)inventory["console_id"]].ToString();
+                        }
+                    }
+                    if (inventory["store_id"] != DBNull.Value) {
+                        inventoryDisplay += " (" + storesList[(int)inventory["store_id"]].ToString() + ")";
+                    }
+
+                    InventorySelect.Items.Add(new KeyValuePair<int, string>(inventoryID, inventoryDisplay));
+                }
             }
 
             // Auto-populate CustomerSelect with customers
@@ -127,9 +132,12 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             CustomerSelect.DisplayMemberPath = "Value";
             foreach (DataRow customer in db.Customer.Rows)
             {
-                int storeID = (int)customer["customer_id"];
-                string consoleDisplay = customer["customer_id"].ToString() + ": " + customer["first_name"] + " " + customer["last_name"];
-                CustomerSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                if (customer["customer_id"] != DBNull.Value)
+                {
+                    int storeID = (int)customer["customer_id"];
+                    string consoleDisplay = customer["customer_id"].ToString() + ": " + customer["first_name"] + " " + customer["last_name"];
+                    CustomerSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                }
             }
 
             // Auto-populate StoreSelect with stores
@@ -137,9 +145,12 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             StoreSelect.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
             {
-                int storeID = (int)store["store_id"];
-                string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
-                StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                if (store["store_id"] != DBNull.Value)
+                {
+                    int storeID = (int)store["store_id"];
+                    string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
+                    StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                }
             }
         }
 
