@@ -51,7 +51,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
                 && usernameBox != null && passwordBox != null)
             {
-                if (DateTime.TryParse(dobBox.Text, out testDate))
+                if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
                     MessageBox.Show("Invalid Date of Birth.");
                 }
@@ -87,6 +87,8 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                 newRow["username"] = usernameBox.Text;
                 newRow["password"] = passwordBox.Text;
                 db.Customer.Rows.Add(newRow);
+
+                MessageBox.Show("Customer successfully added.", "Add Customer");
             }
         }
         /*
