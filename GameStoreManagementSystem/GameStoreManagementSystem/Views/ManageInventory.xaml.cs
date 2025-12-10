@@ -36,16 +36,26 @@ namespace GameStoreManagementSystem.Views.Inventory
             InitializeComponent();
         }
 
+        // ============================================================
+        //   LOAD FUNCTION
+        // ============================================================
+
         /// <summary>
-        /// Checks if inventory database is loaded and moves out of the user control if not
+        /// Checks if necessary DataTables are loaded and exits if not
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (((MainWindow)Application.Current.MainWindow).gamesDatabase.Inventory == null)
+            if (db.Inventory == null)
             {
                 MessageBox.Show("Inventory data not loaded.", "Error");
+                Back_Click(sender, e);
+            }
+            // If other necessary datasets are not loaded, move out of user control
+            else if (db.Game == null || db.Console == null || db.Store == null)
+            {
+                MessageBox.Show("Data required for Inventory table not loaded.", "Error");
                 Back_Click(sender, e);
             }
         }

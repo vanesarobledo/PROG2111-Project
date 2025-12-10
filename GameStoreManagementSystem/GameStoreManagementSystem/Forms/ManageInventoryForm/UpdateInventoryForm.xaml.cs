@@ -176,7 +176,7 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
         }
 
         /// <summary>
-        /// Updates inventory item
+        /// Updates inventory row upon successful validation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -248,7 +248,7 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
         }
 
         /// <summary>
-        /// Closes inventory
+        /// Closes Update Inventory window
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -131,6 +131,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             }
         }
 
+        /// <summary>
+        /// Adds Inventory row upon successful validation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             // Get values from form
@@ -174,6 +179,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             }
         }
 
+        /// <summary>
+        /// Closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();

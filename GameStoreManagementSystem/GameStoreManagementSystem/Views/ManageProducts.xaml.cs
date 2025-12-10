@@ -36,6 +36,29 @@ namespace GameStoreManagementSystem.Views.Products
             InitializeComponent();
         }
 
+        // ============================================================
+        //   LOAD FUNCTION
+        // ============================================================
+
+        /// <summary>
+        /// Checks if necessary DataTables are loaded and exits if not
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (db.Product == null)
+            {
+                MessageBox.Show("Product data not loaded.", "Error");
+                Back_Click(sender, e);
+            }
+            // If other necessary datasets are not loaded, move out of user control
+            else if (db.Game == null || db.Console == null || db.Inventory == null || db.Customer == null || db.Store == null)
+            {
+                MessageBox.Show("Data required for Product table not loaded.", "Error");
+                Back_Click(sender, e);
+            }
+        }
 
         // ============================================================
         //   BUTTON FUNCTIONS
@@ -128,6 +151,5 @@ namespace GameStoreManagementSystem.Views.Products
                 }
             }
         }
-
     }
 }

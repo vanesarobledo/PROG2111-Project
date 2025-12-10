@@ -142,6 +142,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             }
         }
 
+        /// <summary>
+        /// Fills the values of the fields dynamically based on selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get selected item
@@ -174,6 +179,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             }
         }
 
+        /// <summary>
+        /// Updates a row in Product upon successful validation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             // Get values from form
@@ -237,6 +247,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             }
         }
 
+        /// <summary>
+        /// Closes the Update Product window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
