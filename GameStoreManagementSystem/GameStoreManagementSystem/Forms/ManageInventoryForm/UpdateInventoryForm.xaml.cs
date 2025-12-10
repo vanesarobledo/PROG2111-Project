@@ -238,6 +238,11 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
                         found = true;
                     }
                 }
+                // If inventory item is not found
+                if (!found)
+                {
+                    MessageBox.Show("Inventory item could not be updated.", "Error");
+                }
 
             }
         }

@@ -108,7 +108,7 @@
                     Click="Cancel_Click"/>
 
             <Button Content="Update Inventory Item"
-                  Width="120"
+                  Width="140"
                   Height="35"
                   Margin="5"
                   HorizontalAlignment="Right"
