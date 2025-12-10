@@ -49,6 +49,8 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         */
         internal void LoadForeignKeys()
         {
+            storeIDBox.SelectedValuePath = "Key";
+            storeIDBox.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
             {
                 int storeID = (int)store["store_id"];
@@ -77,10 +79,11 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                     employeeID = (int)dv.Row.ItemArray[0];
                     firstNameBox.Text = (string)dv.Row.ItemArray[1];
                     lastNameBox.Text = (string)dv.Row.ItemArray[2];
-                    dobBox.Text = (string)dv.Row.ItemArray[3];
+                    dobBox.Text = dv.Row.ItemArray[3].ToString();
                     emailBox.Text = (string)dv.Row.ItemArray[4];
                     usernameBox.Text = (string)dv.Row.ItemArray[5];
                     passwordBox.Text = (string)dv.Row.ItemArray[6];
+                    storeIDBox.SelectedValue = (int)dv.Row.ItemArray[7];
                 }
                 else
                 {
@@ -108,8 +111,8 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         {
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
-            if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
-                && usernameBox != null && passwordBox != null && storeIDBox.Text != null)
+            if (firstNameBox.Text != "" && lastNameBox.Text != "" && dobBox.Text != "" && emailBox.Text != ""
+                && usernameBox.Text != "" && passwordBox.Text != "" && storeIDBox.SelectedValue != null)
             {
                 if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
@@ -136,6 +139,11 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         private void UpdateEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             bool found = false;
+            int storeID = 0;
+            if (storeIDBox.SelectedValue != null)
+            {
+                storeID = (int)storeIDBox.SelectedValue;
+            }
             if (emptyCheck())
             {
                 for (int i = 0; i < db.Employee.Rows.Count && !found; i++)
@@ -149,7 +157,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                         currentRow["email"] = emailBox.Text;
                         currentRow["username"] = usernameBox.Text;
                         currentRow["password"] = passwordBox.Text;
-                        currentRow["store_id"] = storeIDBox.Text;
+                        currentRow["store_id"] = storeID;
                         found = true;
 
                         MessageBox.Show("Employee ID #" + employeeID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Success");
