@@ -176,7 +176,65 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
+            // Get values from form
+            int inventoryID = 0;
+            int customerID = 0;
+            int quantity = -1;
+            string quantityStr = InputQuantity.Text;
+            float cost = -1;
+            string costStr = InputCost.Text;
+            string dateOfPurchase = DateOfPurchaseInput.Text;
+            int storeID = 0;
 
+            if (InventorySelect.SelectedValue != null)
+            {
+                inventoryID = (int)InventorySelect.SelectedValue;
+            }
+
+            if (CustomerSelect.SelectedValue != null)
+            {
+                customerID = (int)CustomerSelect.SelectedValue;
+            }
+
+            if (StoreSelect.SelectedValue != null)
+            {
+                storeID = (int)StoreSelect.SelectedValue;
+            }
+
+            // Validate values
+            if (Validation.ValidateProductValues(db, inventoryID, customerID, costStr, quantityStr, dateOfPurchase, storeID))
+            {
+                // Set quantity & cost if validated
+                quantity = Int32.Parse(quantityStr);
+                cost = float.Parse(costStr);
+
+                // Update row in DataTable
+                bool found = false;
+                // Find row to update
+                for (int i = 0; i < db.Product.Rows.Count && !found; i++)
+                {
+                    DataRow currentRow = db.Product.Rows[i];
+                    // If row is found
+                    if (Convert.ToInt32(currentRow["product_id"]) == productID)
+                    {
+                        currentRow["inventory_id"] = inventoryID;
+                        currentRow["customer_id"] = customerID;
+                        currentRow["cost"] = cost;
+                        currentRow["quantity"] = quantity;
+                        currentRow["date_of_purchase"] = dateOfPurchase;
+                        currentRow["store_id"] = storeID;
+
+                        // Show success
+                        MessageBox.Show("Product ID #" + inventoryID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Product Added");
+                        found = true;
+                    }
+                }
+                // If inventory item is not found
+                if (!found)
+                {
+                    MessageBox.Show("Product item could not be updated.", "Error");
+                }
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
