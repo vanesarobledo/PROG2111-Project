@@ -26,7 +26,7 @@
         <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center">Store Location <Italic>(required)</Italic></TextBlock>
             <TextBox x:Name="StoreNameInput" MaxLength="50" Width="175" Margin="10,0" Padding="5"/>
-            <Button x:Name="AddStoreButton" Content="Update Store" Click="AddStoreButton_Click" Width="92"/>
+            <Button x:Name="AddStoreButton" Content="Add Store" Click="AddStoreButton_Click" Width="92"/>
         </StackPanel>
 
         <Grid Grid.Row="2">

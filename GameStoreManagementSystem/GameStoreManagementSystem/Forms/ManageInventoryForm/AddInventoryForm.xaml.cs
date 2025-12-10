@@ -180,7 +180,7 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
                 db.Inventory.Rows.Add(newRow);
 
                 // Show success
-                MessageBox.Show("Inventory item successfully added.\nClick \"Save\" to save changes to database", "Inventory Added");
+                MessageBox.Show("Inventory item successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
         }
 

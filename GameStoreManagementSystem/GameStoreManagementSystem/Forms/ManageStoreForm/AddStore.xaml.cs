@@ -53,6 +53,7 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
             { 
                 newRow["location"] = StoreNameInput.Text;
                 db.Store.Rows.Add(newRow);
+                MessageBox.Show("Store successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
             else
             {

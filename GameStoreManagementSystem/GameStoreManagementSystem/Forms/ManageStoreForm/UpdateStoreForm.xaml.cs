@@ -93,8 +93,9 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
                     if (Convert.ToInt32(currentRow["store_id"]) == storeID)
                     {
                         currentRow["location"] = StoreNameInput.Text;
-
                         found = true;
+
+                        MessageBox.Show("Store ID #" + storeID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Success");
                     }
                 }
                 if (!found)

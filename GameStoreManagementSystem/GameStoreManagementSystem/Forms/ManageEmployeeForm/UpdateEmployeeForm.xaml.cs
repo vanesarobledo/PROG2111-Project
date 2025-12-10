@@ -151,6 +151,8 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                         currentRow["password"] = passwordBox.Text;
                         currentRow["store_id"] = storeIDBox.Text;
                         found = true;
+
+                        MessageBox.Show("Employee ID #" + employeeID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Success");
                     }
                 }
                 if (!found)
