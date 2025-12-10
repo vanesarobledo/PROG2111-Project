@@ -40,6 +40,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
         /// </summary>
         internal Dictionary<int, string> consolesList;
 
+        /// <summary>
+        /// Key-value pairs of store IDs and their locations
+        /// </summary>
+        internal Dictionary<int, string> storesList;
+
         public AddProductForm()
         {
             InitializeComponent();
@@ -52,12 +57,13 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
         }
 
         /// <summary>
-        /// Loads list of game titles and console names with their IDs as keys in dictionaries
+        /// Loads list of game titles, console names, and store locations with their IDs as keys in dictionaries
         /// </summary>
         internal void LoadInventory()
         {
             gamesList = new Dictionary<int, string>();
             consolesList = new Dictionary<int, string>();
+            storesList = new Dictionary<int, string>();
 
             foreach (DataRow game in db.Game.Rows)
             {
@@ -67,6 +73,11 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             foreach (DataRow console in db.Console.Rows)
             {
                 consolesList.Add((int)console["console_id"], console["console_name"].ToString());
+            }
+
+            foreach (DataRow store in db.Store.Rows)
+            {
+                storesList.Add((int)store["store_id"], store["location"].ToString());
             }
         }
 
@@ -106,6 +117,7 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
                         inventoryDisplay += consolesList[(int)inventory["console_id"]].ToString();
                     }
                 }
+                inventoryDisplay += " (" + storesList[(int)inventory["store_id"]].ToString() + ")";
 
                 InventorySelect.Items.Add(new KeyValuePair<int, string>(inventoryID, inventoryDisplay));
             }
