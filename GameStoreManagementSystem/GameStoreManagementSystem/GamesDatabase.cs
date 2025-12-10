@@ -50,6 +50,17 @@ namespace GameStoreManagementSystem
             // Connect to the database
             Connection = new DatabaseConnection();
 
+            // Load the games database
+            FillGamesDataSet();
+        }
+
+        // Functions
+
+        /// <summary>
+        /// Loads all of the tables of the game database into the GamesDataSet
+        /// </summary>
+        internal void FillGamesDataSet()
+        {
             try
             {
                 // Fill games dataset
@@ -77,7 +88,6 @@ namespace GameStoreManagementSystem
             }
         }
 
-        // Functions
 
         // Check if ID Exists (needed for foreign key constraints)
 

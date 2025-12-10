@@ -81,6 +81,39 @@ namespace GameStoreManagementSystem
         }
 
         /// <summary>
+        /// Reloads the DataGrid based on the activeTable
+        /// </summary>
+        internal void RefreshDataGrid()
+        {
+            switch (activeTable)
+            {
+                case "Game":
+                    LoadDataGrid(gamesDatabase.Game);
+                    break;
+                case "Customer":
+                    LoadDataGrid(gamesDatabase.Customer);
+                    break;
+                case "Store":
+                    LoadDataGrid(gamesDatabase.Store);
+                    break;
+                case "Inventory":
+                    LoadDataGrid(gamesDatabase.Inventory);
+                    break;
+                case "Product":
+                    LoadDataGrid(gamesDatabase.Product);
+                    break;
+                case "Console":
+                    LoadDataGrid(gamesDatabase.Console);
+                    break;
+                case "Employee":
+                    LoadDataGrid(gamesDatabase.Employee);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Changes the active table and adds it to the list of tables that have been opened
         /// </summary>
         /// <param name="table"></param>
@@ -162,12 +195,17 @@ namespace GameStoreManagementSystem
             {
                 foreach (string table in tablesOpened)
                 {
+                    // Save data to database
                     gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, table);
                 }
+
+                // Reload data
+                gamesDatabase.FillGamesDataSet();
+                RefreshDataGrid();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not save to database:" + ex, "Error");
+                MessageBox.Show("Could not save to database: " + ex, "Error");
             }
         }
 
