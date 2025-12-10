@@ -63,11 +63,14 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             GameSelect.DisplayMemberPath = "Value";
             foreach (DataRow game in db.Game.Rows)
             {
-                if (game["game_id"] != DBNull.Value)
+                if (game.RowState != DataRowState.Deleted)
                 {
-                    int gameID = (int)game["game_id"];
-                    string gameDisplay = game["game_id"].ToString() + ": " + game["title"];
-                    GameSelect.Items.Add(new KeyValuePair<int, string>(gameID, gameDisplay));
+                    if (game["game_id"] != DBNull.Value)
+                    {
+                        int gameID = (int)game["game_id"];
+                        string gameDisplay = game["game_id"].ToString() + ": " + game["title"];
+                        GameSelect.Items.Add(new KeyValuePair<int, string>(gameID, gameDisplay));
+                    }
                 }
             }
 
@@ -76,11 +79,14 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             ConsoleSelect.DisplayMemberPath = "Value";
             foreach (DataRow console in db.Console.Rows)
             {
-                if (console["console_id"] != DBNull.Value)
+                if (console.RowState != DataRowState.Deleted)
                 {
-                    int consoleID = (int)console["console_id"];
-                    string consoleDisplay = console["console_id"].ToString() + ": " + console["console_name"];
-                    ConsoleSelect.Items.Add(new KeyValuePair<int, string>(consoleID, consoleDisplay));
+                    if (console["console_id"] != DBNull.Value)
+                    {
+                        int consoleID = (int)console["console_id"];
+                        string consoleDisplay = console["console_id"].ToString() + ": " + console["console_name"];
+                        ConsoleSelect.Items.Add(new KeyValuePair<int, string>(consoleID, consoleDisplay));
+                    }
                 }
             }
 
@@ -89,11 +95,14 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             StoreSelect.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
             {
-                if (store["store_id"] != DBNull.Value)
+                if (store.RowState != DataRowState.Deleted)
                 {
-                    int storeID = (int)store["store_id"];
-                    string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
-                    StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                    if (store["store_id"] != DBNull.Value)
+                    {
+                        int storeID = (int)store["store_id"];
+                        string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
+                        StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                    }
                 }
             }
         }
