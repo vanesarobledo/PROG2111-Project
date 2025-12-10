@@ -55,6 +55,10 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
                 newRow["location"] = StoreNameInput.Text;
                 db.Store.Rows.Add(newRow);
             }
+            else
+            {
+                MessageBox.Show("Must enter a location.");
+            }
         }
         /*
         * METHOD	: CancelButton_Click
