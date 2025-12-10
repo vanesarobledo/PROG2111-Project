@@ -1,0 +1,53 @@
+﻿<Window x:Class="GameStoreManagementSystem.Forms.ManageConsolesForm.AddConsoleForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Console"
+        Height="300" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Console Name label -->
+            <RowDefinition Height="Auto"/>
+            <!-- Console Name textbox -->
+            <RowDefinition Height="Auto"/>
+            <!-- Company label -->
+            <RowDefinition Height="Auto"/>
+            <!-- Company textbox -->
+            <RowDefinition Height="Auto"/>
+            <!-- BUTTON ROW -->
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Console Name:" Grid.Row="0" Margin="0,0,0,5"/>
+        <TextBox x:Name="InputConsoleName" Grid.Row="1" Height="28"/>
+
+        <TextBlock Text="Company:" Grid.Row="2" Margin="0,10,0,5"/>
+        <TextBox x:Name="InputCompany" Grid.Row="3" Height="28"/>
+
+        <!-- Buttons Row -->
+        <Grid Grid.Row="4" Margin="0,25,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Cancel on the LEFT -->
+            <Button Content="Cancel"
+                    Grid.Column="0"
+                    Width="120"
+                    HorizontalAlignment="Left"
+                    Click="Cancel_Click"/>
+
+            <!-- Add Console on the RIGHT -->
+            <Button Content="Add Console"
+                    Grid.Column="1"
+                    Width="120"
+                    HorizontalAlignment="Right"
+                    Click="Add_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>

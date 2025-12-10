@@ -130,6 +130,11 @@ namespace GameStoreManagementSystem
         //   BUTTON EVENTS 
         // ============================================================
 
+        /// <summary>
+        /// Selects the manage game option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageGame_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -140,6 +145,11 @@ namespace GameStoreManagementSystem
             FormatDateColumn();
         }
 
+        /// <summary>
+        /// Selects the manage customer option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageCustomer_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -148,6 +158,11 @@ namespace GameStoreManagementSystem
             LoadDataGrid(gamesDatabase.Customer);
         }
 
+        /// <summary>
+        /// Selects the manage console option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageConsole_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -156,6 +171,11 @@ namespace GameStoreManagementSystem
             LoadDataGrid(gamesDatabase.Console);
         }
 
+        /// <summary>
+        /// Selects the manage product option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageProduct_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -164,6 +184,11 @@ namespace GameStoreManagementSystem
             LoadDataGrid(gamesDatabase.Product);
         }
 
+        /// <summary>
+        /// Selects the manage inventory option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageInventory_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -172,6 +197,11 @@ namespace GameStoreManagementSystem
             LoadDataGrid(gamesDatabase.Inventory);
         }
 
+        /// <summary>
+        /// Selects the manage employee option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageEmployee_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -180,6 +210,11 @@ namespace GameStoreManagementSystem
             LoadDataGrid(gamesDatabase.Employee);
         }
 
+        /// <summary>
+        /// Selects the manage store option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageStore_Click(object sender, RoutedEventArgs e)
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
@@ -191,6 +226,12 @@ namespace GameStoreManagementSystem
         // ============================================================
         //   SAVE BUTTON
         // ============================================================
+
+        /// <summary>
+        /// allows data to be saved inside the MySQL database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -239,6 +280,9 @@ namespace GameStoreManagementSystem
         // ============================================================
         //   Formats
         // ============================================================
+        /// <summary>
+        /// Formats the date so that it wont take the time
+        /// </summary>
         private void FormatDateColumn()
         {
             foreach (DataGridColumn column in MainGrid.Columns)

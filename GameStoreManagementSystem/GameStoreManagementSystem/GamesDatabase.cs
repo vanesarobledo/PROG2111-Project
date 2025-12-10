@@ -44,6 +44,8 @@ namespace GameStoreManagementSystem
         internal DataTable? Store;
         internal DataTable? Employee;
 
+        private bool HasSeededConsoles = false;
+
         // Constructor
         public GamesDatabase()
         {
@@ -52,6 +54,7 @@ namespace GameStoreManagementSystem
 
             // Load the games database
             FillGamesDataSet();
+            SeedConsoleTableIfEmpty();
         }
 
         // Functions
@@ -63,8 +66,8 @@ namespace GameStoreManagementSystem
         {
             try
             {
-                // Fill games dataset
                 GamesDataSet = new DataSet();
+
                 Connection.LoadData(GamesDataSet, "Game");
                 Connection.LoadData(GamesDataSet, "Console");
                 Connection.LoadData(GamesDataSet, "Inventory");
@@ -73,7 +76,6 @@ namespace GameStoreManagementSystem
                 Connection.LoadData(GamesDataSet, "Store");
                 Connection.LoadData(GamesDataSet, "Employee");
 
-                // Fill the DataTables
                 Game = GamesDataSet.Tables["Game"];
                 Console = GamesDataSet.Tables["Console"];
                 Inventory = GamesDataSet.Tables["Inventory"];
@@ -84,12 +86,48 @@ namespace GameStoreManagementSystem
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error loading data from database: " + e, "Error");
+                MessageBox.Show("Error loading data from database: " + e.Message);
             }
         }
 
+        private void SeedConsoleTableIfEmpty()
+        {
+            if (Console == null)
+            {
+                return;
+            }
 
-        // Check if ID Exists (needed for foreign key constraints)
+            // Prevent duplicate seed
+            if (Console.Rows.Count == 0)
+            {
+                int id = 1;
+
+                DataRow ps5 = Console.NewRow();
+                ps5["console_id"] = id++;
+                ps5["console_name"] = "PlayStation 5";
+                ps5["company"] = "Sony";
+                Console.Rows.Add(ps5);
+
+                DataRow xbox = Console.NewRow();
+                xbox["console_id"] = id++;
+                xbox["console_name"] = "Xbox Series X";
+                xbox["company"] = "Microsoft";
+                Console.Rows.Add(xbox);
+
+                DataRow ns = Console.NewRow();
+                ns["console_id"] = id++;
+                ns["console_name"] = "Nintendo Switch";
+                ns["company"] = "Nintendo";
+                Console.Rows.Add(ns);
+
+                DataRow pc = Console.NewRow();
+                pc["console_id"] = id++;
+                pc["console_name"] = "PC";
+                pc["company"] = "Valve";
+                Console.Rows.Add(pc);
+            }
+        }
+
 
         /// <summary>
         /// Checks if Game ID exists in dataset
@@ -120,19 +158,20 @@ namespace GameStoreManagementSystem
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
         internal bool ConsoleIDExists(int id)
         {
-            bool exists = false;
-            if (Console != null)
+            if (Console == null)
             {
-                foreach (DataRow row in Console.Rows)
-                {
-                    if ((int)row["console_id"] == id)
-                    {
-                        exists = true;
-                        break;
-                    }
-                }
+                return false;
             }
-            return exists;
+
+            foreach (DataRow row in Console.Rows)
+            {
+                if ((int)row["console_id"] == id)
+                {
+                    return true;
+                }
+                    
+            }
+            return false;
         }
 
         /// <summary>

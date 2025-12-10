@@ -78,12 +78,25 @@ namespace GameStoreManagementSystem.Forms
             }
             else
             {
-                //Retrieve selected DataRow and extract console_id (FK)
-                DataRow cRow = (DataRow)ConsoleSelect.SelectedItem;
-                consoleId = (int)cRow["console_id"];
+                DataRowView view = (DataRowView)ConsoleSelect.SelectedItem;
+
+                consoleId = view["console_id"] == DBNull.Value
+                    ? 0
+                    : Convert.ToInt32(view["console_id"]);
+            }
+
+            // Validate that console exists in the Console table (Foreign Key Check)
+            if (!_db.ConsoleIDExists(consoleId))
+            {
+                MessageBox.Show("The selected Console ID does not exist. Cannot add game.",
+                                "Foreign Key Error",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
             }
 
             DateTime releaseDate = DateTime.MinValue;
+
 
             //Parse invalid date only if previous input are valid
             if (isValid)
@@ -110,7 +123,7 @@ namespace GameStoreManagementSystem.Forms
                 row["genre"] = genre;
                 row["developer"] = developer;
                 row["release_date"] = releaseDate;
-                row["console_id"] = consoleId;  
+                row["console_id"] = consoleId;
 
                 //Add the row to the DataTable
                 _db.Game.Rows.Add(row);
@@ -164,15 +177,15 @@ namespace GameStoreManagementSystem.Forms
         /// </summary>
         private void LoadConsoles()
         {
-            //Tellls the ComboBox which column serves as value and display text
-            ConsoleSelect.SelectedValuePath = "console_id";
-            ConsoleSelect.DisplayMemberPath = "console_name";
-
-            //Add each console row to the ComboBox
-            foreach (DataRow row in _db.Console.Rows)
+            if (_db.Console == null)
             {
-                ConsoleSelect.Items.Add(row);
+                return;
             }
+
+            ConsoleSelect.ItemsSource = _db.Console.DefaultView;
+
+            ConsoleSelect.DisplayMemberPath = "console_name";
+            ConsoleSelect.SelectedValuePath = "console_id";
         }
     }
 }

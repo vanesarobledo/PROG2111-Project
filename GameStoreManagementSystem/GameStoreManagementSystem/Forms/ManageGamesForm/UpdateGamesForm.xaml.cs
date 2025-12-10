@@ -40,6 +40,8 @@ namespace GameStoreManagementSystem.Forms.ManageGamesForm
         /// </summary>
         private void LoadConsoles()
         {
+            ConsoleSelect.Items.Clear();
+
             ConsoleSelect.SelectedValuePath = "console_id";
             ConsoleSelect.DisplayMemberPath = "console_name";
 
@@ -115,6 +117,16 @@ namespace GameStoreManagementSystem.Forms.ManageGamesForm
             {
                 DataRow selectedConsole = (DataRow)ConsoleSelect.SelectedItem;
                 consoleId = (int)selectedConsole["console_id"];
+            }
+
+            // Validate that console exists in the Console table (Foreign Key Check)
+            if (!_db.ConsoleIDExists(consoleId))
+            {
+                MessageBox.Show("The selected Console ID does not exist. Cannot add game.",
+                                "Foreign Key Error",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
             }
 
             // Validate release date

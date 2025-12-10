@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GameStoreManagementSystem.Forms.ManageConsolesForm;
 
 namespace GameStoreManagementSystem.Views.Console
 {
@@ -27,14 +29,21 @@ namespace GameStoreManagementSystem.Views.Console
 
         private void AddConsole_Click(object sender, RoutedEventArgs e)
         {
-            //AddConsoleForm addForm = new AddConsoleForm();
-            //addForm.ShowDialog();
+            AddConsoleForm addForm = new AddConsoleForm();
+            addForm.ShowDialog();
         }
 
         private void UpdateConsole_Click(object sender, RoutedEventArgs e)
         {
-            //UpdateConsoleForm updateForm = new UpdateConsoleForm();
-            //updateForm.ShowDialog();
+            // You must get selected row from MainGrid in MainWindow
+            MainWindow mw = (MainWindow)Window.GetWindow(this);
+            DataRowView row = (DataRowView)mw.MainGrid.SelectedItem;
+
+            if (row != null)
+            {
+                UpdateConsoleForm updateForm = new UpdateConsoleForm(row.Row);
+                updateForm.ShowDialog();
+            }
         }
 
         private void DeleteConsole_Click(object sender, RoutedEventArgs e)
