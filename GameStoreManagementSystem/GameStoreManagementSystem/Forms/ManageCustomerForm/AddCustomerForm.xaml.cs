@@ -48,8 +48,8 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
         {
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
-            if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
-                && usernameBox != null && passwordBox != null)
+            if (firstNameBox.Text != "" && lastNameBox.Text != "" && dobBox.Text != "" && emailBox.Text != ""
+                && usernameBox.Text != "" && passwordBox.Text != "")
             {
                 if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
@@ -62,7 +62,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             }
             else
             {
-                MessageBox.Show("All fields must have a value.");
+                MessageBox.Show("All fields must have a value.", "Error");
             }
             return retValue;
         }
@@ -88,7 +88,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                 newRow["password"] = passwordBox.Text;
                 db.Customer.Rows.Add(newRow);
 
-                MessageBox.Show("Customer successfully added.", "Add Customer");
+                MessageBox.Show("Customer successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
         }
         /*

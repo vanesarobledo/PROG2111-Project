@@ -89,8 +89,8 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
         {
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
-            if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
-                && usernameBox != null && passwordBox != null)
+            if (firstNameBox.Text != "" && lastNameBox.Text != "" && dobBox.Text != "" && emailBox.Text != ""
+                && usernameBox.Text != "" && passwordBox.Text != "")
             {
                 if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
@@ -100,6 +100,10 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                 {
                     retValue = true;
                 }
+            }
+            else
+            {
+                MessageBox.Show("All fields must have a value.", "Error");
             }
             return retValue;
         }

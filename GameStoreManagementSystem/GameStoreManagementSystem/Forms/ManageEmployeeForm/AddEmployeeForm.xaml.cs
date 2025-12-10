@@ -116,7 +116,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 newRow["store_id"] = storeID;
                 db.Employee.Rows.Add(newRow);
 
-                MessageBox.Show("Employee successfully added!", "Success");
+                MessageBox.Show("Employee successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
         }
         /*
