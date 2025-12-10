@@ -72,7 +72,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             // If no item is selected
             else
             {
-                MessageBox.Show("Please select an customer to update.", "Error");
+                MessageBox.Show("Please select a customer to update.", "Error");
                 this.Close();
             }
         }

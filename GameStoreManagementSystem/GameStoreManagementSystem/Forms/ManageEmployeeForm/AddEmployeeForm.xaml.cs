@@ -71,7 +71,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox !=null
                 && usernameBox != null && passwordBox != null && storeIDBox.Text != null)
             {
-                if (DateTime.TryParse(dobBox.Text, out testDate))
+                if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
                     MessageBox.Show("Invalid Date of Birth.");
                 }
