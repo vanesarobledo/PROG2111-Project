@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : ManageStores.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the interaction logic for managing store 
+*                 records in the Game Store Management System. It allows users 
+*                 to add, update, and delete stores, and also handles navigation 
+*                 back to the main interface.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -36,12 +47,23 @@ namespace GameStoreManagementSystem.Views.Stores
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Opens the Add Store form, allowing the user to create a new store record.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddStore_Click(object sender, RoutedEventArgs e)
         {
             Forms.ManageStoreForm.AddStore form = new Forms.ManageStoreForm.AddStore();
             form.ShowDialog();
         }
 
+        /// <summary>
+        /// Opens the Update Store form if a store is selected in the DataGrid.
+        /// Displays an error message when no store is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateStore_Click(object sender, RoutedEventArgs e)
         {
             if (grid.SelectedIndex != -1)
@@ -55,6 +77,13 @@ namespace GameStoreManagementSystem.Views.Stores
             }
         }
 
+        /// <summary>
+        /// Handles the deletion process for a selected store record.
+        /// Checks if a row is selected, confirms with the user, and calls the delete 
+        /// function if the user chooses "Yes". Displays an error when nothing is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteStore_Click(object sender, RoutedEventArgs e)
         {
             // Check for selected index
@@ -72,6 +101,11 @@ namespace GameStoreManagementSystem.Views.Stores
             }
         }
 
+        /// <summary>
+        /// Goes back to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;

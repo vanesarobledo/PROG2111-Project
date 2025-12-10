@@ -26,12 +26,16 @@
            Height="45"
            Click="AddGame_Click"/>
 
-                <Button Content="Update Game"
+           <Button 
+           x:Name="UpdateGameButton"
+           Content="Update Game"
            Margin="10"
            Height="45"
-           Click="UpdateGame_Click"/>
+           Click="UpdateSelectedGame_Click"/>
 
-           <Button Content="Delete Game"
+           <Button 
+            x:Name="DeleteGameButton"
+           Content="Delete Game"
            Margin="10"
            Height="45"
            Click="DeleteGame_Click"/>

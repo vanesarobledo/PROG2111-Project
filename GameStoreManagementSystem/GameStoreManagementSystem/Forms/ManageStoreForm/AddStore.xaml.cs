@@ -1,8 +1,11 @@
 ﻿/*
-* FILE 		: AddStore.xaml.cs
-* PROJECT 	: PROG2111 Project
-* PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
-* FIRST VERSION : 2025-10-09
+* FILE          : AddStoreForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia, Vanesa Robledo, Connar Thompson
+* FIRST VERSION : 2025-12-09
+* DESCRIPTION   : This file the logic for adding a new store record 
+*                 to the Game Store Management System. It gathers input from 
+*                 the user and inserts a new store entry into the Store table.
 */
 using System;
 using System.Collections.Generic;
@@ -24,6 +27,7 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
     /// <summary>
     /// Interaction logic for AddStore.xaml
     /// </summary>
+
     /*
     * NAME      : AddStore
     * Purpose   : The form to add an store to the database.
@@ -36,15 +40,13 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
         {
             InitializeComponent();
         }
-        /*
-        * METHOD	: AddStoreButton_Click
-        * DESCRIPTION	:
-        * If the store name is not empty it adds the store to the database.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        ///  Creates a new store record using the user-provided input and inserts it into 
+        /// the Store table. Displays an error message if no location is entered.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddStoreButton_Click(object sender, RoutedEventArgs e)
         {
             DataRow newRow = db.Store.NewRow();
@@ -60,15 +62,12 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
                 MessageBox.Show("Must enter a location.", "Error");
             }
         }
-        /*
-        * METHOD	: CancelButton_Click
-        * DESCRIPTION	:
-        * Quits out of the window without adding anything to the database.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Closes the Add Store form without saving any new store data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

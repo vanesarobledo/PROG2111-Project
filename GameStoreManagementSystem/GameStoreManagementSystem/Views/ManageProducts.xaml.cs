@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : ManageProduct.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Vanesa Robledo
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application handles loading product-related data, 
+*                 navigating back to the main menu, and providing functionality to add, update, 
+*                 and delete product records. It also manages user interactions through the WPF 
+*                 interface and communicates with the shared GamesDatabase and DataGrid.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -64,6 +75,11 @@ namespace GameStoreManagementSystem.Views.Products
         //   BUTTON FUNCTIONS
         // ============================================================
 
+        /// <summary>
+        /// Opens the Add Product form, allowing the user to create a new product entry.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             Forms.ManageProductsForm.AddProductForm form = new Forms.ManageProductsForm.AddProductForm();
@@ -71,6 +87,11 @@ namespace GameStoreManagementSystem.Views.Products
 
         }
 
+        /// <summary>
+        /// Opens the Update Product form for the currently selected product.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
             if (grid.SelectedIndex != -1)
@@ -84,6 +105,13 @@ namespace GameStoreManagementSystem.Views.Products
             }
         }
 
+        /// <summary>
+        /// Handles the delete button click event by checking if a product is 
+        /// selected, confirming the deletion with the user, and then calling 
+        /// the delete function if confirmed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
             // Check for selected index
@@ -101,6 +129,12 @@ namespace GameStoreManagementSystem.Views.Products
             }
 
         }
+
+        /// <summary>
+        /// Goes back to the main page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;

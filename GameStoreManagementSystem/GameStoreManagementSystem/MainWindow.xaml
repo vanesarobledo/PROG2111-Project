@@ -8,11 +8,11 @@
 
         <!-- TOP MENU BAR -->
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File" Click="MenuFile_Click">
-                <MenuItem Header="Exit" Click="Exit_Click"/>
+            <MenuItem Header="_File">
+                <MenuItem Header="E_xit" Click="Exit_Click"/>
             </MenuItem>
-            <MenuItem Header="Help" Click="MenuHelp_Click">
-                <MenuItem Header="About" Click="About_Click"/>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="About_Click"/>
             </MenuItem>
         </Menu>
 
