@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : UpdateProductForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Vanesa Robledo
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application provides the logic for updating an existing product 
+*                 record in the Game Store Management System. It loads product 
+*                 data, fills form fields, validates user input, and updates the 
+*                 corresponding row in the Product table.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

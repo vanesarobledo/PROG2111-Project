@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : ManageEmployees.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the interaction logic for managing employee
+*                 records in the Game Store Management System. It allows users to
+*                 add, update, and delete employee entries, and handles navigation
+*                 back to the main window.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -34,12 +45,24 @@ namespace GameStoreManagementSystem.Views.Employees
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Opens the Add Employee form so the user can create a new employee record.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             Forms.ManageEmployeeForm.AddEmployeeForm form = new Forms.ManageEmployeeForm.AddEmployeeForm();
             form.ShowDialog();
         }
 
+        /// <summary>
+        /// Opens the Update Employee form if a row is selected in the DataGrid.
+        /// Displays an error message when no employee is selected for updating.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateEmployee_Click(object sender, RoutedEventArgs e)
         {
             if (grid.SelectedIndex != -1)
@@ -53,6 +76,13 @@ namespace GameStoreManagementSystem.Views.Employees
             }
         }
 
+        /// <summary>
+        /// Initiates the deletion process for the selected employee.  
+        /// Checks for a selected row, asks for confirmation, and proceeds with the 
+        /// deletion if the user selects "Yes". Displays an error when nothing is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
             // Check for selected index
@@ -70,6 +100,11 @@ namespace GameStoreManagementSystem.Views.Employees
             }
         }
 
+        /// <summary>
+        /// Goes back to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;

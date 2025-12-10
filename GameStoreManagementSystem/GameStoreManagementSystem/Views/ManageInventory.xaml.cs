@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : ManageInventory.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Vanesa Robledo
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application provides the logic and user interaction handling
+*                 for managing inventory items in the Game Store Management System.
+*                 It loads required data, allows adding, updating, and deleting 
+*                 inventory records, and manages navigation back to the main view .
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -64,12 +75,22 @@ namespace GameStoreManagementSystem.Views.Inventory
         //   BUTTON FUNCTIONS
         // ============================================================
 
+        /// <summary>
+        /// Opens the Add Inventory form, allowing the user to create a new inventory item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddInventory_Click(object sender, RoutedEventArgs e)
         {
             Forms.ManageInventoryForm.AddInventoryForm form = new Forms.ManageInventoryForm.AddInventoryForm();
             form.ShowDialog();
         }
 
+        /// <summary>
+        /// Opens the Update Inventory form for the currently selected inventory item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateInventory_Click(object sender, RoutedEventArgs e)
         {
             if (grid.SelectedIndex != -1)
@@ -83,6 +104,13 @@ namespace GameStoreManagementSystem.Views.Inventory
             }
         }
 
+        /// <summary>
+        /// Handles the delete button click. Checks whether an inventory item is selected,
+        /// asks the user for confirmation, and proceeds with deletion if confirmed.
+        /// Shows an error message if no item is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteInventory_Click(object sender, RoutedEventArgs e)
         {
             // Check for selected index
@@ -100,6 +128,11 @@ namespace GameStoreManagementSystem.Views.Inventory
             }
         }
 
+        /// <summary>
+        /// Goes back to the main page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;

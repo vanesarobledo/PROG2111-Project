@@ -1,9 +1,14 @@
 ﻿/*
-* FILE 		: UpdateCustomerForm.xaml.cs
-* PROJECT 	: PROG2111 Project
-* PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
-* FIRST VERSION : 2025-10-09
+* FILE          : UpdateCustomerForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the logic for updating an existing customer 
+*                 record in the Game Store Management System. It loads customer 
+*                 data, validates user input, and applies updates to the 
+*                 Customer DataTable.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,10 +29,6 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
     /// <summary>
     /// Interaction logic for UpdateCustomerForm.xaml
     /// </summary>
-    /*
-* NAME      : UpdateCustomerForm
-* Purpose   : The form to update an customer from the database.
-*/
     public partial class UpdateCustomerForm : Window
     {
         internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
@@ -37,15 +38,13 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
         {
             InitializeComponent();
         }
-        /*
-        * METHOD	: Window_Loaded
-        * DESCRIPTION	:
-        * Loads the textboxes with the appropriate values from the grid.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Loads the selected customer's details into the form fields. 
+        /// Closes the window if no customer is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get selected item
@@ -76,15 +75,12 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                 this.Close();
             }
         }
-        /*
-        * METHOD	: emptyCheck
-        * DESCRIPTION	:
-        * Validates that none of the boxes are empty.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Validates that all required fields are filled and that the 
+        /// date of birth is in a valid format.
+        /// </summary>
+        /// <returns></returns>
         internal bool emptyCheck()
         {
             bool retValue = false;
@@ -107,16 +103,13 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             }
             return retValue;
         }
-        /*
-        * METHOD	: UpdateCustomerButton_Click
-        * DESCRIPTION	:
-        * Runs verification and finds the appropriate row in the database to update and then updates the 
-        * values.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Updates the selected customer's details in the Customer table 
+        /// after validation succeeds.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             bool found = false;
@@ -142,15 +135,12 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                 }
             }
         }
-        /*
-        * METHOD	: cancelButton_Click
-        * DESCRIPTION	:
-        * Quits out of the window without adding anything to the database.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Closes the Update Customer window without saving.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

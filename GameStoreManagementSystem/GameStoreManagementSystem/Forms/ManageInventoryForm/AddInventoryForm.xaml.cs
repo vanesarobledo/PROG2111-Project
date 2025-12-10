@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : AddInventoryForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Vanesa Robledo
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application provides the logic for adding new inventory items 
+*                 into the Game Store Management System. It loads foreign key 
+*                 data, validates user input, and inserts a new inventory record 
+*                 into the Inventory table.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

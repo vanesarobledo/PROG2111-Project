@@ -1,0 +1,51 @@
+﻿<Window x:Class="GameStoreManagementSystem.Forms.ManageConsolesForm.UpdateConsoleForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Update Console"
+        Height="300" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Console Name -->
+        <TextBlock Text="Console Name:" Grid.Row="0" Margin="0,0,0,5"/>
+        <TextBox x:Name="InputConsoleName" Grid.Row="1" Height="28"/>
+
+        <!-- Company -->
+        <TextBlock Text="Company:" Grid.Row="2" Margin="0,10,0,5"/>
+        <TextBox x:Name="InputCompany" Grid.Row="3" Height="28"/>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="4" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Cancel on the LEFT -->
+            <Button Content="Cancel"
+            Grid.Column="0"
+            Width="120"
+            HorizontalAlignment="Left"
+            Click="Cancel_Click"/>
+
+            <!-- Update on the RIGHT -->
+            <Button Content="Update Console"
+            Grid.Column="1"
+            Width="120"
+            HorizontalAlignment="Right"
+            Click="Update_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>
+
