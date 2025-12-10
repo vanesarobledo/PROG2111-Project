@@ -51,7 +51,7 @@ namespace GameStoreManagementSystem
         public MainWindow()
         {
             InitializeComponent();
-            
+
             // Load data in games database
             gamesDatabase = new GamesDatabase();
         }
@@ -83,6 +83,8 @@ namespace GameStoreManagementSystem
             RightContentArea.Content = new Views.Games.ManageGames();
             activeTable = "Game";
             LoadDataGrid(gamesDatabase.Game);
+
+            FormatDateColumn();
         }
 
         private void ManageCustomer_Click(object sender, RoutedEventArgs e)
@@ -159,17 +161,39 @@ namespace GameStoreManagementSystem
 
         private void MenuFile_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void MenuHelp_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
             //tbd
+        }
+
+
+        // ============================================================
+        //   Formats
+        // ============================================================
+        private void FormatDateColumn()
+        {
+            foreach (DataGridColumn column in MainGrid.Columns)
+            {
+                if (column.Header.ToString() == "releasedate" || column.Header.ToString() == "release_date")
+                {
+                    DataGridTextColumn textColumn = column as DataGridTextColumn;
+                    if (textColumn != null)
+                    {
+                        textColumn.Binding = new Binding("release_date")
+                        {
+                            StringFormat = "yyyy-MM-dd"
+                        };
+                    }
+                }
+            }
         }
     }
 }

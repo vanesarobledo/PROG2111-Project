@@ -215,6 +215,30 @@ namespace GameStoreManagementSystem
             }
             return valid;
         }
+
+
+        /// <summary>
+        /// Check if string is valid for Game 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="minLength"></param>
+        /// <returns></returns>
+        internal static bool IsValidString(string input, int minLength)
+        {
+            bool result = false;
+            if (input != null)
+            {
+                string trimmed = input.Trim();
+
+                if (trimmed.Length >= minLength)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        
     }
 }
 

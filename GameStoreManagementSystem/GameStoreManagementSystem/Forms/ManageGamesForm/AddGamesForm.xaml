@@ -15,16 +15,19 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Title -->
+            <!-- 0: Title -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 1 -->
+            <!-- 1: Game Name -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 2 -->
+            <!-- 2: Genre -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 3 -->
+            <!-- 3: Developer -->
             <RowDefinition Height="Auto"/>
-            <!-- Buttons -->
+            <!-- 4: Release Date -->
             <RowDefinition Height="Auto"/>
+            <!-- 5: Console -->
+            <RowDefinition Height="Auto"/>
+            <!-- 6: Buttons -->
         </Grid.RowDefinitions>
 
         <!-- ==================== TITLE ==================== -->
@@ -33,12 +36,12 @@
                    FontSize="26"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
-                   Margin="0 0 0 20"/>
+                   Margin="0 0 0 5"/>
 
 
         <!-- ==================== ROW 1 ==================== -->
         <!-- Game Name -->
-        <StackPanel Grid.Row="1" Margin="10">
+        <StackPanel Grid.Row="1" Margin="5">
             <TextBlock>
                 Game Name <Italic>(required)</Italic>
             </TextBlock>
@@ -50,7 +53,7 @@
 
         <!-- ==================== ROW 2 ==================== -->
         <!-- Genre -->
-        <StackPanel Grid.Row="2" Margin="10">
+        <StackPanel Grid.Row="2" Margin="5">
             <TextBlock>
                     Genre <Italic>(required)</Italic>
             </TextBlock>
@@ -73,20 +76,31 @@
         <!-- ==================== ROW 4 ==================== -->
         <StackPanel Grid.Row="4" Margin="10 10 10 0">
             <TextBlock>
-                Release Year
+                Release Date
             </TextBlock>
-            <TextBox x:Name="InputReleaseYear"
+            <TextBox x:Name="InputReleaseDate"
                      Height="30"
                      Padding="5"/>
         </StackPanel>
 
+        <!-- ==================== ROW 5 ==================== -->
+        <StackPanel Grid.Row="5" Margin="10 10 10 0">
+            <TextBlock>
+        Console <Italic>(required)</Italic>
+            </TextBlock>
+            <ComboBox x:Name="ConsoleSelect"
+              Height="30"
+              Padding="5"/>
+        </StackPanel>
+
 
         <!-- ==================== BUTTONS ==================== -->
-        <Grid Grid.Row="5" Margin="10 20 10 0">
+        <Grid Grid.Row="6" Margin="10 5 10 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
 
             <Button Content="Cancel"
                     Width="100"
@@ -103,6 +117,5 @@
                     Grid.Column="1"
                     Click="Add_Click"/>
         </Grid>
-
     </Grid>
 </Window>
