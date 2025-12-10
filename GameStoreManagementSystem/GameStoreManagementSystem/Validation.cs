@@ -11,8 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GameStoreManagementSystem
 {
@@ -37,7 +39,6 @@ namespace GameStoreManagementSystem
         {
             bool result = false;
             int num;
-
             if (Int32.TryParse(input, out num))
             {
                 result = true;
@@ -46,22 +47,25 @@ namespace GameStoreManagementSystem
         }
 
         /// <summary>
-        /// Checks if string is a valid, positive integer
+        /// Validates if a given input is a positive integer > 0
         /// </summary>
-        /// <param name="ID">ID string to check</param>
-        /// <returns><see langword="true" /> if ID is valid integer; otherwise, <see langword="false" /></returns>
-        internal static bool IsValidID(string ID)
+        /// <param name="input"></param>
+        /// <returns><see langword="true" /> if input is valid int > 0; otherwise, <see langword="false" /></returns>
+        internal static bool IsPositiveNum(string input)
         {
-            bool valid = false;
-            int IDnum;
-            if (Int32.TryParse(ID, out IDnum))
-            {
-                if (IDnum >= 0)
-                {
-                    valid = true;
-                }
-            }
-            return valid;
+            Regex regexPositive = new Regex("[0-9]+");
+            return regexPositive.IsMatch(input);
+        }
+
+        /// <summary>
+        /// Validates if a given input is a positive float
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns><see langword="true" /> if input is valid float > 0; otherwise, <see langword="false" /></returns>
+        internal static bool IsFloat(string input)
+        {
+            Regex regexPositive = new Regex("[0-9.]+");
+            return regexPositive.IsMatch(input);
         }
 
         /// <summary>
@@ -154,6 +158,60 @@ namespace GameStoreManagementSystem
             if (!valid)
             {
                 MessageBox.Show(errorMessage, "Error Adding Inventory");
+            }
+            return valid;
+        }
+
+        /// <summary>
+        /// Validates values for a row in Product table
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="inventoryID"></param>
+        /// <param name="customerID"></param>
+        /// <param name="cost"></param>
+        /// <param name="quantity"></param>
+        /// <param name="storeID"></param>
+        /// <returns><see langword="true" /> if Product data is valid; otherwise, <see langword="false" /></returns>
+        internal static bool ValidateProductValues(GamesDatabase db, int inventoryID, int customerID, string cost, string quantity, string dateOfPurchase, int storeID)
+        {
+            bool valid = true;
+            string errorMessage = "Error: ";
+
+            if (!db.InventoryIDExists(inventoryID))
+            {
+                errorMessage += "Inventory item not found.\n";
+                valid = false;
+            }
+            if (!db.CustomerIDExists(customerID))
+            {
+                errorMessage += "Customer not found.\n";
+                valid = false;
+            }
+            if (IsEmpty(cost) && ConvertCost(cost) == 0)
+            {
+                errorMessage += "Invalid cost. Cost must be greater than $0.00.\n";
+                valid = false;
+            }
+            if (IsEmpty(quantity) && IsPositiveNum(quantity))
+            {
+                errorMessage += "Invalid quantity. Quantity must be 1 or greater.\n";
+                valid = false;
+            }
+            if (IsEmpty(dateOfPurchase) && IsValidDate(DateTime.Parse(dateOfPurchase)))
+            {
+                errorMessage += "Invalid date of purchase.\n";
+                valid = false;
+            }
+            if (!db.StoreIDExists(storeID))
+            {
+                errorMessage += "Store not found.\n";
+                valid = false;
+            }
+
+            // Show error if invalid
+            if (!valid)
+            {
+                MessageBox.Show(errorMessage, "Error Adding Product");
             }
             return valid;
         }

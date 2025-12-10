@@ -46,7 +46,8 @@
                       AutoGenerateColumns="True"
                       CanUserAddRows="True"
                       CanUserDeleteRows="True"
-                      IsReadOnly="False"/>
+                      IsReadOnly="False"
+                      SelectionMode="Single" />
 
             <!-- RIGHT PANEL: Buttons OR UserControl -->
             <Grid Grid.Column="2">
