@@ -24,10 +24,10 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
     /// <summary>
     /// Interaction logic for UpdateStoreForm.xaml
     /// </summary>
-/*
-* NAME      : UpdateStoreForm
-* Purpose   : The form to update an store from the database.
-*/
+    /*
+    * NAME      : UpdateStoreForm
+    * Purpose   : The form to update an store from the database.
+    */
     public partial class UpdateStoreForm : Window
     {
         internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
@@ -57,6 +57,7 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
                 {
                     storeID = (int)dv.Row.ItemArray [0];
                     StoreNameInput.Text = (string)dv.Row.ItemArray[1];
+                    UpdateStoreTitle.Text += " #" + storeID.ToString();
                 }
                 else
                 {
@@ -84,7 +85,7 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
         private void UpdateStoreButton_Click(object sender, RoutedEventArgs e)
         {
             bool found = false;
-            if (StoreNameInput != null)
+            if (StoreNameInput.Text != "")
             {
                 for (int i = 0; i < db.Store.Rows.Count && !found; i++)
                 {

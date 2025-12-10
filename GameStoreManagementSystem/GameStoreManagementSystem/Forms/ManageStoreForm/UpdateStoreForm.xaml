@@ -5,14 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageStoreForm"
         mc:Ignorable="d"
-        Title="UpdateStoreForm" Height="200" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="UpdateStoreForm" Height="220" Width="500"
         Loaded="Window_Loaded">
-    <Grid>
-        <TextBlock  Text="Update Store" FontSize="26" FontWeight="Bold" HorizontalAlignment="Left" Margin="175,20,0,130"/>
-        <TextBlock Text="Store Name" Margin="20,65,400,100"/>
-        <TextBox x:Name="StoreNameInput" HorizontalAlignment="Left" Margin="99,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" MaxLength="50"/>
-        <Button x:Name="UpdateStoreButton" Content="Update Store" HorizontalAlignment="Left" Margin="378,67,0,0" VerticalAlignment="Top" Click="UpdateStoreButton_Click" Width="92"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="192,114,0,0" VerticalAlignment="Top" Height="34" Width="116" Click="CancelButton_Click"/>
 
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                Text="Update Store"
+                Name="UpdateStoreTitle"
+                FontSize="26"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                Margin="0 0 0 20"/>
+
+        <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center">Store Location <Italic>(required)</Italic></TextBlock>
+            <TextBox x:Name="StoreNameInput" MaxLength="50" Width="175" Margin="10,0" Padding="5"/>
+            <Button x:Name="UpdateStoreButton" Content="Update Store" Click="UpdateStoreButton_Click" Width="92"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5" Click="CancelButton_Click"/>
+        </Grid>
     </Grid>
 </Window>
