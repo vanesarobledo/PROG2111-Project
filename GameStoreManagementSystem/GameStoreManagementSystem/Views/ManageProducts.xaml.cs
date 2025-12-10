@@ -20,6 +20,16 @@ namespace GameStoreManagementSystem.Views.Products
     /// </summary>
     public partial class ManageProducts : UserControl
     {
+        /// <summary>
+        /// Select games database from Main window
+        /// </summary>
+        internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
+
+        /// <summary>
+        /// Select DataGrid from Main menu
+        /// </summary>
+        internal DataGrid grid = ((MainWindow)Application.Current.MainWindow).MainGrid;
+
         public ManageProducts()
         {
             InitializeComponent();
@@ -27,6 +37,8 @@ namespace GameStoreManagementSystem.Views.Products
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
+            Forms.ManageProductsForm.AddProductForm form = new Forms.ManageProductsForm.AddProductForm();
+            form.ShowDialog();
 
         }
 
