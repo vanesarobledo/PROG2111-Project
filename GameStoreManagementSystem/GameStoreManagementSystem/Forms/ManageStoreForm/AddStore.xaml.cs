@@ -24,10 +24,10 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
     /// <summary>
     /// Interaction logic for AddStore.xaml
     /// </summary>
-/*
-* NAME      : AddStore
-* Purpose   : The form to add an store to the database.
-*/
+    /*
+    * NAME      : AddStore
+    * Purpose   : The form to add an store to the database.
+    */
     public partial class AddStore : Window
     {
 
@@ -49,14 +49,15 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
         {
             DataRow newRow = db.Store.NewRow();
 
-            if (StoreNameInput != null)
+            if (StoreNameInput.Text != "")
             { 
                 newRow["location"] = StoreNameInput.Text;
                 db.Store.Rows.Add(newRow);
+                MessageBox.Show("Store successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
             else
             {
-                MessageBox.Show("Must enter a location.");
+                MessageBox.Show("Must enter a location.", "Error");
             }
         }
         /*

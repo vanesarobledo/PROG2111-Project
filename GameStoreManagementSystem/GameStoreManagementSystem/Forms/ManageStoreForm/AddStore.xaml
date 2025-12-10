@@ -5,12 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageStoreForm"
         mc:Ignorable="d"
-        Title="Add Store" Height="200" Width="500">
-    <Grid>
-        <TextBlock Text="Add Store" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBlock Text="Store Location" Margin="10,67,401,97"/>
-        <TextBox x:Name="StoreNameInput" HorizontalAlignment="Left" Margin="100,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" MaxLength="50"/>
-        <Button x:Name="AddStoreButton" Content="Add Store" HorizontalAlignment="Left" Margin="378,67,0,0" VerticalAlignment="Top" Click="AddStoreButton_Click" Width="92"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Center" Margin="0,114,0,0" VerticalAlignment="Top" Height="34" Width="116" Click="CancelButton_Click"/>
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Add Store" Height="220" Width="500">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                Text="Add Store"
+                FontSize="26"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                Margin="0 0 0 20"/>
+
+        <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center">Store Location <Italic>(required)</Italic></TextBlock>
+            <TextBox x:Name="StoreNameInput" MaxLength="50" Width="175" Margin="10,0" Padding="5"/>
+            <Button x:Name="AddStoreButton" Content="Add Store" Click="AddStoreButton_Click" Width="92"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5" Click="CancelButton_Click"/>
+        </Grid>
     </Grid>
 </Window>

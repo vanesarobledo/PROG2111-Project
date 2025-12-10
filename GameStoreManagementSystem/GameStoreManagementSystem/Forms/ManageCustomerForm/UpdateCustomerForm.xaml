@@ -5,23 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageCustomerForm"
         mc:Ignorable="d"
-        Title="UpdateCustomerForm" Height="450" Width="800">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Update Customer" Height="500" Width="500"
+        Loaded="Window_Loaded">
+
     <Grid>
-        <TextBlock  Text="Update Customer" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <Button x:Name="UpdateCustomerButton" Content="Update" HorizontalAlignment="Left" Margin="467,212,0,0" VerticalAlignment="Top" Click="UpdateCustomerButton_Click" Height="31" Width="58"/>
-        <TextBox x:Name="firstNameBox" HorizontalAlignment="Left" Margin="239,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
-        <TextBox x:Name="lastNameBox" HorizontalAlignment="Left" Margin="456,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
-        <TextBox x:Name="dobBox" HorizontalAlignment="Left" Margin="239,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
-        <TextBox x:Name="emailBox" HorizontalAlignment="Left" Margin="456,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
-        <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Margin="239,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
-        <TextBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="456,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="249,217,0,0" VerticalAlignment="Top" Click="cancelButton_Click" Height="31" Width="58"/>
-        <TextBlock HorizontalAlignment="Left" Margin="400,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Password"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="179,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Username"/><LineBreak/><Run Language="en-ca"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="416,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Email"/><LineBreak/><Run Language="en-ca"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="165,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Date of Birth"/><LineBreak/><Run Language="en-ca"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="382,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Last Name"/><LineBreak/><Run Language="en-ca"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="165,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="First Name"/><LineBreak/><Run/></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                Text="Update Customer"
+                Name="UpdateCustomerText"
+                FontSize="26"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                Margin="0 20 0 0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="10">
+                <StackPanel>
+                    <TextBlock>First Name <Italic>(required)</Italic></TextBlock>
+                    <TextBox x:Name="firstNameBox" Padding="10" MaxLength="50" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="10">
+                <StackPanel>
+                    <TextBlock>Last Name <Italic>(required)</Italic></TextBlock>
+                    <TextBox x:Name="lastNameBox" Padding="10" MaxLength="50" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="10">
+            <StackPanel>
+                <TextBlock>Date of Birth <Italic>(required)</Italic></TextBlock>
+                <DatePicker x:Name="dobBox" Padding="10" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="10">
+            <StackPanel>
+                <TextBlock>Email <Italic>(required)</Italic></TextBlock>
+                <TextBox x:Name="emailBox" Padding="10" MaxLength="50" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="10">
+                <StackPanel>
+                    <TextBlock>Username <Italic>(required)</Italic></TextBlock>
+                    <TextBox x:Name="usernameBox" Padding="10" MaxLength="50" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="10">
+                <StackPanel>
+                    <TextBlock>Password <Italic>(required)</Italic></TextBlock>
+                    <TextBox x:Name="passwordBox" Padding="10" MaxLength="50" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="5" Margin="10 20 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="cancelButton"
+                Content="Cancel"
+                Width="100"
+                Height="35"
+                Margin="5"
+                HorizontalAlignment="Left"
+                Click="cancelButton_Click"/>
+
+            <Button x:Name="UpdateCustomerButton"
+                Content="Update Customer"
+                Width="110"
+                Height="35"
+                Margin="5"
+                HorizontalAlignment="Right"
+                Grid.Column="1"
+                Click="UpdateCustomerButton_Click"/>
+        </Grid>
 
     </Grid>
 </Window>
