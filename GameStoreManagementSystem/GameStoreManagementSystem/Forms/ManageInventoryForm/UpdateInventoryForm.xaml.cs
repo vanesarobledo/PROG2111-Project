@@ -64,8 +64,8 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             // Get selected item
             if (grid.SelectedIndex != -1)
             {
-                DataRowView dv = ((DataRowView)grid.Items[grid.SelectedIndex]);
                 // Get values from DataGrid
+                DataRowView dv = ((DataRowView)grid.Items[grid.SelectedIndex]);
                 inventoryID = (int)dv.Row.ItemArray[0];
                 if (dv.Row.ItemArray[1] != DBNull.Value)
                 {
@@ -175,11 +175,78 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             GameSelect.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Updates inventory item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Update_Click(object sender, RoutedEventArgs e)
         {
+            // Get values from form
+            gameID = 0;
+            consoleID = 0;
+            storeID = 0;
 
+            if (ConsoleSelect.SelectedValue != null)
+            {
+                consoleID = (int)ConsoleSelect.SelectedValue;
+            }
+            if (GameSelect.SelectedValue != null)
+            {
+                gameID = (int)GameSelect.SelectedValue;
+            }
+            if (StoreSelect.SelectedValue != null)
+            {
+                storeID = (int)StoreSelect.SelectedValue;
+            }
+            string quantityStr = InputQuantity.Text;
+
+            // Validate values
+            if (((gameID == 0) != (consoleID == 0))) // thank you Lanny for telling me how to XOR <3
+            {
+                MessageBox.Show("Game or console must be selected", "Error");
+            }
+            // Values are valid
+            else if (Validation.ValidateInventoryValues(db, gameID, consoleID, quantityStr, storeID))
+            {
+                // Set quantity if validated
+                quantity = Int32.Parse(quantityStr);
+
+                // Update row in DataTable
+                bool found = false;
+                // Find row to update
+                for (int i = 0; i < db.Inventory.Rows.Count && !found; i++)
+                {
+                    DataRow currentRow = db.Inventory.Rows[i];
+                    // If row is found
+                    if (Convert.ToInt32(currentRow["inventory_id"]) == inventoryID)
+                    {
+                        // Update data
+                        if (gameID != 0)
+                        {
+                            currentRow["game_id"] = gameID;
+                        }
+                        if (consoleID != 0)
+                        {
+                            currentRow["console_id"] = consoleID;
+                        }
+                        currentRow["quantity"] = quantity;
+                        currentRow["store_id"] = storeID;
+
+                        // Show success
+                        MessageBox.Show("Inventory item ID #" + inventoryID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Inventory Added");
+                        found = true;
+                    }
+                }
+
+            }
         }
 
+        /// <summary>
+        /// Closes inventory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
