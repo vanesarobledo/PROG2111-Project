@@ -225,7 +225,7 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
                         currentRow["store_id"] = storeID;
 
                         // Show success
-                        MessageBox.Show("Product ID #" + inventoryID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Product Added");
+                        MessageBox.Show("Product ID #" + productID.ToString() + " has been updated.\nClick \"Save\" to save changes to database", "Product Added");
                         found = true;
                     }
                 }

@@ -134,7 +134,7 @@ namespace GameStoreManagementSystem.Views.Inventory
                         db.Inventory.AcceptChanges();
 
                         // Show success
-                        MessageBox.Show("Inventory item ID # " + inventoryID.ToString() + " has been successfuly deleted.\nClick \"Save\" to save changes to database", "Inventory Added");
+                        MessageBox.Show("Inventory item ID #" + inventoryID.ToString() + " has been successfuly deleted.\nClick \"Save\" to save changes to database", "Inventory Deleted");
                         found = true;
                     }
                 }
