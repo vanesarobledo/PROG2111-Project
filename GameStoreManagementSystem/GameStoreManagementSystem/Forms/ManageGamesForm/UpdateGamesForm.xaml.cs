@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : UpdateGamesForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the logic for updating an existing game 
+*                 record in the Game Store Management System. It loads the 
+*                 current game’s data, validates user input, and saves updates 
+*                 back to the Game table.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

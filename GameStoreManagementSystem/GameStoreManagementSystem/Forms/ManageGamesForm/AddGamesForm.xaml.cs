@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : AddGamesForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the logic for adding a new game record to 
+*                 the Game Store Management System. It loads console data, 
+*                 validates user input, and inserts a new game entry into the 
+*                 Game table.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

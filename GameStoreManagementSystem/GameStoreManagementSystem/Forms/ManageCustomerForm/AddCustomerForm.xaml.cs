@@ -1,9 +1,13 @@
 ﻿/*
-* FILE 		: AddCustomerForm.xaml.cs
-* PROJECT 	: PROG2111 Project
-* PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
-* FIRST VERSION : 2025-10-09
+* FILE          : AddCustomerForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the logic for adding a new customer record 
+*                 to the Game Store Management System. It validates user input 
+*                 and inserts a new row into the Customer table.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,10 +28,6 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
     /// <summary>
     /// Interaction logic for AddCustomerForm.xaml
     /// </summary>
-    /*
-* NAME      : AddCustomerForm
-* Purpose   : The form to add an employee to the database.
-*/
     public partial class AddCustomerForm : Window
     {
         internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
@@ -35,15 +35,12 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
         {
             InitializeComponent();
         }
-        /*
-        * METHOD	: emptyCheck
-        * DESCRIPTION	:
-        * Validates that none of the boxes are empty.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        ///  Validates that all required fields contain values and that the 
+        /// date of birth is a valid date. Displays error messages as needed.
+        /// </summary>
+        /// <returns></returns>
         internal bool emptyCheck()
         {
             bool retValue = false;
@@ -66,15 +63,13 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             }
             return retValue;
         }
-        /*
-        * METHOD	: AddCustomerButton_Click
-        * DESCRIPTION	:
-        * If all the boxes have values in them it loads all the info into the database.
-        * PARAMETERS	:
-        * none
-        * RETURNS	:
-        * none
-        */
+
+        /// <summary>
+        /// Creates a new customer row and inserts it into the Customer table 
+        /// if all inputs pass validation. Displays error messages when needed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             DataRow newRow = db.Customer.NewRow();
@@ -89,15 +84,12 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                 db.Customer.Rows.Add(newRow);
             }
         }
-        /*
-        * METHOD	: cancelButton_Click
-        * DESCRIPTION	:
-        * Quits out of the window without adding anything to the database.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        ///  Closes the Add Customer window without saving changes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

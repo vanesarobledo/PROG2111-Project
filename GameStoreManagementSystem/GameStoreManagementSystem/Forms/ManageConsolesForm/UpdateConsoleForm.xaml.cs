@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+* FILE          : UpdateConsoleForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the logic for updating an existing console 
+*                 record in the Console DataTable. It pre-fills the form with 
+*                 current values, validates input, and applies changes.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -28,15 +38,27 @@ namespace GameStoreManagementSystem.Forms.ManageConsolesForm
             InitializeComponent();
             _row = row;
 
+            // Pre-fill fields with existing console data
             InputConsoleName.Text = _row["console_name"].ToString();
             InputCompany.Text = _row["company"].ToString();
         }
 
+        /// <summary>
+        /// Closes the Update Console window without saving any changes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Validates user input and updates the selected console entry 
+        /// in the Console DataTable if valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             string name = InputConsoleName.Text.Trim();
@@ -54,6 +76,13 @@ namespace GameStoreManagementSystem.Forms.ManageConsolesForm
             Close();
         }
 
+        /// <summary>
+        /// Ensures that the console name and company fields are not empty. 
+        /// Displays error messages for invalid entries.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="company"></param>
+        /// <returns></returns>
         private bool ValidateInputs(string name, string company)
         {
             if (string.IsNullOrWhiteSpace(name))

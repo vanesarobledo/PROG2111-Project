@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : AddProductForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Vanesa Robledo
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application provides the logic for adding a new product record 
+*                 to the Game Store Management System. It loads foreign key 
+*                 data, validates user input, and inserts a new product entry 
+*                 into the Product table.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

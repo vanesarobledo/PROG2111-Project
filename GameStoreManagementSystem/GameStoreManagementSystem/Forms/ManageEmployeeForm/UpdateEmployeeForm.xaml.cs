@@ -1,9 +1,13 @@
 ﻿/*
-* FILE 		: UpdateEmployeeForm.xaml.cs
-* PROJECT 	: PROG2111 Project
-* PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
-* FIRST VERSION : 2025-10-09
+* FILE          : UpdateEmployeeForm.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the logic for updating an existing employee 
+*                 record in the Game Store Management System. It loads employee 
+*                 data, validates input, and applies changes to the Employee table.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,10 +28,6 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
     /// <summary>
     /// Interaction logic for UpdateEmployeeForm.xaml
     /// </summary>
-/*
-* NAME      : UpdateEmployeeForm
-* Purpose   : The form to update an employee from the database.
-*/
     public partial class UpdateEmployeeForm : Window
     {
         internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
@@ -38,15 +38,10 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             InitializeComponent();
             LoadForeignKeys();
         }
-        /*
-        * METHOD	: LoadForeignKeys
-        * DESCRIPTION	:
-        * Loads the drop down menu with the store id's.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Loads available store IDs into the ComboBox.
+        /// </summary>
         internal void LoadForeignKeys()
         {
             foreach (DataRow store in db.Store.Rows)
@@ -56,15 +51,13 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 storeIDBox.Items.Add(new KeyValuePair<int, string>(storeID, storeDisplay));
             }
         }
-        /*
-        * METHOD	: Window_Loaded
-        * DESCRIPTION	:
-        * Loads the textboxes with the appropriate values from the grid.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Loads the selected employee's data into the fields,
+        /// or closes the form if no employee is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get selected item
@@ -95,15 +88,11 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 this.Close();
             }
         }
-        /*
-        * METHOD	: emptyCheck
-        * DESCRIPTION	:
-        * Validates that none of the boxes are empty.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+
+        /// <summary>
+        /// Validates that all required fields are filled and the date of birth is valid.
+        /// </summary>
+        /// <returns></returns>
         internal bool emptyCheck()
         {
             bool retValue = false;
@@ -123,16 +112,12 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             return retValue;
         }
 
-        /*
-        * METHOD	: UpdateEmployeeButton_Click
-        * DESCRIPTION	:
-        * Runs verification and finds the appropriate row in the database to update and then updates the 
-        * values.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+        /// <summary>
+        /// Updates the selected employee record with new values
+        /// after validation succeeds.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             bool found = false;
@@ -160,15 +145,11 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             }
         }
 
-        /*
-        * METHOD	: cancelButton_Click
-        * DESCRIPTION	:
-        * Quits out of the window without adding anything to the database.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
+        /// <summary>
+        /// Closes the Update Employee window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

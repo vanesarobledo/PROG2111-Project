@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : ManageCustomers.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Connar Thompson
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the interaction logic for managing customer
+*                 records in the Game Store Management System. It allows users
+*                 to add, update, and delete customer entries, and handles 
+*                 navigation back to the main interface.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -37,12 +48,23 @@ namespace GameStoreManagementSystem.Views.Customers
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Opens the Add Customer form, allowing the user to create a new customer record.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             Forms.ManageCustomerForm.AddCustomerForm form = new Forms.ManageCustomerForm.AddCustomerForm();
             form.ShowDialog();
         }
 
+        /// <summary>
+        /// Opens the Update Customer form if a customer is selected in the DataGrid.
+        /// If no selection is made, an error message is displayed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateCustomer_Click(object sender, RoutedEventArgs e)
         {
             if (grid.SelectedIndex != -1)
@@ -56,6 +78,13 @@ namespace GameStoreManagementSystem.Views.Customers
             }
         }
 
+        /// <summary>
+        /// Handles the delete operation for a customer record. 
+        /// Checks if a row is selected, asks the user for confirmation, 
+        /// and proceeds to delete the customer if the confirmation is positive.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
             // Check for selected index
@@ -73,6 +102,11 @@ namespace GameStoreManagementSystem.Views.Customers
             }
         }
 
+        /// <summary>
+        /// Goes back to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
