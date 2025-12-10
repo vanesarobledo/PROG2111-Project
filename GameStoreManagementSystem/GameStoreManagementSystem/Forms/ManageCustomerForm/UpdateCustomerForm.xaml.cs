@@ -1,5 +1,5 @@
 ﻿/*
-* FILE 		: UpdateEmployeeForm.xaml.cs
+* FILE 		: UpdateCustomerForm.xaml.cs
 * PROJECT 	: PROG2111 Project
 * PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
 * FIRST VERSION : 2025-10-09
@@ -19,42 +19,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
+namespace GameStoreManagementSystem.Forms.ManageCustomerForm
 {
     /// <summary>
-    /// Interaction logic for UpdateEmployeeForm.xaml
+    /// Interaction logic for UpdateCustomerForm.xaml
     /// </summary>
-/*
-* NAME      : UpdateEmployeeForm
-* Purpose   : The form to update an employee from the database.
+    /*
+* NAME      : UpdateCustomerForm
+* Purpose   : The form to update an customer from the database.
 */
-    public partial class UpdateEmployeeForm : Window
+    public partial class UpdateCustomerForm : Window
     {
         internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
         internal DataGrid grid = ((MainWindow)Application.Current.MainWindow).MainGrid;
-        int employeeID;
-        public UpdateEmployeeForm()
+        int customerID;
+        public UpdateCustomerForm()
         {
             InitializeComponent();
-            LoadForeignKeys();
-        }
-        /*
-        * METHOD	: LoadForeignKeys
-        * DESCRIPTION	:
-        * Loads the drop down menu with the store id's.
-        * PARAMETERS	:
-        * None
-        * RETURNS	:
-        * None
-        */
-        internal void LoadForeignKeys()
-        {
-            foreach (DataRow store in db.Store.Rows)
-            {
-                int storeID = (int)store["store_id"];
-                string storeDisplay = store["store_id"].ToString() + ": " + store["location"];
-                storeIDBox.Items.Add(new KeyValuePair<int, string>(storeID, storeDisplay));
-            }
         }
         /*
         * METHOD	: Window_Loaded
@@ -74,7 +55,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 DataRowView dv = ((DataRowView)grid.Items[grid.SelectedIndex]);
                 if (dv.Row.ItemArray[0] != DBNull.Value)
                 {
-                    employeeID = (int)dv.Row.ItemArray[0];
+                    customerID = (int)dv.Row.ItemArray[0];
                     firstNameBox.Text = (string)dv.Row.ItemArray[1];
                     lastNameBox.Text = (string)dv.Row.ItemArray[2];
                     dobBox.Text = (string)dv.Row.ItemArray[3];
@@ -84,14 +65,14 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 }
                 else
                 {
-                    MessageBox.Show("Please save data to assign employee ID.", "Error");
+                    MessageBox.Show("Please save data to assign customer ID.", "Error");
                     this.Close();
                 }
             }
             // If no item is selected
             else
             {
-                MessageBox.Show("Please select an employee to update.", "Error");
+                MessageBox.Show("Please select an customer to update.", "Error");
                 this.Close();
             }
         }
@@ -109,7 +90,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
             if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
-                && usernameBox != null && passwordBox != null && storeIDBox.Text != null)
+                && usernameBox != null && passwordBox != null)
             {
                 if (DateTime.TryParse(dobBox.Text, out testDate))
                 {
@@ -122,9 +103,8 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             }
             return retValue;
         }
-
         /*
-        * METHOD	: UpdateEmployeeButton_Click
+        * METHOD	: UpdateCustomerButton_Click
         * DESCRIPTION	:
         * Runs verification and finds the appropriate row in the database to update and then updates the 
         * values.
@@ -133,15 +113,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         * RETURNS	:
         * None
         */
-        private void UpdateEmployeeButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             bool found = false;
             if (emptyCheck())
             {
-                for (int i = 0; i < db.Employee.Rows.Count && !found; i++)
+                for (int i = 0; i < db.Customer.Rows.Count && !found; i++)
                 {
-                    DataRow currentRow = db.Employee.Rows[i];
-                    if (Convert.ToInt32(currentRow["employee_id"]) == employeeID)
+                    DataRow currentRow = db.Customer.Rows[i];
+                    if (Convert.ToInt32(currentRow["customer_id"]) == customerID)
                     {
                         currentRow["first_name"] = firstNameBox.Text;
                         currentRow["last_name"] = lastNameBox.Text;
@@ -149,17 +129,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                         currentRow["email"] = emailBox.Text;
                         currentRow["username"] = usernameBox.Text;
                         currentRow["password"] = passwordBox.Text;
-                        currentRow["store_id"] = storeIDBox.Text;
                         found = true;
                     }
                 }
                 if (!found)
                 {
-                    MessageBox.Show("Employee could not be updated.", "Error");
+                    MessageBox.Show("Customer could not be updated.", "Error");
                 }
             }
         }
-
         /*
         * METHOD	: cancelButton_Click
         * DESCRIPTION	:
