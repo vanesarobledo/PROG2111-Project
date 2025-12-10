@@ -58,7 +58,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                     customerID = (int)dv.Row.ItemArray[0];
                     firstNameBox.Text = (string)dv.Row.ItemArray[1];
                     lastNameBox.Text = (string)dv.Row.ItemArray[2];
-                    dobBox.Text = (string)dv.Row.ItemArray[3];
+                    dobBox.Text = dv.Row.ItemArray[3].ToString();
                     emailBox.Text = (string)dv.Row.ItemArray[4];
                     usernameBox.Text = (string)dv.Row.ItemArray[5];
                     passwordBox.Text = (string)dv.Row.ItemArray[6];
