@@ -97,7 +97,7 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
                 {
                     if (consolesList.ContainsKey((int)inventory["console_id"]))
                     {
-                        inventoryDisplay += gamesList[(int)inventory["console_id"]].ToString();
+                        inventoryDisplay += consolesList[(int)inventory["console_id"]].ToString();
                     }
                 }
 
@@ -133,6 +133,34 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        /*
+        * With help from:
+        * TITLE : “WPF TextBox Only Accepts Numbers”
+        * AUTHOR : Mike
+        * DATE : 2020-05-16
+        * VERSION : 1.0
+        * AVAILABIILTY : https://begincodingnow.com/wpf-textbox-only-accepts-numbers/
+        */
+        /// <summary>
+        /// Only allow positive numeric input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Validation.IsPositiveNum(e.Text);
+        }
+
+        /// <summary>
+        /// Only allow positive numeric input as a float
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Validation.IsFloat(e.Text);
         }
     }
 }

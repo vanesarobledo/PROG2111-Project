@@ -62,23 +62,25 @@
 
             <StackPanel Grid.Column="0" Margin="10 10 10 0">
                 <TextBlock>
-                Quantity <Italic>(required)</Italic>
+                    Quantity <Italic>(required)</Italic>
                 </TextBlock>
-                <TextBox x:Name="InputDeveloper"
-                    Height="30"
-                    Padding="5"/>
+                <TextBox x:Name="InputQuantity"
+                         Height="30"
+                         Padding="5"
+                         PreviewTextInput="InputQuantity_PreviewTextInput" />
             </StackPanel>
-            
+
             <!-- Cost -->
             <StackPanel Grid.Column="1" Margin="10">
                 <TextBlock>
-            Cost <Italic>(required)</Italic>
+                    Cost <Italic>(required)</Italic>
                 </TextBlock>
-                <DockPanel LastChildFill="True" >
+                <DockPanel LastChildFill="True">
                     <TextBlock FontSize="15" VerticalAlignment="Center" Margin="0,0,5,0">$</TextBlock>
                     <TextBox x:Name="InputCost"
-               Height="30"
-               Padding="5"/>
+                             Height="30"
+                             Padding="5"
+                             PreviewTextInput="InputCost_PreviewTextInput"/>
                 </DockPanel>
             </StackPanel>
         </Grid>
