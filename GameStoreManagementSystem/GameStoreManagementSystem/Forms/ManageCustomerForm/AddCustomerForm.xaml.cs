@@ -53,7 +53,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             {
                 if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
-                    MessageBox.Show("Invalid Date of Birth.");
+                    MessageBox.Show("Invalid Date of Birth.", "Error");
                 }
                 else
                 {

@@ -92,9 +92,9 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
                 && usernameBox != null && passwordBox != null)
             {
-                if (DateTime.TryParse(dobBox.Text, out testDate))
+                if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
-                    MessageBox.Show("Invalid Date of Birth.");
+                    MessageBox.Show("Invalid Date of Birth.", "Error");
                 }
                 else
                 {
