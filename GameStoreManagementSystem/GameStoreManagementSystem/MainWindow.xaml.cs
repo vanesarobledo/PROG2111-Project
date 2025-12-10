@@ -256,24 +256,25 @@ namespace GameStoreManagementSystem
         //   MENU HANDLERS
         // ============================================================
 
+        /// <summary>
+        /// Closes the window when "Exit" is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void MenuFile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuHelp_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Shows the about windows 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            //tbd
+            About aboutWindow = new About();
+            aboutWindow.ShowDialog();
         }
 
 

@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : ManageGames.xaml.cs
+* PROJECT       : PROG2111 Project
+* PROGRAMMER    : Eumee Garcia
+* FIRST VERSION : 2025-12-08
+* DESCRIPTION   : This is an application contains the interaction logic for managing games 
+*                 within the Game Store Management System. It provides functions 
+*                 for adding, updating, deleting game records, and updating UI 
+*                 button states based on user selection.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -35,12 +46,24 @@ namespace GameStoreManagementSystem.Views.Games
             mainWindow.MainGrid.SelectionChanged += MainGrid_SelectionChanged;
         }
 
+        /// <summary>
+        /// Opens the Add Game form, allowing the user to create a new game entry.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddGame_Click(object sender, RoutedEventArgs e)
         {
             GameStoreManagementSystem.Forms.AddGamesForm form = new GameStoreManagementSystem.Forms.AddGamesForm();
             form.ShowDialog();
         }
 
+        /// <summary>
+        /// Opens the Update Game form for the selected game in the DataGrid.
+        /// Displays an error message if no game is selected. Passes the selected row
+        /// to the update form so the existing game details can be modified.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateSelectedGame_Click(object sender, RoutedEventArgs e)
         {
             bool valid = true;
@@ -64,6 +87,13 @@ namespace GameStoreManagementSystem.Views.Games
             return;  
         }
 
+        /// <summary>
+        /// Deletes the selected game record from the DataGrid. Prompts the user for 
+        /// confirmation before deleting. If confirmed, marks the row as deleted in the 
+        /// underlying DataTable and disables update/delete buttons afterward.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteGame_Click(object sender, RoutedEventArgs e)
         {
             bool valid = true;
@@ -108,7 +138,13 @@ namespace GameStoreManagementSystem.Views.Games
             return;
         }
 
-
+        /// <summary>
+        /// Triggered whenever the user changes the selected row in the MainGrid.
+        /// Enables or disables the Update and Delete buttons depending on whether
+        /// a row is selected and data exists in the grid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -123,6 +159,11 @@ namespace GameStoreManagementSystem.Views.Games
             DeleteGameButton.IsEnabled = enableButtons;
         }
 
+        /// <summary>
+        /// Goes back to the main page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;

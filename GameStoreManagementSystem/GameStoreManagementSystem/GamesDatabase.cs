@@ -57,8 +57,6 @@ namespace GameStoreManagementSystem
             SeedConsoleTableIfEmpty();
         }
 
-        // Functions
-
         /// <summary>
         /// Loads all of the tables of the game database into the GamesDataSet
         /// </summary>
@@ -90,6 +88,9 @@ namespace GameStoreManagementSystem
             }
         }
 
+        /// <summary>
+        /// pre-made console selections
+        /// </summary>
         private void SeedConsoleTableIfEmpty()
         {
             if (Console == null)
@@ -97,7 +98,6 @@ namespace GameStoreManagementSystem
                 return;
             }
 
-            // Prevent duplicate seed
             if (Console.Rows.Count == 0)
             {
                 int id = 1;
@@ -158,20 +158,21 @@ namespace GameStoreManagementSystem
         /// <returns><see langword="true" /> if ID exists; otherwise, <see langword="false" /></returns>
         internal bool ConsoleIDExists(int id)
         {
-            if (Console == null)
+            bool exists = false;
+
+            if (Console != null)
             {
-                return false;
+                foreach (DataRow row in Console.Rows)
+                {
+                    if ((int)row["console_id"] == id)
+                    {
+                        exists = true;
+                        break;         
+                    }
+                }
             }
 
-            foreach (DataRow row in Console.Rows)
-            {
-                if ((int)row["console_id"] == id)
-                {
-                    return true;
-                }
-                    
-            }
-            return false;
+            return exists;
         }
 
         /// <summary>
