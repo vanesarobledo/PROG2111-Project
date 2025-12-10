@@ -66,30 +66,38 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             {
                 // Get values from DataGrid
                 DataRowView dv = ((DataRowView)grid.Items[grid.SelectedIndex]);
-                inventoryID = (int)dv.Row.ItemArray[0];
-                if (dv.Row.ItemArray[1] != DBNull.Value)
+                if (dv.Row.ItemArray[0] != DBNull.Value)
                 {
-                    gameID = (int)dv.Row.ItemArray[1];
-                }
-                if (dv.Row.ItemArray[2] != DBNull.Value)
-                {
-                    consoleID = (int)dv.Row.ItemArray[2];
-                }
-                quantity = (int)dv.Row.ItemArray[3];
-                storeID = (int)dv.Row.ItemArray[4];
+                    inventoryID = (int)dv.Row.ItemArray[0];
+                    if (dv.Row.ItemArray[1] != DBNull.Value)
+                    {
+                        gameID = (int)dv.Row.ItemArray[1];
+                    }
+                    if (dv.Row.ItemArray[2] != DBNull.Value)
+                    {
+                        consoleID = (int)dv.Row.ItemArray[2];
+                    }
+                    quantity = (int)dv.Row.ItemArray[3];
+                    storeID = (int)dv.Row.ItemArray[4];
 
-                // Fill in values
-                UpdateTitle.Text += " #" + inventoryID.ToString();
-                if (gameID != 0)
-                {
-                    GameSelect.SelectedValue = gameID;
+                    // Fill in values
+                    UpdateTitle.Text += " #" + inventoryID.ToString();
+                    if (gameID != 0)
+                    {
+                        GameSelect.SelectedValue = gameID;
+                    }
+                    if (consoleID != 0)
+                    {
+                        ConsoleSelect.SelectedValue = consoleID;
+                    }
+                    InputQuantity.Text = quantity.ToString();
+                    StoreSelect.SelectedValue = storeID;
                 }
-                if (consoleID != 0)
+                else
                 {
-                    ConsoleSelect.SelectedValue = consoleID;
+                    MessageBox.Show("Please save data to assign inventory ID.", "Error");
+                    this.Close();
                 }
-                InputQuantity.Text = quantity.ToString();
-                StoreSelect.SelectedValue = storeID;
             }
             // If no item is selected
             else
@@ -109,9 +117,12 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             GameSelect.DisplayMemberPath = "Value";
             foreach (DataRow game in db.Game.Rows)
             {
-                int gameID = (int)game["game_id"];
-                string gameDisplay = game["game_id"].ToString() + ": " + game["title"];
-                GameSelect.Items.Add(new KeyValuePair<int, string>(gameID, gameDisplay));
+                if (game["game_id"] != DBNull.Value)
+                {
+                    int gameID = (int)game["game_id"];
+                    string gameDisplay = game["game_id"].ToString() + ": " + game["title"];
+                    GameSelect.Items.Add(new KeyValuePair<int, string>(gameID, gameDisplay));
+                }
             }
 
             // Auto-populate ConsoleSelect with consoles
@@ -119,9 +130,12 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             ConsoleSelect.DisplayMemberPath = "Value";
             foreach (DataRow console in db.Console.Rows)
             {
-                int consoleID = (int)console["console_id"];
-                string consoleDisplay = console["console_id"].ToString() + ": " + console["console_name"];
-                ConsoleSelect.Items.Add(new KeyValuePair<int, string>(consoleID, consoleDisplay));
+                if (console["console_id"] != DBNull.Value)
+                {
+                    int consoleID = (int)console["console_id"];
+                    string consoleDisplay = console["console_id"].ToString() + ": " + console["console_name"];
+                    ConsoleSelect.Items.Add(new KeyValuePair<int, string>(consoleID, consoleDisplay));
+                }
             }
 
             // Auto-populate StoreSelect with stores
@@ -129,9 +143,12 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
             StoreSelect.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
             {
-                int storeID = (int)store["store_id"];
-                string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
-                StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                if (store["store_id"] != DBNull.Value)
+                {
+                    int storeID = (int)store["store_id"];
+                    string consoleDisplay = store["store_id"].ToString() + ": " + store["location"];
+                    StoreSelect.Items.Add(new KeyValuePair<int, string>(storeID, consoleDisplay));
+                }
             }
         }
 

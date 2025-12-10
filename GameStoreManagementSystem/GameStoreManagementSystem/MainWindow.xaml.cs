@@ -30,7 +30,6 @@ using GameStoreManagementSystem.Views.Inventory;
 using GameStoreManagementSystem.Views.Products;
 using GameStoreManagementSystem.Views.Stores;
 
-
 namespace GameStoreManagementSystem
 {
     public partial class MainWindow : Window
@@ -41,6 +40,11 @@ namespace GameStoreManagementSystem
         /// Class that holds the DataSet & DataTables for the games database
         /// </summary>
         internal GamesDatabase gamesDatabase;
+
+        /// <summary>
+        /// List of tables that were opened in this session
+        /// </summary>
+        internal List<string> tablesOpened;
 
         /// <summary>
         /// Table currently being worked on
@@ -54,6 +58,9 @@ namespace GameStoreManagementSystem
 
             // Load data in games database
             gamesDatabase = new GamesDatabase();
+
+            // Instantiate list of tables that were changed
+            tablesOpened = new List<string>();
         }
 
 
@@ -73,6 +80,52 @@ namespace GameStoreManagementSystem
             }
         }
 
+        /// <summary>
+        /// Reloads the DataGrid based on the activeTable
+        /// </summary>
+        internal void RefreshDataGrid()
+        {
+            switch (activeTable)
+            {
+                case "Game":
+                    LoadDataGrid(gamesDatabase.Game);
+                    break;
+                case "Customer":
+                    LoadDataGrid(gamesDatabase.Customer);
+                    break;
+                case "Store":
+                    LoadDataGrid(gamesDatabase.Store);
+                    break;
+                case "Inventory":
+                    LoadDataGrid(gamesDatabase.Inventory);
+                    break;
+                case "Product":
+                    LoadDataGrid(gamesDatabase.Product);
+                    break;
+                case "Console":
+                    LoadDataGrid(gamesDatabase.Console);
+                    break;
+                case "Employee":
+                    LoadDataGrid(gamesDatabase.Employee);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Changes the active table and adds it to the list of tables that have been opened
+        /// </summary>
+        /// <param name="table"></param>
+        internal void SwitchTable(string table)
+        {
+            activeTable = table;
+            if (!tablesOpened.Contains(table))
+            {
+                tablesOpened.Add(table);
+            }
+        }
+
         // ============================================================
         //   BUTTON EVENTS 
         // ============================================================
@@ -81,7 +134,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Games.ManageGames();
-            activeTable = "Game";
+            SwitchTable("Game");
             LoadDataGrid(gamesDatabase.Game);
 
             FormatDateColumn();
@@ -91,7 +144,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Customers.ManageCustomers();
-            activeTable = "Customer";
+            SwitchTable("Customer");
             LoadDataGrid(gamesDatabase.Customer);
         }
 
@@ -99,7 +152,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Console.ManageConsole();
-            activeTable = "Console";
+            SwitchTable("Console");
             LoadDataGrid(gamesDatabase.Console);
         }
 
@@ -107,7 +160,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Products.ManageProducts();
-            activeTable = "Product";
+            SwitchTable("Product");
             LoadDataGrid(gamesDatabase.Product);
         }
 
@@ -115,7 +168,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Inventory.ManageInventory();
-            activeTable = "Inventory";
+            SwitchTable("Inventory");
             LoadDataGrid(gamesDatabase.Inventory);
         }
 
@@ -123,7 +176,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Employees.ManageEmployees();
-            activeTable = "Employee";
+            SwitchTable("Employee");
             LoadDataGrid(gamesDatabase.Employee);
         }
 
@@ -131,7 +184,7 @@ namespace GameStoreManagementSystem
         {
             RightButtonPanel.Visibility = Visibility.Collapsed;
             RightContentArea.Content = new Views.Stores.ManageStores();
-            activeTable = "Store";
+            SwitchTable("Store");
             LoadDataGrid(gamesDatabase.Store);
         }
 
@@ -142,11 +195,19 @@ namespace GameStoreManagementSystem
         {
             try
             {
-                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, activeTable);
+                foreach (string table in tablesOpened)
+                {
+                    // Save data to database
+                    gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, table);
+                }
+
+                // Reload data
+                gamesDatabase.FillGamesDataSet();
+                RefreshDataGrid();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not save to " + activeTable + ": " + ex, "Error");
+                MessageBox.Show("Could not save to database: " + ex, "Error");
             }
         }
 
