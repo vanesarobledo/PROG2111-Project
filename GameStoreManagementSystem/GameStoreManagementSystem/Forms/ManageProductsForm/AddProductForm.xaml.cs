@@ -127,7 +127,45 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            // Get values from form
+            int inventoryID = 0;
+            int customerID = 0;
+            string quantity = InputQuantity.Text;
+            string cost = InputCost.Text;
+            string dateOfPurchase = DateOfPurchase.Text;
+            int storeID = 0;
 
+            if (InventorySelect.SelectedValue != null)
+            {
+                inventoryID = (int)InventorySelect.SelectedValue;
+            }
+
+            if (CustomerSelect.SelectedValue != null)
+            {
+                customerID = (int)CustomerSelect.SelectedValue;
+            }
+
+            if (StoreSelect.SelectedValue != null)
+            {
+                storeID = (int)StoreSelect.SelectedValue;
+            }
+
+            // Validate values
+            if (Validation.ValidateProductValues(db, inventoryID, customerID, cost, quantity, dateOfPurchase, storeID))
+            {
+
+                DataRow newRow = db.Product.NewRow();
+                newRow["inventory_id"] = inventoryID;
+                newRow["customer_id"] = customerID;
+                newRow["date_of_purchase"] = dateOfPurchase;
+                newRow["quantity"] = quantity;
+                newRow["cost"] = cost;
+                newRow["store_id"] = storeID;
+                db.Product.Rows.Add(newRow);
+
+                // Show success
+                MessageBox.Show("Product item successfully added.\nClick \"Save\" to save changes to database", "Inventory Added");
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

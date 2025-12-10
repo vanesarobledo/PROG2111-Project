@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageProductsForm"
         mc:Ignorable="d"
-        Title="Add Product" Height="450" Width="500">
+        Title="Add Product" Height="530" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
@@ -17,6 +19,8 @@
             <!-- Row 2 -->
             <RowDefinition Height="Auto"/>
             <!-- Row 3 -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 4 -->
             <RowDefinition Height="Auto"/>
             <!-- Buttons -->
             <RowDefinition Height="Auto"/>
@@ -85,9 +89,17 @@
             </StackPanel>
         </Grid>
 
+        <StackPanel Grid.Row="4" Margin="10 10 10 0">
+            <TextBlock>
+               Date of Purchase
+            </TextBlock>
+            <DatePicker x:Name="DateOfPurchase"
+                    Height="30"
+                    Padding="5"/>
+        </StackPanel>
 
         <!-- ==================== ROW 4 ==================== -->
-        <StackPanel Grid.Row="4" Margin="10 10 10 0">
+        <StackPanel Grid.Row="5" Margin="10 10 10 0">
             <TextBlock>
                Store <Italic>(required)</Italic>
             </TextBlock>
@@ -98,7 +110,7 @@
 
 
         <!-- ==================== BUTTONS ==================== -->
-        <Grid Grid.Row="5" Margin="10 20 10 0">
+        <Grid Grid.Row="6" Margin="10 20 10 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

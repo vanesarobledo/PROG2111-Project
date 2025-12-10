@@ -172,7 +172,7 @@ namespace GameStoreManagementSystem
         /// <param name="quantity"></param>
         /// <param name="storeID"></param>
         /// <returns><see langword="true" /> if Product data is valid; otherwise, <see langword="false" /></returns>
-        internal static bool ValidateProductValues(GamesDatabase db, int inventoryID, int customerID, string cost, string quantity, int storeID)
+        internal static bool ValidateProductValues(GamesDatabase db, int inventoryID, int customerID, string cost, string quantity, string dateOfPurchase, int storeID)
         {
             bool valid = true;
             string errorMessage = "Error: ";
@@ -187,14 +187,19 @@ namespace GameStoreManagementSystem
                 errorMessage += "Customer not found.\n";
                 valid = false;
             }
-            if (Validation.ConvertCost(cost) == 0)
+            if (IsEmpty(cost) && ConvertCost(cost) == 0)
             {
                 errorMessage += "Invalid cost. Cost must be greater than $0.00.\n";
                 valid = false;
             }
-            if (Validation.IsPositiveNum(quantity))
+            if (IsEmpty(quantity) && IsPositiveNum(quantity))
             {
                 errorMessage += "Invalid quantity. Quantity must be 1 or greater.\n";
+                valid = false;
+            }
+            if (IsEmpty(dateOfPurchase) && IsValidDate(DateTime.Parse(dateOfPurchase)))
+            {
+                errorMessage += "Invalid date of purchase.\n";
                 valid = false;
             }
             if (!db.StoreIDExists(storeID))
@@ -202,6 +207,7 @@ namespace GameStoreManagementSystem
                 errorMessage += "Store not found.\n";
                 valid = false;
             }
+
             // Show error if invalid
             if (!valid)
             {

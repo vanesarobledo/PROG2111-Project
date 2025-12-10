@@ -115,25 +115,28 @@ namespace GameStoreManagementSystem.Views.Inventory
         {
             // Get selected inventory ID
             DataRowView dv = ((DataRowView)grid.Items[grid.SelectedIndex]);
-            int inventoryID = (int)dv.Row.ItemArray[0];
-
-            // Find inventory row to delete
-            bool found = false;
-            for (int i = 0; i < db.Inventory.Rows.Count && !found; i++)
+            if (dv != null)
             {
-                DataRow currentRow = db.Inventory.Rows[i];
-                // If row is found
-                if (Convert.ToInt32(currentRow["inventory_id"]) == inventoryID)
+                int inventoryID = (int)dv.Row.ItemArray[0];
+
+                // Find inventory row to delete
+                bool found = false;
+                for (int i = 0; i < db.Inventory.Rows.Count && !found; i++)
                 {
-                    // Mark row for deletion
-                    currentRow.Delete();
+                    DataRow currentRow = db.Inventory.Rows[i];
+                    // If row is found
+                    if (Convert.ToInt32(currentRow["inventory_id"]) == inventoryID)
+                    {
+                        // Mark row for deletion
+                        currentRow.Delete();
 
-                    // Delete row in table
-                    db.Inventory.AcceptChanges();
+                        // Delete row in table
+                        db.Inventory.AcceptChanges();
 
-                    // Show success
-                    MessageBox.Show("Inventory item ID #" + inventoryID.ToString() + " has been successfuly deleted.\nClick \"Save\" to save changes to database", "Inventory Added");
-                    found = true;
+                        // Show success
+                        MessageBox.Show("Inventory item ID #" + inventoryID.ToString() + " has been successfuly deleted.\nClick \"Save\" to save changes to database", "Inventory Added");
+                        found = true;
+                    }
                 }
             }
         }
