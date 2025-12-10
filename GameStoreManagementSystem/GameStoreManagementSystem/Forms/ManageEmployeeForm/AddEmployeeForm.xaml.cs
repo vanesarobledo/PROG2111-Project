@@ -44,6 +44,8 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         /// </summary>
         internal void LoadForeignKeys()
         {
+            storeIDBox.SelectedValuePath = "Key";
+            storeIDBox.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
             {
                 int storeID = (int)store["store_id"];
@@ -62,10 +64,10 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         {
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
-            if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox !=null
-                && usernameBox != null && passwordBox != null && storeIDBox.Text != null)
+            if (firstNameBox.Text != "" && lastNameBox.Text != "" && dobBox.Text != "" && emailBox.Text != ""
+                && usernameBox.Text != "" && passwordBox.Text != "" && storeIDBox.SelectedValue != null)
             {
-                if (DateTime.TryParse(dobBox.Text, out testDate))
+                if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
                     MessageBox.Show("Invalid Date of Birth.");
                 }
@@ -78,7 +80,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             {
                 MessageBox.Show("All fields must have a value.");
             }
-                return retValue;
+            return retValue;
         }
 
         /// <summary>
@@ -90,6 +92,11 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             DataRow newRow = db.Employee.NewRow();
+            int storeID = 0;
+            if (storeIDBox.SelectedValue != null)
+            {
+                storeID = (int)storeIDBox.SelectedValue;
+            }
             if (emptyCheck())
             {
                 newRow["first_name"] = firstNameBox.Text;
@@ -98,8 +105,10 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 newRow["email"] = emailBox.Text;
                 newRow["username"] = usernameBox.Text;
                 newRow["password"] = passwordBox.Text;
-                newRow["store_id"] = storeIDBox.Text;
+                newRow["store_id"] = storeID;
                 db.Employee.Rows.Add(newRow);
+
+                MessageBox.Show("Employee successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
         }
 

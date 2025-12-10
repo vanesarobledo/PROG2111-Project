@@ -209,7 +209,7 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
                 db.Product.Rows.Add(newRow);
 
                 // Show success
-                MessageBox.Show("Product item successfully added.\nClick \"Save\" to save changes to database", "Inventory Added");
+                MessageBox.Show("Product item successfully added.\nClick \"Save\" to save changes to database", "Success");
             }
         }
 

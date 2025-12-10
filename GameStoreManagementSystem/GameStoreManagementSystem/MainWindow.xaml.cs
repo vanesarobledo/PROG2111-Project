@@ -42,11 +42,6 @@ namespace GameStoreManagementSystem
         internal GamesDatabase gamesDatabase;
 
         /// <summary>
-        /// List of tables that were opened in this session
-        /// </summary>
-        internal List<string> tablesOpened;
-
-        /// <summary>
         /// Table currently being worked on
         /// </summary>
         internal string activeTable = "";
@@ -58,9 +53,6 @@ namespace GameStoreManagementSystem
 
             // Load data in games database
             gamesDatabase = new GamesDatabase();
-
-            // Instantiate list of tables that were changed
-            tablesOpened = new List<string>();
         }
 
 
@@ -120,10 +112,6 @@ namespace GameStoreManagementSystem
         internal void SwitchTable(string table)
         {
             activeTable = table;
-            if (!tablesOpened.Contains(table))
-            {
-                tablesOpened.Add(table);
-            }
         }
 
         // ============================================================
@@ -236,11 +224,16 @@ namespace GameStoreManagementSystem
         {
             try
             {
-                foreach (string table in tablesOpened)
-                {
-                    // Save data to database
-                    gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, table);
-                }
+                // Save data to database
+                // Tables must be saved in specific order to verify foreign keys, starting with the
+                // most relations (Product) to the least (Customer)
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Product");
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Inventory");
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Console");
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Game");
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Employee");
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Store");
+                gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Customer");
 
                 // Reload data
                 gamesDatabase.FillGamesDataSet();

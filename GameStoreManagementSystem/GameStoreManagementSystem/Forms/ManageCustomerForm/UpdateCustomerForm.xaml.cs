@@ -57,7 +57,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
                     customerID = (int)dv.Row.ItemArray[0];
                     firstNameBox.Text = (string)dv.Row.ItemArray[1];
                     lastNameBox.Text = (string)dv.Row.ItemArray[2];
-                    dobBox.Text = (string)dv.Row.ItemArray[3];
+                    dobBox.Text = dv.Row.ItemArray[3].ToString();
                     emailBox.Text = (string)dv.Row.ItemArray[4];
                     usernameBox.Text = (string)dv.Row.ItemArray[5];
                     passwordBox.Text = (string)dv.Row.ItemArray[6];
@@ -71,7 +71,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             // If no item is selected
             else
             {
-                MessageBox.Show("Please select an customer to update.", "Error");
+                MessageBox.Show("Please select a customer to update.", "Error");
                 this.Close();
             }
         }
@@ -85,17 +85,21 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
         {
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
-            if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
-                && usernameBox != null && passwordBox != null)
+            if (firstNameBox.Text != "" && lastNameBox.Text != "" && dobBox.Text != "" && emailBox.Text != ""
+                && usernameBox.Text != "" && passwordBox.Text != "")
             {
-                if (DateTime.TryParse(dobBox.Text, out testDate))
+                if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
-                    MessageBox.Show("Invalid Date of Birth.");
+                    MessageBox.Show("Invalid Date of Birth.", "Error");
                 }
                 else
                 {
                     retValue = true;
                 }
+            }
+            else
+            {
+                MessageBox.Show("All fields must have a value.", "Error");
             }
             return retValue;
         }
