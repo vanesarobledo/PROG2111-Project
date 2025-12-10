@@ -1,0 +1,29 @@
+﻿<Window x:Class="GameStoreManagementSystem.Forms.ManageEmployeeForm.UpdateEmployeeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageEmployeeForm"
+        mc:Ignorable="d"
+        Title="UpdateEmployeeForm" Height="450" Width="800">
+    <Grid>
+        <TextBlock  Text="Update Employee" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Button x:Name="UpdateEmployeeButton" Content="Update" HorizontalAlignment="Left" Margin="467,212,0,0" VerticalAlignment="Top" Click="UpdateEmployeeButton_Click" Height="31" Width="58"/>
+        <ComboBox x:Name="storeIDBox" HorizontalAlignment="Center" Margin="0,164,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="294,167,0,0" TextWrapping="Wrap" Text="Store Id" VerticalAlignment="Top"/>
+        <TextBox x:Name="firstNameBox" HorizontalAlignment="Left" Margin="239,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
+        <TextBox x:Name="lastNameBox" HorizontalAlignment="Left" Margin="456,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
+        <TextBox x:Name="dobBox" HorizontalAlignment="Left" Margin="239,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
+        <TextBox x:Name="emailBox" HorizontalAlignment="Left" Margin="456,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
+        <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Margin="239,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
+        <TextBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="456,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" MaxLength="50"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="249,217,0,0" VerticalAlignment="Top" Click="cancelButton_Click" Height="31" Width="58"/>
+        <TextBlock HorizontalAlignment="Left" Margin="400,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Password"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="179,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Username"/><LineBreak/><Run Language="en-ca"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="416,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Email"/><LineBreak/><Run Language="en-ca"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="165,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Date of Birth"/><LineBreak/><Run Language="en-ca"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="382,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="Last Name"/><LineBreak/><Run Language="en-ca"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="165,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-ca" Text="First Name"/><LineBreak/><Run/></TextBlock>
+
+    </Grid>
+</Window>

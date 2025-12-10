@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+* FILE 		: AddStore.xaml.cs
+* PROJECT 	: PROG2111 Project
+* PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
+* FIRST VERSION : 2025-10-09
+*/
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,6 +24,10 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
     /// <summary>
     /// Interaction logic for AddStore.xaml
     /// </summary>
+/*
+* NAME      : AddStore
+* Purpose   : The form to add an store to the database.
+*/
     public partial class AddStore : Window
     {
 
@@ -26,7 +36,15 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
         {
             InitializeComponent();
         }
-
+        /*
+        * METHOD	: AddStoreButton_Click
+        * DESCRIPTION	:
+        * If the store name is not empty it adds the store to the database.
+        * PARAMETERS	:
+        * None
+        * RETURNS	:
+        * None
+        */
         private void AddStoreButton_Click(object sender, RoutedEventArgs e)
         {
             DataRow newRow = db.Store.NewRow();
@@ -38,7 +56,15 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
                 db.Store.Rows.Add(newRow);
             }
         }
-
+        /*
+        * METHOD	: CancelButton_Click
+        * DESCRIPTION	:
+        * Quits out of the window without adding anything to the database.
+        * PARAMETERS	:
+        * None
+        * RETURNS	:
+        * None
+        */
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

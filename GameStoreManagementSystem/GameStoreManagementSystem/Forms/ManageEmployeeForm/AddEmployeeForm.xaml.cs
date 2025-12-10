@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+* FILE 		: AddEmployeeForm.xaml.cs
+* PROJECT 	: PROG2111 Project
+* PROGRAMMER 	: Eumee Garcia, Vanesa Robledo, Connar Thompson
+* FIRST VERSION : 2025-10-09
+*/
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,6 +24,11 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
     /// <summary>
     /// Interaction logic for AddEmployeeForm.xaml
     /// </summary>
+    /// 
+/*
+* NAME      : AddEmployeeForm
+* Purpose   : The form to add an employee to the database.
+*/
     public partial class AddEmployeeForm : Window
     {
         internal GamesDatabase db = ((MainWindow)Application.Current.MainWindow).gamesDatabase;
@@ -26,7 +37,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             InitializeComponent();
             LoadForeignKeys();
         }
-
+        /*
+        * METHOD	: LoadForeignKeys
+        * DESCRIPTION	:
+        * Loads the drop down menu with the store id's.
+        * PARAMETERS	:
+        * None
+        * RETURNS	:
+        * None
+        */
         internal void LoadForeignKeys()
         {
             foreach (DataRow store in db.Store.Rows)
@@ -36,7 +55,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 storeIDBox.Items.Add(new KeyValuePair<int, string>(storeID, storeDisplay));
             }
         }
-
+        /*
+        * METHOD	: emptyCheck
+        * DESCRIPTION	:
+        * Validates that none of the boxes are empty.
+        * PARAMETERS	:
+        * None
+        * RETURNS	:
+        * None
+        */
         internal bool emptyCheck()
         {
             bool retValue = false;
@@ -48,6 +75,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             }
             return retValue;
         }
+        /*
+        * METHOD	: AddEmployeeButton_Click
+        * DESCRIPTION	:
+        * If all the boxes have values in them it loads all the info into the database.
+        * PARAMETERS	:
+        * none
+        * RETURNS	:
+        * none
+        */
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             DataRow newRow = db.Employee.NewRow();
@@ -63,7 +99,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
                 db.Employee.Rows.Add(newRow);
             }
         }
-
+        /*
+        * METHOD	: cancelButton_Click
+        * DESCRIPTION	:
+        * Quits out of the window without adding anything to the database.
+        * PARAMETERS	:
+        * None
+        * RETURNS	:
+        * None
+        */
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
