@@ -49,7 +49,7 @@ namespace GameStoreManagementSystem.Forms.ManageCustomerForm
             bool retValue = false;
             DateTime testDate = DateTime.MinValue;
             if (firstNameBox != null && lastNameBox != null && dobBox != null && emailBox != null
-                && usernameBox != null && passwordBox != null && storeIDBox.Text != null)
+                && usernameBox != null && passwordBox != null)
             {
                 if (DateTime.TryParse(dobBox.Text, out testDate))
                 {

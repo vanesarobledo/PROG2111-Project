@@ -49,7 +49,6 @@ namespace GameStoreManagementSystem.Forms.ManageStoreForm
         {
             DataRow newRow = db.Store.NewRow();
 
-
             if (StoreNameInput != null)
             { 
                 newRow["location"] = StoreNameInput.Text;

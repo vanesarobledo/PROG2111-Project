@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStoreManagementSystem.Forms.ManageStoreForm"
         mc:Ignorable="d"
-        Title="UpdateStoreForm" Height="450" Width="800">
+        Title="UpdateStoreForm" Height="200" Width="500"
+        Loaded="Window_Loaded">
     <Grid>
-        <TextBlock  Text="Update Store" FontSize="26" FontWeight="Bold" HorizontalAlignment="Left" Margin="189,0,0,250"/>
-        <TextBlock Text="Store Name" Margin="10,67,701,347"/>
-        <TextBox x:Name="StoreNameInput" HorizontalAlignment="Left" Margin="99,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="274" MaxLength="50"/>
+        <TextBlock  Text="Update Store" FontSize="26" FontWeight="Bold" HorizontalAlignment="Left" Margin="175,20,0,130"/>
+        <TextBlock Text="Store Name" Margin="20,65,400,100"/>
+        <TextBox x:Name="StoreNameInput" HorizontalAlignment="Left" Margin="99,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" MaxLength="50"/>
         <Button x:Name="UpdateStoreButton" Content="Update Store" HorizontalAlignment="Left" Margin="378,67,0,0" VerticalAlignment="Top" Click="UpdateStoreButton_Click" Width="92"/>
         <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="192,114,0,0" VerticalAlignment="Top" Height="34" Width="116" Click="CancelButton_Click"/>
 
