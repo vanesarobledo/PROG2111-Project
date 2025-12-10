@@ -192,6 +192,8 @@ namespace GameStoreManagementSystem
                 gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Store");
                 gamesDatabase.Connection.SaveData(gamesDatabase.GamesDataSet, "Customer");
 
+                MessageBox.Show("All tables saved successfully to database.", "Succcess");
+
                 // Reload data
                 gamesDatabase.FillGamesDataSet();
                 RefreshDataGrid();

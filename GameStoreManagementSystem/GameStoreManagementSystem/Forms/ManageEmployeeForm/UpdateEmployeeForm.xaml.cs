@@ -53,11 +53,15 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             storeIDBox.DisplayMemberPath = "Value";
             foreach (DataRow store in db.Store.Rows)
             {
-                int storeID = (int)store["store_id"];
-                string storeDisplay = store["store_id"].ToString() + ": " + store["location"];
-                storeIDBox.Items.Add(new KeyValuePair<int, string>(storeID, storeDisplay));
+                if (store.RowState != DataRowState.Deleted)
+                {
+                    int storeID = (int)store["store_id"];
+                    string storeDisplay = store["store_id"].ToString() + ": " + store["location"];
+                    storeIDBox.Items.Add(new KeyValuePair<int, string>(storeID, storeDisplay));
+                }
             }
         }
+
         /*
         * METHOD	: Window_Loaded
         * DESCRIPTION	:
@@ -116,7 +120,7 @@ namespace GameStoreManagementSystem.Forms.ManageEmployeeForm
             {
                 if (!DateTime.TryParse(dobBox.Text, out testDate))
                 {
-                    MessageBox.Show("Invalid Date of Birth.");
+                    MessageBox.Show("Invalid Date of Birth.", "Error");
                 }
                 else
                 {
