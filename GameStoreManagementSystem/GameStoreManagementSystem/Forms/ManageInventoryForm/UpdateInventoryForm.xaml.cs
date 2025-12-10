@@ -79,7 +79,7 @@ namespace GameStoreManagementSystem.Forms.ManageInventoryForm
                 storeID = (int)dv.Row.ItemArray[4];
 
                 // Fill in values
-                UpdateTitle.Text += "#" + inventoryID.ToString();
+                UpdateTitle.Text += " #" + inventoryID.ToString();
                 if (gameID != 0)
                 {
                     GameSelect.SelectedValue = gameID;

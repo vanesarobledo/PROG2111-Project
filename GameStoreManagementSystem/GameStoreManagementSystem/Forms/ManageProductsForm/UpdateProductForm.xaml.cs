@@ -16,9 +16,9 @@ using System.Windows.Shapes;
 namespace GameStoreManagementSystem.Forms.ManageProductsForm
 {
     /// <summary>
-    /// Interaction logic for AddProductForm.xaml
+    /// Interaction logic for UpdateProductForm.xaml
     /// </summary>
-    public partial class AddProductForm : Window
+    public partial class UpdateProductForm : Window
     {
         /// <summary>
         /// Select games database from Main window
@@ -40,7 +40,18 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
         /// </summary>
         internal Dictionary<int, string> consolesList;
 
-        public AddProductForm()
+        /// <summary>
+        /// Product Columns
+        /// </summary>
+        internal int productID = 0;
+        int inventoryID = 0;
+        int customerID = 0;
+        int quantity;
+        float cost;
+        string dateOfPurchase;
+        int storeID = 0;
+
+        public UpdateProductForm()
         {
             InitializeComponent();
 
@@ -90,7 +101,7 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             {
                 int inventoryID = (int)inventory["inventory_id"];
                 string inventoryDisplay = inventory["inventory_id"].ToString() + ": ";
-                
+
                 // Look up game title or console name to display in inventory
                 if (inventory["game_id"] != DBNull.Value)
                 {
@@ -131,47 +142,41 @@ namespace GameStoreManagementSystem.Forms.ManageProductsForm
             }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Get values from form
-            int inventoryID = 0;
-            int customerID = 0;
-            string quantity = InputQuantity.Text;
-            string cost = InputCost.Text;
-            string dateOfPurchase = DateOfPurchaseInput.Text;
-            int storeID = 0;
-
-            if (InventorySelect.SelectedValue != null)
+            // Get selected item
+            if (grid.SelectedIndex != -1)
             {
-                inventoryID = (int)InventorySelect.SelectedValue;
-            }
+                // Get values from DataGrid
+                DataRowView dv = ((DataRowView)grid.Items[grid.SelectedIndex]);
+                productID = (int)dv.Row.ItemArray[0];
+                inventoryID = (int)dv.Row.ItemArray[1];
+                customerID = (int)dv.Row.ItemArray[2];
+                cost = (float)dv.Row.ItemArray[3];
+                dateOfPurchase = dv.Row.ItemArray[4].ToString();
+                quantity = (int)dv.Row.ItemArray[5];
+                storeID = (int)dv.Row.ItemArray[6];
 
-            if (CustomerSelect.SelectedValue != null)
+                // Fill in values
+                UpdateTitle.Text += " #" + productID.ToString();
+                InputQuantity.Text = quantity.ToString();
+                InputCost.Text = cost.ToString();
+                DateOfPurchaseInput.Text = dateOfPurchase;
+                InventorySelect.SelectedValue = inventoryID;
+                CustomerSelect.SelectedValue = customerID;
+                StoreSelect.SelectedValue = storeID;
+            }
+            // If no item is selected
+            else
             {
-                customerID = (int)CustomerSelect.SelectedValue;
+                MessageBox.Show("Please select a Product item to update.", "Error");
+                this.Close();
             }
+        }
 
-            if (StoreSelect.SelectedValue != null)
-            {
-                storeID = (int)StoreSelect.SelectedValue;
-            }
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
 
-            // Validate values
-            if (Validation.ValidateProductValues(db, inventoryID, customerID, cost, quantity, dateOfPurchase, storeID))
-            {
-
-                DataRow newRow = db.Product.NewRow();
-                newRow["inventory_id"] = inventoryID;
-                newRow["customer_id"] = customerID;
-                newRow["date_of_purchase"] = dateOfPurchase;
-                newRow["quantity"] = quantity;
-                newRow["cost"] = cost;
-                newRow["store_id"] = storeID;
-                db.Product.Rows.Add(newRow);
-
-                // Show success
-                MessageBox.Show("Product item successfully added.\nClick \"Save\" to save changes to database", "Inventory Added");
-            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

@@ -44,7 +44,15 @@ namespace GameStoreManagementSystem.Views.Products
 
         private void UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            if (grid.SelectedIndex != -1)
+            {
+                Forms.ManageProductsForm.UpdateProductForm form = new Forms.ManageProductsForm.UpdateProductForm();
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Select a product item to update.", "Error");
+            }
         }
 
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
